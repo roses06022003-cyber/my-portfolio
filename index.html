@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Portfolio</title>
+    <title>Bống's Portfolio | Graphic Designer</title>
     <style>
         * {
             margin: 0;
@@ -79,39 +79,72 @@
             width: 100%;
         }
 
-        /* HERO */
+        /* HERO - NEW LAYOUT */
         .hero {
-            padding: 80px 40px;
-            text-align: center;
-            max-width: 1000px;
+            padding: 100px 40px;
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: fadeInLeft 0.8s ease;
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 300;
             letter-spacing: -1px;
-            margin-bottom: 30px;
-            line-height: 1.2;
-            animation: fadeInDown 0.8s ease;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
         }
 
         .hero p {
             font-size: 16px;
             color: #666;
-            max-width: 600px;
-            margin: 0 auto 60px;
             line-height: 1.8;
-            animation: fadeInUp 0.8s ease 0.2s both;
+            margin-bottom: 0;
+            max-width: 500px;
+        }
+
+        .hero p strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .hero-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 0.8s ease;
         }
 
         .hero-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 20px;
+            width: 280px;
+            height: 280px;
+            border-radius: 16px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0 auto 40px;
-            animation: fadeInUp 0.8s ease 0.4s both;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* WORKS SECTION */
@@ -232,14 +265,25 @@
         }
 
         /* ANIMATIONS */
-        @keyframes fadeInDown {
+        @keyframes fadeInLeft {
             from {
                 opacity: 0;
-                transform: translateY(-30px);
+                transform: translateX(-30px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
 
@@ -255,6 +299,25 @@
         }
 
         /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-image-container {
+                order: -1;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+        }
+
         @media (max-width: 768px) {
             header {
                 padding: 15px 20px;
@@ -275,7 +338,20 @@
             }
 
             .hero h1 {
-                font-size: 32px;
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .hero-image {
+                width: 200px;
+                height: 200px;
             }
 
             .works {
@@ -305,7 +381,7 @@
     <!-- HEADER -->
     <header>
         <nav>
-            <a href="#" class="logo">Your Name</a>
+            <a href="#" class="logo">Bống's Portfolio</a>
             <ul class="nav-links">
                 <li><a href="#works">work</a></li>
                 <li><a href="#about">about</a></li>
@@ -316,9 +392,17 @@
 
     <!-- HERO -->
     <section class="hero">
-        <div class="hero-image"></div>
-        <h1>hi! i'm Your Name</h1>
-        <p>I'm a graphic designer creating visually impacting solutions, bridging the gap between aesthetics and business objectives.</p>
+        <div class="hero-content">
+            <h1>hi! I'm Dan,</h1>
+            <p class="hero-subtitle">a graphic designer</p>
+            <p><strong>Quality-driven design</strong> paired with <strong>creative innovation</strong> is my foundation for delivering <strong>impactful visual solutions</strong>.</p>
+        </div>
+        
+        <div class="hero-image-container">
+            <div class="hero-image">
+                <!-- Avatar will go here -->
+            </div>
+        </div>
     </section>
 
     <!-- WORKS -->
@@ -394,7 +478,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <p>&copy; 2024 Bống's Portfolio. All rights reserved.</p>
     </footer>
 
     <script>
