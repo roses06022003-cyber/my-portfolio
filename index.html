@@ -11,6 +11,13 @@
             box-sizing: border-box;
         }
 
+        @font-face {
+            font-family: 'Allright';
+            src: url('fonts/allright.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #ffffff;
@@ -100,6 +107,7 @@
             letter-spacing: -1px;
             margin-bottom: 10px;
             line-height: 1.1;
+            font-family: 'Allright', sans-serif;
         }
 
         .hero-subtitle {
@@ -108,6 +116,7 @@
             color: #1a1a1a;
             margin-bottom: 25px;
             letter-spacing: -0.5px;
+            font-family: 'Allright', sans-serif;
         }
 
         .hero p {
@@ -139,12 +148,33 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            position: relative;
         }
 
         .hero-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: absolute;
+            transition: opacity 0.3s ease;
+        }
+
+        .avatar-real {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .avatar-sketch {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .hero-image:hover .avatar-real {
+            opacity: 0;
+        }
+
+        .hero-image:hover .avatar-sketch {
+            opacity: 1;
         }
 
         /* WORKS SECTION */
@@ -400,7 +430,8 @@
         
         <div class="hero-image-container">
             <div class="hero-image">
-                <img src="images/Avatar.jpg" alt="Avatar">
+                <img src="images/Avatar.jpg" alt="Avatar" class="avatar-real">
+                <img src="images/avasketch.jpg" alt="Avatar Sketch" class="avatar-sketch">
             </div>
         </div>
     </section>
