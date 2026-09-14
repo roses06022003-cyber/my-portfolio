@@ -125,72 +125,142 @@
         .exp-number { position: absolute; top: 30px; right: 40px; font-size: 80px; font-weight: 300; color: #fff; line-height: 1; }
         .exp-date { position: absolute; bottom: 30px; left: 40px; font-size: 12px; font-weight: 600; color: #fff; letter-spacing: 2px; }
 
-        /* WORKS SECTION - THU NHỎ SIZE */
-        .works { padding: 100px 40px; max-width: 900px; margin: 0 auto; } /* Thu nhỏ khung chứa xuống 900px */
+        /* WORKS SECTION */
+        .works { padding: 100px 40px; max-width: 900px; margin: 0 auto; }
         .works h2 { font-size: 36px; font-weight: 500; margin-bottom: 10px; text-align: center; font-family: 'Allright', sans-serif; }
         .works-subtitle { text-align: center; font-size: 15px; color: #666; margin-bottom: 50px; font-style: italic; }
-
-        /* Vẫn giữ nguyên 2 cột */
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
 
-        /* Style thẻ theo chuẩn Spryte - Bóp gọn padding */
-        .spryte-card {
-            background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            border-radius: 20px;
-            padding: 16px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-        }
-        .spryte-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .spryte-image {
-            width: 100%;
-            aspect-ratio: 4 / 3; /* Tỷ lệ vàng giống mẫu Spryte thay vì vuông 1:1 */
-            border-radius: 12px;
-            margin-bottom: 16px;
-            background: #f5f5f5;
-            overflow: hidden;
-            position: relative;
-        }
+        .spryte-card { background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 20px; padding: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+        .spryte-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05); }
+        .spryte-image { width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; margin-bottom: 16px; background: #f5f5f5; overflow: hidden; position: relative; }
         .spryte-image img { width: 100%; height: 100%; object-fit: cover; }
         
         .spryte-info { flex-grow: 1; display: flex; flex-direction: column; align-items: flex-start; }
         .spryte-info h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; letter-spacing: -0.5px; }
         .spryte-info p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 20px; }
-        
-        .spryte-tag {
-            margin-top: auto;
-            background: #1a1a1a;
-            color: #ffffff;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
+        .spryte-tag { margin-top: auto; background: #1a1a1a; color: #ffffff; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+
+        /* ========================================= */
+        /* CTA / CONTACT SECTION MỚI (Y HỆT VIDEO)   */
+        /* ========================================= */
+        .cta-section {
+            background: #f8f8f8; /* Nền xám nhạt */
+            border-radius: 24px;
+            max-width: 1200px;
+            margin: 0 auto 100px auto;
+            padding: 80px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* CTA SECTION */
-        .cta { text-align: center; padding: 80px 40px; background: #111; color: #fff; border-radius: 20px; max-width: 1200px; margin: 0 auto 100px auto; }
-        .cta h2 { font-size: 32px; margin-bottom: 20px; font-family: 'Allright', sans-serif;}
-        .cta p { font-size: 16px; color: #aaa; margin-bottom: 40px; }
-        .contact-links { display: flex; justify-content: center; gap: 30px; }
-        .contact-links a { text-decoration: none; color: #fff; font-weight: 500; font-size: 14px; padding: 12px 24px; border: 1px solid #fff; border-radius: 8px; transition: all 0.3s ease; }
-        .contact-links a:hover { background: #fff; color: #111; }
+        .cta-content {
+            max-width: 60%;
+        }
+
+        .cta-content h2 {
+            font-family: 'Allright', sans-serif;
+            font-size: 64px;
+            font-weight: normal;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .cta-content p.cta-desc {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Nút Email */
+        .email-btn {
+            display: inline-flex;
+            align-items: center;
+            background: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 24px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .copy-label {
+            display: inline-block;
+            max-width: 0;
+            opacity: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        
+        .email-btn:hover .copy-label {
+            max-width: 80px;
+            opacity: 1;
+            margin-left: 12px;
+            color: #aaa;
+        }
+
+        /* Nút LinkedIn */
+        .linkedin-btn {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 14px 30px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .linkedin-btn:hover {
+            background: #e5e5e5;
+            color: #1a1a1a;
+            border-color: #e5e5e5;
+        }
+
+        .cta-phone {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-left: 5px;
+        }
+
+        /* Hình ảnh bên phải */
+        .cta-visual img {
+            max-width: 280px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .cta-visual img:hover {
+            animation: wobble 0.6s ease-in-out both;
+        }
 
         footer { padding: 40px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid rgba(0,0,0,0.05); }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE CTA */
         @media (max-width: 968px) {
-            .exp-card { grid-template-columns: 1fr; min-height: auto; }
-            .exp-content { padding: 40px; }
-            .exp-visual { min-height: 300px; }
-            .exp-title { font-size: 32px; }
+            .cta-section {
+                flex-direction: column;
+                padding: 60px 40px;
+                text-align: center;
+                gap: 50px;
+            }
+            .cta-content { max-width: 100%; }
+            .cta-buttons { justify-content: center; flex-wrap: wrap; }
+            .cta-visual img { max-width: 200px; }
             .hero { grid-template-columns: 1fr; text-align: center; }
             .hero-image-container { order: -1; }
             .grid { grid-template-columns: 1fr; gap: 30px; }
@@ -227,6 +297,7 @@
 
     <!-- EXPERIENCES -->
     <section class="experiences-section" id="experiences">
+        <!-- ... (Đã thu gọn để tiết kiệm chỗ, code cũ của bạn vẫn giữ nguyên ở đây) ... -->
         <div class="exp-header">
             <div>
                 <h2>EXPERIENCES</h2>
@@ -240,7 +311,6 @@
 
         <div class="exp-slider-wrapper">
             <div class="exp-slider" id="expSlider">
-                
                 <div class="exp-card">
                     <div class="exp-content">
                         <div class="exp-tags"><span>EDUCATION</span><span>DEGREE</span></div>
@@ -274,7 +344,7 @@
                         <div class="exp-tags"><span>EXPERIENCE</span><span>FREELANCE</span></div>
                         <h3 class="exp-title">DIGIUNI & FREELANCE</h3>
                         <div class="exp-company">GRAPHIC DESIGNER</div>
-                        <p class="exp-desc">Cộng tác viên thiết kế tại Digiuni và thực hiện hàng loạt dự án freelance độc lập, đa dạng từ thiết kế UI/UX, ấn phẩm truyền thông đến bao bì sản phẩm.</p>
+                        <p class="exp-desc">Cộng tác viên thiết kế tại Digiuni và thực hiện hàng loạt dự án freelance độc lập.</p>
                     </div>
                     <div class="exp-visual">
                         <div class="exp-number">03</div>
@@ -282,7 +352,6 @@
                         <div class="exp-date">2025 - 2026</div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -293,7 +362,6 @@
         <p class="works-subtitle">Click to see more of my playfulness</p>
         
         <div class="grid">
-            <!-- 1 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);"></div>
                 <div class="spryte-info">
@@ -302,7 +370,6 @@
                     <span class="spryte-tag">Editorial Design</span>
                 </div>
             </a>
-            <!-- 2 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);"></div>
                 <div class="spryte-info">
@@ -311,7 +378,6 @@
                     <span class="spryte-tag">Book Cover</span>
                 </div>
             </a>
-            <!-- 3 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);"></div>
                 <div class="spryte-info">
@@ -320,7 +386,6 @@
                     <span class="spryte-tag">Packaging</span>
                 </div>
             </a>
-            <!-- 4 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);"></div>
                 <div class="spryte-info">
@@ -329,7 +394,6 @@
                     <span class="spryte-tag">UI/UX Design</span>
                 </div>
             </a>
-            <!-- 5 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);"></div>
                 <div class="spryte-info">
@@ -338,7 +402,6 @@
                     <span class="spryte-tag">Campaign</span>
                 </div>
             </a>
-            <!-- 6 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);"></div>
                 <div class="spryte-info">
@@ -347,7 +410,6 @@
                     <span class="spryte-tag">Motion Graphics</span>
                 </div>
             </a>
-            <!-- 7 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
                 <div class="spryte-info">
@@ -356,7 +418,6 @@
                     <span class="spryte-tag">Social Media</span>
                 </div>
             </a>
-            <!-- 8 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
                 <div class="spryte-info">
@@ -365,7 +426,6 @@
                     <span class="spryte-tag">Exhibition</span>
                 </div>
             </a>
-            <!-- 9 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
                 <div class="spryte-info">
@@ -374,7 +434,6 @@
                     <span class="spryte-tag">Exhibition</span>
                 </div>
             </a>
-            <!-- 10 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #f83600 0%, #f9d423 100%);"></div>
                 <div class="spryte-info">
@@ -383,7 +442,6 @@
                     <span class="spryte-tag">Motion Graphics</span>
                 </div>
             </a>
-            <!-- 11 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
                 <div class="spryte-info">
@@ -392,7 +450,6 @@
                     <span class="spryte-tag">Photography</span>
                 </div>
             </a>
-            <!-- 12 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #b0eb6e 0%, #83c042 100%);"></div>
                 <div class="spryte-info">
@@ -404,13 +461,26 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta" id="contact">
-        <h2>Like what you see?</h2>
-        <p>Let's talk projects, collaborations, or anything design!</p>
-        <div class="contact-links">
-            <a href="mailto:yourname@gmail.com">Email Me</a>
-            <a href="https://linkedin.com">LinkedIn</a>
+    <!-- CTA / CONTACT MỚI Y HỆT BẢN GỐC -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Like what you see?</h2>
+            <p class="cta-desc">Let's talk projects, collaborations, or anything design!</p>
+            
+            <div class="cta-buttons">
+                <!-- Nút copy Email có xài JS -->
+                <button class="email-btn" onclick="copyMyEmail()">
+                    <span class="email-text">roses06022003@gmail.com</span>
+                    <span class="copy-label">Copy</span>
+                </button>
+                
+                <a href="https://www.linkedin.com/in/tran-dan-86270023a" target="_blank" class="linkedin-btn">LinkedIn</a>
+            </div>
+            <p class="cta-phone">033 697 6142</p>
+        </div>
+        
+        <div class="cta-visual">
+            <img src="images/avasketch.png" alt="Avatar Sketch">
         </div>
     </section>
 
@@ -431,13 +501,11 @@
             cursorChar: '█',
         });
 
-        // 2. LOGIC NỀN ĐEN TRÔI LÊN - CHỈ ÁP DỤNG KHI Ở SECTION EXPERIENCES
+        // 2. Logic Nền Đen
         const experiencesSection = document.getElementById('experiences');
-        
         window.addEventListener('scroll', () => {
             const rect = experiencesSection.getBoundingClientRect();
             const windowHeight = window.innerHeight;
-            
             if (rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4) {
                 document.body.classList.add('dark-theme');
             } else {
@@ -445,18 +513,25 @@
             }
         });
 
-        // 3. LOGIC SLIDER NGANG
+        // 3. Slider Ngang
         const slider = document.getElementById('expSlider');
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
+        nextBtn.addEventListener('click', () => { slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' }); });
+        prevBtn.addEventListener('click', () => { slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' }); });
 
-        nextBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
-        });
-
-        prevBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
-        });
+        // 4. Hàm Copy Email siêu việt
+        function copyMyEmail() {
+            navigator.clipboard.writeText("roses06022003@gmail.com").then(() => {
+                const copyLabel = document.querySelector('.copy-label');
+                copyLabel.textContent = "Copied!";
+                copyLabel.style.color = "#4caf50"; // Chuyển chữ xanh cho ngầu
+                setTimeout(() => {
+                    copyLabel.textContent = "Copy";
+                    copyLabel.style.color = "#aaa";
+                }, 2000); // 2 giây sau tự trả về như cũ
+            });
+        }
     </script>
 </body>
 </html>
