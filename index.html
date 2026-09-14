@@ -18,7 +18,6 @@
             font-style: normal;
         }
 
-        /* Nền body sẽ tự động chuyển màu mượt mà khi cuộn */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #ffffff;
@@ -28,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* --- DARK MODE (Được kích hoạt bằng JS khi cuộn xuống) --- */
+        /* --- DARK MODE DÀNH RIÊNG CHO EXPERIENCES --- */
         body.dark-theme {
             background-color: #0a0a0a;
             color: #ffffff;
@@ -76,7 +75,10 @@
         /* HERO */
         .hero { padding: 100px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; min-height: 85vh; }
         .hero h1 { font-size: 56px; font-weight: 300; letter-spacing: -1px; margin-bottom: 10px; line-height: 1.1; font-family: 'Allright', sans-serif; }
-        .hero-subtitle { font-size: 24px; font-weight: 400; margin-bottom: 25px; font-family: 'Allright', sans-serif; }
+        
+        /* Đã xóa font Allright ở subtitle để giống body */
+        .hero-subtitle { font-size: 24px; font-weight: 400; margin-bottom: 25px; color: #888; }
+        
         .hero p { font-size: 16px; color: #888; line-height: 1.8; max-width: 500px; }
         .hero p strong { font-weight: 600; color: inherit; }
         
@@ -89,84 +91,94 @@
         .hero-image:hover .avatar-real { opacity: 0; }
         .hero-image:hover .avatar-sketch { opacity: 1; }
 
-        /* EXPERIENCES - ĐÚNG CHUẨN IQMAL.DEV */
-        .experiences-section {
-            padding: 100px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 20px;
-        }
+        /* EXPERIENCES */
+        .experiences-section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 1px solid rgba(128, 128, 128, 0.2); padding-bottom: 20px; transition: border-color 0.8s ease; }
         
+        /* Thêm hiệu ứng viền cho Dark Mode */
+        body.dark-theme .exp-header { border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+        body.dark-theme .exp-btn { border: 1px solid #fff; color: #fff; }
+        body.dark-theme .exp-btn:hover { background: #fff; color: #000; }
+
         .exp-header h2 { font-size: 36px; font-family: 'Allright', sans-serif; font-weight: 500; }
         .exp-header p { color: #888; font-size: 14px; }
         
-        /* Nút điều hướng Slider */
         .exp-controls { display: flex; gap: 10px; }
-        .exp-btn { background: transparent; border: 1px solid #fff; color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s, color 0.3s; }
-        .exp-btn:hover { background: #fff; color: #000; }
+        .exp-btn { background: transparent; border: 1px solid #1a1a1a; color: #1a1a1a; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s, color 0.3s, border-color 0.8s ease; }
+        .exp-btn:hover { background: #1a1a1a; color: #fff; }
 
-        /* Slider Wrapper */
-        .exp-slider-wrapper {
-            width: 100%;
-            overflow: hidden;
-        }
+        .exp-slider-wrapper { width: 100%; overflow: hidden; }
+        .exp-slider { display: flex; gap: 40px; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .exp-slider::-webkit-scrollbar { display: none; }
+
+        .exp-card { flex: 0 0 100%; scroll-snap-align: start; display: grid; grid-template-columns: 1fr 1fr; background-color: #f4f4f4; color: #1a1a1a; border-radius: 12px; overflow: hidden; min-height: 500px; transition: background-color 0.8s ease; }
         
-        .exp-slider {
-            display: flex;
-            gap: 40px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Ẩn scrollbar Firefox */
-        }
-        .exp-slider::-webkit-scrollbar { display: none; } /* Ẩn scrollbar Chrome/Safari */
-
-        /* Layout Card (Giống mẫu ảnh) */
-        .exp-card {
-            flex: 0 0 100%;
-            scroll-snap-align: start;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background-color: #f4f4f4;
-            color: #1a1a1a;
-            border-radius: 12px;
-            overflow: hidden;
-            min-height: 500px;
-        }
+        /* Chỉnh màu thẻ Exp khi ở chế độ Dark Theme */
+        body.dark-theme .exp-card { background-color: #1a1a1a; color: #fff; }
+        body.dark-theme .exp-company { color: #ddd; }
+        body.dark-theme .exp-desc { color: #aaa; }
 
         .exp-content { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
-        
         .exp-tags { display: flex; gap: 10px; margin-bottom: 30px; }
         .exp-tags span { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #666; border: 1px solid #ccc; padding: 4px 12px; border-radius: 20px; }
-        
         .exp-title { font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 15px; letter-spacing: -1px; text-transform: uppercase; }
         .exp-company { font-size: 16px; font-weight: 600; margin-bottom: 30px; letter-spacing: 1px; color: #333; }
-        
         .exp-desc { font-size: 15px; color: #555; line-height: 1.8; max-width: 90%; }
         
         .exp-visual { position: relative; background: #333; }
         .exp-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        
         .exp-number { position: absolute; top: 30px; right: 40px; font-size: 80px; font-weight: 300; color: #fff; line-height: 1; }
         .exp-date { position: absolute; bottom: 30px; left: 40px; font-size: 12px; font-weight: 600; color: #fff; letter-spacing: 2px; }
 
-        /* WORKS SECTION */
+        /* WORKS SECTION - SPRYTE STYLE GRID */
         .works { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
-        .works h2 { font-size: 32px; font-weight: 500; margin-bottom: 60px; text-align: center; font-family: 'Allright', sans-serif; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .project-card { cursor: pointer; }
-        .project-image { width: 100%; height: 300px; border-radius: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin-bottom: 20px; transition: transform 0.3s ease; overflow: hidden; }
-        .project-card:hover .project-image { transform: scale(1.02); }
-        .project-info h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
-        .project-info p { font-size: 14px; color: #888; font-weight: 500; }
+        .works h2 { font-size: 36px; font-weight: 500; margin-bottom: 10px; text-align: center; font-family: 'Allright', sans-serif; }
+        .works-subtitle { text-align: center; font-size: 15px; color: #666; margin-bottom: 60px; font-style: italic; }
+
+        /* Layout 2 cột vuông vắn, không gian mở (Minimalism) */
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; }
+
+        /* Style thẻ theo chuẩn Spryte */
+        .spryte-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 24px;
+            padding: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        .spryte-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .spryte-image {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Tạo form ô vuông tuyệt đối cho ảnh */
+            border-radius: 16px;
+            margin-bottom: 30px;
+            background: #f5f5f5;
+            overflow: hidden;
+            position: relative;
+        }
+        .spryte-image img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .spryte-info { flex-grow: 1; display: flex; flex-direction: column; align-items: flex-start; }
+        .spryte-info h3 { font-size: 24px; font-weight: 600; margin-bottom: 12px; color: #1a1a1a; letter-spacing: -0.5px; }
+        .spryte-info p { font-size: 15px; color: #666; line-height: 1.6; margin-bottom: 24px; }
+        
+        .spryte-tag {
+            margin-top: auto;
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
 
         /* CTA SECTION */
         .cta { text-align: center; padding: 80px 40px; background: #111; color: #fff; border-radius: 20px; max-width: 1200px; margin: 0 auto 100px auto; }
@@ -176,7 +188,7 @@
         .contact-links a { text-decoration: none; color: #fff; font-weight: 500; font-size: 14px; padding: 12px 24px; border: 1px solid #fff; border-radius: 8px; transition: all 0.3s ease; }
         .contact-links a:hover { background: #fff; color: #111; }
 
-        footer { padding: 40px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer { padding: 40px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid rgba(0,0,0,0.05); }
 
         /* RESPONSIVE */
         @media (max-width: 968px) {
@@ -186,6 +198,7 @@
             .exp-title { font-size: 32px; }
             .hero { grid-template-columns: 1fr; text-align: center; }
             .hero-image-container { order: -1; }
+            .grid { grid-template-columns: 1fr; gap: 40px; } /* Đưa về 1 cột trên Mobile */
         }
     </style>
 </head>
@@ -217,7 +230,7 @@
         </div>
     </section>
 
-    <!-- TRỌNG TÂM: EXPERIENCES Y HỆT MẪU -->
+    <!-- EXPERIENCES -->
     <section class="experiences-section" id="experiences">
         <div class="exp-header">
             <div>
@@ -233,13 +246,9 @@
         <div class="exp-slider-wrapper">
             <div class="exp-slider" id="expSlider">
                 
-                <!-- Mục 1 -->
                 <div class="exp-card">
                     <div class="exp-content">
-                        <div class="exp-tags">
-                            <span>EDUCATION</span>
-                            <span>DEGREE</span>
-                        </div>
+                        <div class="exp-tags"><span>EDUCATION</span><span>DEGREE</span></div>
                         <h3 class="exp-title">VAN LANG UNIVERSITY</h3>
                         <div class="exp-company">BẰNG GIỎI</div>
                         <p class="exp-desc">Hoàn thành chương trình học 4 năm với thành tích xuất sắc. Nền tảng vững chắc về tư duy thiết kế, thẩm mỹ và các công cụ đồ họa chuyên nghiệp.</p>
@@ -251,32 +260,23 @@
                     </div>
                 </div>
 
-                <!-- Mục 2 -->
                 <div class="exp-card">
                     <div class="exp-content">
-                        <div class="exp-tags">
-                            <span>PROFESSIONAL EXPERIENCE</span>
-                            <span>WORK</span>
-                        </div>
+                        <div class="exp-tags"><span>EXPERIENCE</span><span>WORK</span></div>
                         <h3 class="exp-title">KIRA ART EDU</h3>
                         <div class="exp-company">& ECON GROUPS</div>
                         <p class="exp-desc">Đảm nhận vai trò thiết kế chính cho các dự án giáo dục nghệ thuật và kinh tế. Chịu trách nhiệm về mặt hình ảnh, xây dựng hệ thống nhận diện thương hiệu.</p>
                     </div>
                     <div class="exp-visual">
                         <div class="exp-number">02</div>
-                        <!-- Tạm dùng ảnh placeholder xịn, bạn thay link sau -->
                         <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop" alt="Kira Art">
                         <div class="exp-date">2024</div>
                     </div>
                 </div>
 
-                <!-- Mục 3 -->
                 <div class="exp-card">
                     <div class="exp-content">
-                        <div class="exp-tags">
-                            <span>PROFESSIONAL EXPERIENCE</span>
-                            <span>FREELANCE</span>
-                        </div>
+                        <div class="exp-tags"><span>EXPERIENCE</span><span>FREELANCE</span></div>
                         <h3 class="exp-title">DIGIUNI & FREELANCE</h3>
                         <div class="exp-company">GRAPHIC DESIGNER</div>
                         <p class="exp-desc">Cộng tác viên thiết kế tại Digiuni và thực hiện hàng loạt dự án freelance độc lập, đa dạng từ thiết kế UI/UX, ấn phẩm truyền thông đến bao bì sản phẩm.</p>
@@ -295,15 +295,128 @@
     <!-- WORKS -->
     <section class="works" id="works">
         <h2>Featured Works.</h2>
+        <p class="works-subtitle">Click to see more of my playfulness</p>
+        
         <div class="grid">
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-                <div class="project-info"><h3>Moji Creamery</h3><p>Packaging Design</p></div>
-            </div>
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
-                <div class="project-info"><h3>Campaign Beer</h3><p>Art Direction</p></div>
-            </div>
+            <!-- 1 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Magazine Celine</h3>
+                    <p>Editorial and layout design showcasing modern fashion aesthetics and typography.</p>
+                    <span class="spryte-tag">Editorial Design</span>
+                </div>
+            </a>
+            
+            <!-- 2 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Sự im lặng của bầy cừu</h3>
+                    <p>Book cover redesign bringing a fresh, thriller-focused visual approach to a classic novel.</p>
+                    <span class="spryte-tag">Book Cover</span>
+                </div>
+            </a>
+
+            <!-- 3 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Package Himalaya</h3>
+                    <p>Conceptual packaging design focusing on natural elements and sustainable materials.</p>
+                    <span class="spryte-tag">Packaging</span>
+                </div>
+            </a>
+
+            <!-- 4 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Thiên Mộc Hương</h3>
+                    <p>UI/UX redesign to enhance user journey and modernize the digital storefront.</p>
+                    <span class="spryte-tag">UI/UX Design</span>
+                </div>
+            </a>
+
+            <!-- 5 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Campaign Beer Huda</h3>
+                    <p>Key visuals and art direction for a dynamic beverage marketing campaign.</p>
+                    <span class="spryte-tag">Campaign</span>
+                </div>
+            </a>
+
+            <!-- 6 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Traditional Research</h3>
+                    <p>Engaging motion graphic videos aimed at illustrating complex cultural research data.</p>
+                    <span class="spryte-tag">Motion Graphics</span>
+                </div>
+            </a>
+
+            <!-- 7 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Marketing Posts</h3>
+                    <p>A collection of high-converting social media creatives and marketing assets.</p>
+                    <span class="spryte-tag">Social Media</span>
+                </div>
+            </a>
+
+            <!-- 8 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Delasol Exhibition</h3>
+                    <p>Spatial and visual design planning for a contemporary art and lifestyle exhibition.</p>
+                    <span class="spryte-tag">Exhibition</span>
+                </div>
+            </a>
+
+            <!-- 9 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Pepsi Exhibition</h3>
+                    <p>Vibrant, energetic pop-up exhibition design tailored for youth culture.</p>
+                    <span class="spryte-tag">Exhibition</span>
+                </div>
+            </a>
+
+            <!-- 10 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #f83600 0%, #f9d423 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Fanta Motion</h3>
+                    <p>Playful and bubbly motion design for digital advertisements.</p>
+                    <span class="spryte-tag">Motion Graphics</span>
+                </div>
+            </a>
+
+            <!-- 11 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Photography / Others</h3>
+                    <p>A curated selection of personal photography and miscellaneous creative experiments.</p>
+                    <span class="spryte-tag">Photography</span>
+                </div>
+            </a>
+
+            <!-- 12 -->
+            <a href="#" class="spryte-card">
+                <div class="spryte-image" style="background: linear-gradient(135deg, #b0eb6e 0%, #83c042 100%);"></div>
+                <div class="spryte-info">
+                    <h3>Kẹo kết Việt Game</h3>
+                    <p>Visual assets and character design for a fun, interactive local mobile game.</p>
+                    <span class="spryte-tag">Game Design</span>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -334,33 +447,33 @@
             cursorChar: '█',
         });
 
-        // 2. LOGIC NỀN ĐEN TRÔI LÊN KHI CUỘN 
-        // Khi người dùng cuộn đến phần tử Experiences, body sẽ được add class 'dark-theme'
+        // 2. LOGIC NỀN ĐEN TRÔI LÊN - CHỈ ÁP DỤNG KHI Ở SECTION EXPERIENCES
         const experiencesSection = document.getElementById('experiences');
         
         window.addEventListener('scroll', () => {
-            // Lấy vị trí của section experiences so với đỉnh màn hình
             const rect = experiencesSection.getBoundingClientRect();
-            // Nếu mép trên của section tiến vào 2/3 màn hình -> kích hoạt nền đen
-            if (rect.top < window.innerHeight * 0.7) {
+            const windowHeight = window.innerHeight;
+            
+            // Nền đen kích hoạt khi mép trên của Experiences lọt vào giữa màn hình 
+            // VÀ mép dưới của Experiences vẫn chưa vượt qua giữa màn hình
+            if (rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4) {
                 document.body.classList.add('dark-theme');
             } else {
+                // Trôi khỏi vùng Experiences là lập tức nhả về nền trắng
                 document.body.classList.remove('dark-theme');
             }
         });
 
-        // 3. LOGIC SLIDER NGANG BẰNG MŨI TÊN (Giống video)
+        // 3. LOGIC SLIDER NGANG
         const slider = document.getElementById('expSlider');
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
 
         nextBtn.addEventListener('click', () => {
-            // Cuộn sang phải bằng đúng chiều rộng của 1 thẻ
             slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
         });
 
         prevBtn.addEventListener('click', () => {
-            // Cuộn sang trái
             slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
         });
     </script>
