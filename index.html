@@ -18,12 +18,41 @@
             font-style: normal;
         }
 
+        /* Thêm hiệu ứng chuyển đổi màu nền và màu chữ mượt mà cho toàn trang */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #ffffff;
             color: #1a1a1a;
             line-height: 1.6;
+            transition: background-color 0.8s ease, color 0.8s ease;
+            overflow-x: hidden;
         }
+
+        /* --- CHẾ ĐỘ DARK MODE (Kích hoạt khi cuộn) --- */
+        body.dark-mode {
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+        }
+
+        /* Cập nhật màu sắc cho các thành phần khi ở Dark Mode */
+        body.dark-mode header {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        body.dark-mode .logo, 
+        body.dark-mode .nav-links a { color: #f5f5f5; }
+        body.dark-mode .nav-links a::after { background: #f5f5f5; }
+        body.dark-mode .cv-btn { background-color: #f5f5f5; color: #1a1a1a; }
+        body.dark-mode .cv-btn:hover { background-color: #ddd; }
+        
+        body.dark-mode .hero-subtitle,
+        body.dark-mode .hero p strong,
+        body.dark-mode .project-info h3 { color: #f5f5f5; }
+        
+        body.dark-mode .cta { background: #1a1a1a; }
+        body.dark-mode .contact-links a { border-color: #f5f5f5; color: #f5f5f5; }
+        body.dark-mode .contact-links a:hover { background: #f5f5f5; color: #1a1a1a; }
+        /* ------------------------------------------- */
 
         /* HEADER */
         header {
@@ -34,9 +63,9 @@
             backdrop-filter: blur(10px);
             padding: 20px 40px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: background-color 0.8s ease, border-color 0.8s ease;
         }
 
-        /* Tinh chỉnh NAV thành Grid 3 cột để căn giữa chính xác menu */
         nav {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -44,79 +73,17 @@
             max-width: 1400px;
             margin: 0 auto;
         }
+        .logo-wrapper { display: flex; justify-content: flex-start; }
+        .logo { font-size: 18px; font-weight: 600; letter-spacing: -0.5px; text-decoration: none; color: #1a1a1a; transition: color 0.8s ease; }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #1a1a1a; font-size: 14px; font-weight: 500; transition: opacity 0.3s, color 0.8s ease; position: relative; }
+        .nav-links a:hover { opacity: 0.6; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background: #1a1a1a; transition: width 0.3s ease, background 0.8s ease; }
+        .nav-links a:hover::after { width: 100%; }
+        .cv-wrapper { display: flex; justify-content: flex-end; }
+        .cv-btn { background-color: #1a1a1a; color: #ffffff; padding: 10px 24px; border-radius: 30px; text-decoration: none; font-size: 14px; font-weight: 600; display: inline-block; transition: all 0.3s ease; }
+        .cv-btn:hover { animation: wobble 0.6s ease-in-out both; background-color: #333; }
 
-        .logo-wrapper {
-            display: flex;
-            justify-content: flex-start;
-        }
-
-        .logo {
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #1a1a1a;
-            font-size: 14px;
-            font-weight: 500;
-            transition: opacity 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.6;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -5px;
-            left: 0;
-            background: #1a1a1a;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* CV BUTTON & ANIMATION */
-        .cv-wrapper {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .cv-btn {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            padding: 10px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            display: inline-block;
-            transition: background 0.3s ease;
-        }
-
-        /* Gọi hiệu ứng lắc khi hover */
-        .cv-btn:hover {
-            animation: wobble 0.6s ease-in-out both;
-            background-color: #333;
-        }
-
-        /* Keyframes hiệu ứng lắc lư */
         @keyframes wobble {
             0%, 100% { transform: translateX(0) rotate(0deg); }
             15% { transform: translateX(-4px) rotate(-4deg); }
@@ -126,7 +93,7 @@
             75% { transform: translateX(-1px) rotate(-0.6deg); }
         }
 
-        /* HERO - NEW LAYOUT */
+        /* HERO */
         .hero {
             padding: 100px 40px;
             max-width: 1200px;
@@ -135,270 +102,130 @@
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
+            min-height: 80vh;
         }
+        .hero-content { animation: fadeInLeft 0.8s ease; }
+        .hero h1 { font-size: 56px; font-weight: 300; letter-spacing: -1px; margin-bottom: 10px; line-height: 1.1; font-family: 'Allright', sans-serif; }
+        .hero-subtitle { font-size: 24px; font-weight: 400; color: #1a1a1a; margin-bottom: 25px; letter-spacing: -0.5px; font-family: 'Allright', sans-serif; transition: color 0.8s ease; }
+        .hero p { font-size: 16px; color: #888; line-height: 1.8; margin-bottom: 0; max-width: 500px; }
+        .hero p strong { color: #1a1a1a; font-weight: 600; transition: color 0.8s ease; }
+        
+        .typed-cursor { color: #888; font-size: 20px; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .hero-content {
-            animation: fadeInLeft 0.8s ease;
-        }
+        .hero-image-container { display: flex; justify-content: center; align-items: center; animation: fadeInRight 0.8s ease; perspective: 1000px; }
+        .hero-image { width: 280px; height: 280px; border-radius: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform-style: preserve-3d; }
+        .hero-image:hover { background: none; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .hero-image img { width: 100%; height: 100%; object-fit: cover; position: absolute; transition: opacity 0.4s ease; transform: translateZ(20px); }
+        .avatar-real { opacity: 1; z-index: 2; }
+        .avatar-sketch { opacity: 0; z-index: 1; }
+        .hero-image:hover .avatar-real { opacity: 0; }
+        .hero-image:hover .avatar-sketch { opacity: 1; }
 
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 300;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-            line-height: 1.1;
-            font-family: 'Allright', sans-serif;
-        }
-
-        .hero-subtitle {
-            font-size: 24px;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin-bottom: 25px;
-            letter-spacing: -0.5px;
-            font-family: 'Allright', sans-serif;
-        }
-
-        .hero p {
-            font-size: 16px;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 0;
-            max-width: 500px;
-        }
-
-        .hero p strong {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-
-        /* CSS Tùy chỉnh con trỏ gõ chữ */
-        .typed-cursor {
-            color: #cccccc;
-            font-size: 20px;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .hero-image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: fadeInRight 0.8s ease;
-            perspective: 1000px;
-        }
-
-        .hero-image {
-            width: 280px;
-            height: 280px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transform-style: preserve-3d;
-        }
-
-        .hero-image:hover {
-            background: none;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            transition: opacity 0.4s ease;
-            transform: translateZ(20px);
-        }
-
-        .avatar-real {
-            opacity: 1;
-            z-index: 2;
-        }
-
-        .avatar-sketch {
-            opacity: 0;
-            z-index: 1;
-        }
-
-        .hero-image:hover .avatar-real {
-            opacity: 0;
-        }
-
-        .hero-image:hover .avatar-sketch {
-            opacity: 1;
-        }
-
-        /* WORKS SECTION */
-        .works {
-            padding: 100px 40px;
+        /* EXPERIENCES (NEW SECTION) */
+        .experiences {
+            padding: 80px 40px;
             max-width: 1400px;
             margin: 0 auto;
         }
-
-        .works h2 {
+        .experiences h2 {
             font-size: 32px;
             font-weight: 500;
-            margin-bottom: 60px;
-            text-align: center;
+            margin-bottom: 40px;
+            font-family: 'Allright', sans-serif;
         }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
+        
+        /* Cấu trúc thanh cuộn ngang */
+        .exp-slider {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 40px;
+            /* Ẩn thanh cuộn mặc định cho đẹp */
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
         }
-
-        .project-card {
-            cursor: pointer;
-            animation: fadeInUp 0.8s ease;
+        .exp-slider::-webkit-scrollbar { display: none; }
+        
+        .exp-card {
+            flex: 0 0 400px; /* Độ rộng mỗi thẻ */
+            scroll-snap-align: start;
+            background: rgba(128, 128, 128, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(128, 128, 128, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
         }
-
-        .project-image {
-            width: 100%;
-            height: 300px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            position: relative;
+        .exp-card:hover {
+            transform: translateY(-5px);
+            background: rgba(128, 128, 128, 0.15);
         }
-
-        .project-card:hover .project-image {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-info h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1a1a1a;
-        }
-
-        .project-info p {
+        .exp-year {
             font-size: 14px;
-            color: #999;
-            font-weight: 500;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 30px;
+        }
+        .exp-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .exp-desc {
+            font-size: 15px;
+            color: #888;
         }
 
-        .project-card:hover .project-info h3 {
-            color: #667eea;
-            transition: color 0.3s ease;
-        }
+        /* WORKS SECTION */
+        .works { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
+        .works h2 { font-size: 32px; font-weight: 500; margin-bottom: 60px; text-align: center; font-family: 'Allright', sans-serif; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-bottom: 80px; }
+        .project-card { cursor: pointer; animation: fadeInUp 0.8s ease; }
+        .project-image { width: 100%; height: 300px; border-radius: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin-bottom: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; position: relative; }
+        .project-card:hover .project-image { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); }
+        .project-info h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; transition: color 0.8s ease; }
+        .project-info p { font-size: 14px; color: #888; font-weight: 500; }
+        .project-card:hover .project-info h3 { color: #667eea; }
 
         /* CTA SECTION */
-        .cta {
-            text-align: center;
-            padding: 80px 40px;
-            background: #f5f5f5;
-            border-radius: 20px;
-        }
-
-        .cta h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        .cta p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 40px;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .contact-links a {
-            text-decoration: none;
-            color: #1a1a1a;
-            font-weight: 500;
-            font-size: 14px;
-            padding: 12px 24px;
-            border: 1px solid #1a1a1a;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-links a:hover {
-            background: #1a1a1a;
-            color: white;
-        }
+        .cta { text-align: center; padding: 80px 40px; background: #f5f5f5; border-radius: 20px; transition: background 0.8s ease; }
+        .cta h2 { font-size: 32px; margin-bottom: 20px; font-family: 'Allright', sans-serif;}
+        .cta p { font-size: 16px; color: #888; margin-bottom: 40px; }
+        .contact-links { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .contact-links a { text-decoration: none; color: #1a1a1a; font-weight: 500; font-size: 14px; padding: 12px 24px; border: 1px solid #1a1a1a; border-radius: 8px; transition: all 0.3s ease, border-color 0.8s ease, color 0.8s ease; }
+        .contact-links a:hover { background: #1a1a1a; color: white; }
 
         /* FOOTER */
-        footer {
-            padding: 40px;
-            text-align: center;
-            color: #999;
-            font-size: 12px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
+        footer { padding: 40px; text-align: center; color: #888; font-size: 12px; border-top: 1px solid rgba(128, 128, 128, 0.2); }
 
         /* ANIMATIONS */
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         /* RESPONSIVE */
         @media (max-width: 968px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+            .hero { grid-template-columns: 1fr; gap: 40px; }
             .hero-image-container { order: -1; }
-            .hero h1 { font-size: 36px; }
-            .hero-subtitle { font-size: 18px; }
+            .exp-card { flex: 0 0 300px; } /* Nhỏ lại trên mobile */
         }
 
         @media (max-width: 768px) {
             header { padding: 15px 20px; }
-            
-            /* Responsive cho Grid header */
-            nav { 
-                grid-template-columns: 1fr; 
-                gap: 20px; 
-                justify-items: center; 
-            }
+            nav { grid-template-columns: 1fr; gap: 20px; justify-items: center; }
             .logo-wrapper, .cv-wrapper { justify-content: center; }
-            
             .nav-links { gap: 20px; font-size: 12px; }
             .hero { padding: 60px 20px; }
-            .hero h1 { font-size: 28px; }
-            .hero-subtitle { font-size: 16px; }
-            .hero p { font-size: 14px; }
             .hero-image { width: 200px; height: 200px; }
-            .works { padding: 60px 20px; }
+            .experiences, .works { padding: 60px 20px; }
             .grid { grid-template-columns: 1fr; gap: 30px; }
             .project-image { height: 250px; }
             .cta { padding: 60px 20px; }
-            .cta h2 { font-size: 24px; }
         }
     </style>
 </head>
@@ -410,8 +237,8 @@
                 <a href="#" class="logo">Bống's Portfolio</a>
             </div>
             <ul class="nav-links">
+                <li><a href="#experiences">about</a></li>
                 <li><a href="#works">work</a></li>
-                <li><a href="#about">about</a></li>
                 <li><a href="#contact">contact</a></li>
             </ul>
             <div class="cv-wrapper">
@@ -421,7 +248,7 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="hero-content">
             <h1>hi! I'm Dan,</h1>
             <p class="hero-subtitle">a graphic designer</p>
@@ -436,9 +263,39 @@
         </div>
     </section>
 
+    <!-- EXPERIENCES (SCROLL HORIZONTALLY) -->
+    <section class="experiences" id="experiences">
+        <h2>Experiences.</h2>
+        <div class="exp-slider">
+            <!-- Mục 1 -->
+            <div class="exp-card">
+                <div class="exp-year">2020 - 2025</div>
+                <h3 class="exp-title">Van Lang University</h3>
+                <p class="exp-desc">Education 4 năm - Tốt nghiệp Bằng Giỏi.</p>
+                <!-- Bạn có thể chèn thẻ <img> vào đây sau -->
+            </div>
+            
+            <!-- Mục 2 -->
+            <div class="exp-card">
+                <div class="exp-year">2024</div>
+                <h3 class="exp-title">Kira Art Edu & Econ Groups</h3>
+                <p class="exp-desc">Mô tả công việc hoặc thành tựu của bạn tại đây.</p>
+                <!-- Bạn có thể chèn thẻ <img> vào đây sau -->
+            </div>
+
+            <!-- Mục 3 -->
+            <div class="exp-card">
+                <div class="exp-year">2025 - 2026</div>
+                <h3 class="exp-title">Digiuni & Freelance</h3>
+                <p class="exp-desc">Mô tả các dự án freelance và công việc tại Digiuni.</p>
+                <!-- Bạn có thể chèn thẻ <img> vào đây sau -->
+            </div>
+        </div>
+    </section>
+
     <!-- WORKS -->
     <section class="works" id="works">
-        <h2>Featured Works</h2>
+        <h2>Featured Works.</h2>
         <div class="grid">
             <div class="project-card">
                 <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
@@ -461,27 +318,6 @@
                     <p>Editorial / Layout Design</p>
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
-                <div class="project-info">
-                    <h3>Spryte App</h3>
-                    <p>Interface Design / UI/UX</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
-                <div class="project-info">
-                    <h3>Outloud Talent</h3>
-                    <p>Social Media / Branding</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
-                <div class="project-info">
-                    <h3>Brand Identity</h3>
-                    <p>Branding / Visual Identity</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -501,10 +337,12 @@
         <p>&copy; 2024 Bống's Portfolio. All rights reserved.</p>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
     <script>
+        // 1. Hiệu ứng gõ chữ
         var typed = new Typed('#typed-text', {
             strings: ['<strong>Quality-driven design</strong> paired with <strong>creative innovation</strong> is my foundation for delivering <strong>impactful visual solutions</strong>.'],
             typeSpeed: 25,
@@ -513,6 +351,18 @@
             cursorChar: '█',
         });
 
+        // 2. Chuyển đổi Dark Mode mượt mà khi cuộn qua Hero Section
+        window.addEventListener('scroll', () => {
+            const heroSection = document.getElementById('hero');
+            // Tính toán vị trí: nếu cuộn qua 70% chiều cao của Hero thì đổi màu nền
+            if (window.scrollY > (heroSection.offsetHeight * 0.7)) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        });
+
+        // 3. Smooth scroll cho Menu
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -523,6 +373,7 @@
             });
         });
 
+        // 4. Delay hiệu ứng cho Project Cards
         const cards = document.querySelectorAll('.project-card');
         cards.forEach((card, index) => {
             card.style.animationDelay = `${index * 0.1}s`;
