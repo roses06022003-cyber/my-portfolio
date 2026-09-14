@@ -75,10 +75,7 @@
         /* HERO */
         .hero { padding: 100px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; min-height: 85vh; }
         .hero h1 { font-size: 56px; font-weight: 300; letter-spacing: -1px; margin-bottom: 10px; line-height: 1.1; font-family: 'Allright', sans-serif; }
-        
-        /* Đã xóa font Allright ở subtitle để giống body */
         .hero-subtitle { font-size: 24px; font-weight: 400; margin-bottom: 25px; color: #888; }
-        
         .hero p { font-size: 16px; color: #888; line-height: 1.8; max-width: 500px; }
         .hero p strong { font-weight: 600; color: inherit; }
         
@@ -95,7 +92,6 @@
         .experiences-section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
         .exp-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 1px solid rgba(128, 128, 128, 0.2); padding-bottom: 20px; transition: border-color 0.8s ease; }
         
-        /* Thêm hiệu ứng viền cho Dark Mode */
         body.dark-theme .exp-header { border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
         body.dark-theme .exp-btn { border: 1px solid #fff; color: #fff; }
         body.dark-theme .exp-btn:hover { background: #fff; color: #000; }
@@ -113,7 +109,6 @@
 
         .exp-card { flex: 0 0 100%; scroll-snap-align: start; display: grid; grid-template-columns: 1fr 1fr; background-color: #f4f4f4; color: #1a1a1a; border-radius: 12px; overflow: hidden; min-height: 500px; transition: background-color 0.8s ease; }
         
-        /* Chỉnh màu thẻ Exp khi ở chế độ Dark Theme */
         body.dark-theme .exp-card { background-color: #1a1a1a; color: #fff; }
         body.dark-theme .exp-company { color: #ddd; }
         body.dark-theme .exp-desc { color: #aaa; }
@@ -130,20 +125,20 @@
         .exp-number { position: absolute; top: 30px; right: 40px; font-size: 80px; font-weight: 300; color: #fff; line-height: 1; }
         .exp-date { position: absolute; bottom: 30px; left: 40px; font-size: 12px; font-weight: 600; color: #fff; letter-spacing: 2px; }
 
-        /* WORKS SECTION - SPRYTE STYLE GRID */
-        .works { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
+        /* WORKS SECTION - THU NHỎ SIZE */
+        .works { padding: 100px 40px; max-width: 900px; margin: 0 auto; } /* Thu nhỏ khung chứa xuống 900px */
         .works h2 { font-size: 36px; font-weight: 500; margin-bottom: 10px; text-align: center; font-family: 'Allright', sans-serif; }
-        .works-subtitle { text-align: center; font-size: 15px; color: #666; margin-bottom: 60px; font-style: italic; }
+        .works-subtitle { text-align: center; font-size: 15px; color: #666; margin-bottom: 50px; font-style: italic; }
 
-        /* Layout 2 cột vuông vắn, không gian mở (Minimalism) */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; }
+        /* Vẫn giữ nguyên 2 cột */
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
 
-        /* Style thẻ theo chuẩn Spryte */
+        /* Style thẻ theo chuẩn Spryte - Bóp gọn padding */
         .spryte-card {
             background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.06);
-            border-radius: 24px;
-            padding: 24px;
+            border-radius: 20px;
+            padding: 16px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: inherit;
@@ -151,15 +146,15 @@
             flex-direction: column;
         }
         .spryte-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
         }
 
         .spryte-image {
             width: 100%;
-            aspect-ratio: 1 / 1; /* Tạo form ô vuông tuyệt đối cho ảnh */
-            border-radius: 16px;
-            margin-bottom: 30px;
+            aspect-ratio: 4 / 3; /* Tỷ lệ vàng giống mẫu Spryte thay vì vuông 1:1 */
+            border-radius: 12px;
+            margin-bottom: 16px;
             background: #f5f5f5;
             overflow: hidden;
             position: relative;
@@ -167,16 +162,16 @@
         .spryte-image img { width: 100%; height: 100%; object-fit: cover; }
         
         .spryte-info { flex-grow: 1; display: flex; flex-direction: column; align-items: flex-start; }
-        .spryte-info h3 { font-size: 24px; font-weight: 600; margin-bottom: 12px; color: #1a1a1a; letter-spacing: -0.5px; }
-        .spryte-info p { font-size: 15px; color: #666; line-height: 1.6; margin-bottom: 24px; }
+        .spryte-info h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; letter-spacing: -0.5px; }
+        .spryte-info p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 20px; }
         
         .spryte-tag {
             margin-top: auto;
             background: #1a1a1a;
             color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 13px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 500;
         }
 
@@ -198,7 +193,7 @@
             .exp-title { font-size: 32px; }
             .hero { grid-template-columns: 1fr; text-align: center; }
             .hero-image-container { order: -1; }
-            .grid { grid-template-columns: 1fr; gap: 40px; } /* Đưa về 1 cột trên Mobile */
+            .grid { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
 </head>
@@ -303,81 +298,73 @@
                 <div class="spryte-image" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);"></div>
                 <div class="spryte-info">
                     <h3>Magazine Celine</h3>
-                    <p>Editorial and layout design showcasing modern fashion aesthetics and typography.</p>
+                    <p>Editorial and layout design showcasing modern fashion aesthetics.</p>
                     <span class="spryte-tag">Editorial Design</span>
                 </div>
             </a>
-            
             <!-- 2 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);"></div>
                 <div class="spryte-info">
                     <h3>Sự im lặng của bầy cừu</h3>
-                    <p>Book cover redesign bringing a fresh, thriller-focused visual approach to a classic novel.</p>
+                    <p>Book cover redesign bringing a fresh, thriller-focused visual approach.</p>
                     <span class="spryte-tag">Book Cover</span>
                 </div>
             </a>
-
             <!-- 3 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);"></div>
                 <div class="spryte-info">
                     <h3>Package Himalaya</h3>
-                    <p>Conceptual packaging design focusing on natural elements and sustainable materials.</p>
+                    <p>Conceptual packaging design focusing on natural elements.</p>
                     <span class="spryte-tag">Packaging</span>
                 </div>
             </a>
-
             <!-- 4 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);"></div>
                 <div class="spryte-info">
                     <h3>Thiên Mộc Hương</h3>
-                    <p>UI/UX redesign to enhance user journey and modernize the digital storefront.</p>
+                    <p>UI/UX redesign to enhance user journey and modernize the storefront.</p>
                     <span class="spryte-tag">UI/UX Design</span>
                 </div>
             </a>
-
             <!-- 5 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);"></div>
                 <div class="spryte-info">
                     <h3>Campaign Beer Huda</h3>
-                    <p>Key visuals and art direction for a dynamic beverage marketing campaign.</p>
+                    <p>Key visuals and art direction for a beverage marketing campaign.</p>
                     <span class="spryte-tag">Campaign</span>
                 </div>
             </a>
-
             <!-- 6 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);"></div>
                 <div class="spryte-info">
                     <h3>Traditional Research</h3>
-                    <p>Engaging motion graphic videos aimed at illustrating complex cultural research data.</p>
+                    <p>Engaging motion graphic videos aimed at illustrating complex cultural data.</p>
                     <span class="spryte-tag">Motion Graphics</span>
                 </div>
             </a>
-
             <!-- 7 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
                 <div class="spryte-info">
                     <h3>Marketing Posts</h3>
-                    <p>A collection of high-converting social media creatives and marketing assets.</p>
+                    <p>A collection of high-converting social media creatives.</p>
                     <span class="spryte-tag">Social Media</span>
                 </div>
             </a>
-
             <!-- 8 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
                 <div class="spryte-info">
                     <h3>Delasol Exhibition</h3>
-                    <p>Spatial and visual design planning for a contemporary art and lifestyle exhibition.</p>
+                    <p>Spatial and visual design planning for a contemporary lifestyle exhibition.</p>
                     <span class="spryte-tag">Exhibition</span>
                 </div>
             </a>
-
             <!-- 9 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
@@ -387,7 +374,6 @@
                     <span class="spryte-tag">Exhibition</span>
                 </div>
             </a>
-
             <!-- 10 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #f83600 0%, #f9d423 100%);"></div>
@@ -397,17 +383,15 @@
                     <span class="spryte-tag">Motion Graphics</span>
                 </div>
             </a>
-
             <!-- 11 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
                 <div class="spryte-info">
                     <h3>Photography / Others</h3>
-                    <p>A curated selection of personal photography and miscellaneous creative experiments.</p>
+                    <p>A curated selection of personal photography and creative experiments.</p>
                     <span class="spryte-tag">Photography</span>
                 </div>
             </a>
-
             <!-- 12 -->
             <a href="#" class="spryte-card">
                 <div class="spryte-image" style="background: linear-gradient(135deg, #b0eb6e 0%, #83c042 100%);"></div>
@@ -454,12 +438,9 @@
             const rect = experiencesSection.getBoundingClientRect();
             const windowHeight = window.innerHeight;
             
-            // Nền đen kích hoạt khi mép trên của Experiences lọt vào giữa màn hình 
-            // VÀ mép dưới của Experiences vẫn chưa vượt qua giữa màn hình
             if (rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4) {
                 document.body.classList.add('dark-theme');
             } else {
-                // Trôi khỏi vùng Experiences là lập tức nhả về nền trắng
                 document.body.classList.remove('dark-theme');
             }
         });
