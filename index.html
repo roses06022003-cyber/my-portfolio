@@ -28,14 +28,14 @@
             overflow-x: hidden;
         }
 
-        /* --- DARK MODE DÀNH RIÊNG CHO EXPERIENCES (NỀN XANH DƯƠNG ĐẬM) --- */
+        /* --- DARK MODE DÀNH RIÊNG CHO EXPERIENCES (NỀN XANH DƯƠNG CHUẨN) --- */
         body.dark-theme {
-            background-color: #0a1128; /* Xanh biển rất đậm */
+            background-color: #2B66B0; /* Xanh dương chuẩn theo ý bà */
             color: #F5F3EE; /* Chữ kem sáng */
         }
         body.dark-theme header {
-            background: rgba(10, 17, 40, 0.95);
-            border-bottom: 1px solid rgba(245, 243, 238, 0.1);
+            background: rgba(43, 102, 176, 0.95); /* Màu 2B66B0 nhưng có độ mờ nhẹ */
+            border-bottom: 1px solid rgba(245, 243, 238, 0.15);
         }
         body.dark-theme .logo, body.dark-theme .nav-links a { color: #F5F3EE; }
         body.dark-theme .nav-links a::after { background: #D75428; }
@@ -85,7 +85,7 @@
 
         /* HERO */
         .hero { padding: 100px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; min-height: 85vh; }
-        .hero h1 { font-size: 56px; font-weight: 300; letter-spacing: -1px; margin-bottom: 10px; line-height: 1.1; font-family: 'Allright', sans-serif; color: #D75428; } /* Headline Cam */
+        .hero h1 { font-size: 56px; font-weight: 300; letter-spacing: -1px; margin-bottom: 10px; line-height: 1.1; font-family: 'Allright', sans-serif; color: #D75428; }
         .hero-subtitle { font-size: 24px; font-weight: 400; margin-bottom: 25px; color: #1a1a1a; }
         .hero p { font-size: 16px; color: #666; line-height: 1.8; max-width: 500px; }
         .hero p strong { font-weight: 600; color: #1a1a1a; }
@@ -107,9 +107,9 @@
         body.dark-theme .exp-btn { border: 1px solid #D75428; color: #D75428; }
         body.dark-theme .exp-btn:hover { background: #D75428; color: #F5F3EE; }
 
-        .exp-header h2 { font-size: 36px; font-family: 'Allright', sans-serif; font-weight: 500; color: #D75428; } /* Headline Cam */
+        .exp-header h2 { font-size: 36px; font-family: 'Allright', sans-serif; font-weight: 500; color: #D75428; }
         .exp-header p { color: #666; font-size: 14px; }
-        body.dark-theme .exp-header p { color: #aaa; }
+        body.dark-theme .exp-header p { color: #F5F3EE; opacity: 0.8; }
         
         .exp-controls { display: flex; gap: 10px; }
         .exp-btn { background: transparent; border: 1px solid #1a1a1a; color: #1a1a1a; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s, color 0.3s, border-color 0.8s ease; }
@@ -121,25 +121,34 @@
 
         .exp-card { flex: 0 0 100%; scroll-snap-align: start; display: grid; grid-template-columns: 1fr 1fr; background-color: #ffffff; color: #1a1a1a; border-radius: 12px; overflow: hidden; min-height: 500px; transition: background-color 0.8s ease; border: 1px solid rgba(0,0,0,0.05); }
         
-        body.dark-theme .exp-card { background-color: #1a2238; color: #F5F3EE; border-color: rgba(245, 243, 238, 0.1); }
+        /* Chỉnh lại thẻ Card lúc vào Dark Mode nền Xanh */
+        body.dark-theme .exp-card { 
+            background-color: transparent; /* Trong suốt tệp với màu nền */
+            color: #F5F3EE; 
+            border-color: rgba(245, 243, 238, 0.25); 
+        }
         body.dark-theme .exp-company { color: #D75428; }
-        body.dark-theme .exp-desc { color: #ccc; }
+        
+        /* --- Đây là phần chỉnh màu body text thành trắng kem chuẩn #F5F3EE --- */
+        body.dark-theme .exp-desc { color: #F5F3EE; }
 
         .exp-content { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
         .exp-tags { display: flex; gap: 10px; margin-bottom: 30px; }
-        .exp-tags span { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #4DA989; border: 1px solid #4DA989; padding: 4px 12px; border-radius: 20px; font-weight: 600; } /* Tag xanh lá */
+        .exp-tags span { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #4DA989; border: 1px solid #4DA989; padding: 4px 12px; border-radius: 20px; font-weight: 600; }
+        body.dark-theme .exp-tags span { color: #F5F3EE; border-color: #F5F3EE; } /* Chữ Tag trắng kem để nổi trên xanh */
         .exp-title { font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 15px; letter-spacing: -1px; text-transform: uppercase; }
         .exp-company { font-size: 16px; font-weight: 600; margin-bottom: 30px; letter-spacing: 1px; color: #D75428; }
         .exp-desc { font-size: 15px; color: #666; line-height: 1.8; max-width: 90%; }
         
-        .exp-visual { position: relative; background: #2B66B0; }
-        .exp-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .exp-visual { position: relative; background: #1a1a1a; }
+        body.dark-theme .exp-visual { background: rgba(0,0,0,0.1); }
+        .exp-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
         .exp-number { position: absolute; top: 30px; right: 40px; font-size: 80px; font-weight: 300; color: #F5F3EE; line-height: 1; }
         .exp-date { position: absolute; bottom: 30px; left: 40px; font-size: 12px; font-weight: 600; color: #F5F3EE; letter-spacing: 2px; }
 
         /* WORKS SECTION */
         .works { padding: 100px 40px; max-width: 900px; margin: 0 auto; }
-        .works h2 { font-size: 36px; font-weight: 500; margin-bottom: 10px; text-align: center; font-family: 'Allright', sans-serif; color: #D75428; } /* Headline Cam */
+        .works h2 { font-size: 36px; font-weight: 500; margin-bottom: 10px; text-align: center; font-family: 'Allright', sans-serif; color: #D75428; }
         .works-subtitle { text-align: center; font-size: 15px; color: #666; margin-bottom: 50px; font-style: italic; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
 
@@ -151,7 +160,7 @@
         .spryte-info { flex-grow: 1; display: flex; flex-direction: column; align-items: flex-start; }
         .spryte-info h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; letter-spacing: -0.5px; }
         .spryte-info p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 20px; }
-        .spryte-tag { margin-top: auto; background: #2B66B0; color: #ffffff; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; } /* Tag xanh dương */
+        .spryte-tag { margin-top: auto; background: #2B66B0; color: #ffffff; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; }
 
         /* ========================================= */
         /* CTA / CONTACT SECTION                     */
@@ -169,7 +178,7 @@
         }
 
         .cta-content { max-width: 60%; }
-        .cta-content h2 { font-family: 'Allright', sans-serif; font-size: 64px; font-weight: normal; margin-bottom: 10px; color: #D75428; } /* Headline Cam */
+        .cta-content h2 { font-family: 'Allright', sans-serif; font-size: 64px; font-weight: normal; margin-bottom: 10px; color: #D75428; }
         .cta-content p.cta-desc { font-size: 16px; color: #666; margin-bottom: 40px; }
         .cta-buttons { display: flex; gap: 15px; align-items: center; margin-bottom: 20px; }
 
