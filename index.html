@@ -42,7 +42,8 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: url('images/mac-wallpaper.jpg') center/cover no-repeat;
+            /* ĐÃ THÊM LỚP PHỦ ĐEN (rgba 0,0,0,0.5) LÀM TỐI NỀN ĐỂ NỔI BẬT FOLDER */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/mac-wallpaper.jpg') center/cover no-repeat;
             background-color: #000;
             z-index: 9999;
             display: flex;
@@ -130,7 +131,7 @@
         .mac-folder:hover {
             animation: none; 
             transform: translate(-50%, -50%) scale(1.1);
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.6));
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.8)); /* Tăng độ sáng viền khi hover */
         }
 
         .mac-folder img {
@@ -344,7 +345,7 @@
             <!-- Khối bung cửa sổ -->
             <div id="mac-window-expand" class="mac-window-expand"></div>
 
-            <!-- Folder Portfolio (Chỉ còn ảnh) -->
+            <!-- Folder Portfolio -->
             <div class="mac-folder" onclick="openPortfolio()">
                 <img src="images/folder-icon.png" alt="Portfolio Folder">
             </div>
