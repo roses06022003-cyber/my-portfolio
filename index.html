@@ -18,10 +18,18 @@
             font-style: normal;
         }
 
+        /* --- BẢNG MÀU MỚI (BEAMS TAIWAN TONE) --- */
+        /*
+          Nền: #f8f4e6 (Trắng kem ấm)
+          Chữ chính: #003366 (Xanh dương đậm)
+          Điểm nhấn (Nút, chữ đặc biệt): #e64a19 (Đỏ cam)
+          Điểm nhấn phụ (Tag): #008080 (Xanh ngọc cổ điển)
+        */
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #ffffff;
-            color: #1a1a1a;
+            background: #f8f4e6; /* Đổi nền sang trắng kem */
+            color: #003366; /* Đổi màu chữ chính sang xanh dương đậm */
             line-height: 1.6;
             transition: background-color 0.8s ease, color 0.8s ease;
             overflow-x: hidden;
@@ -29,39 +37,49 @@
 
         /* --- DARK MODE DÀNH RIÊNG CHO EXPERIENCES --- */
         body.dark-theme {
-            background-color: #0a0a0a;
-            color: #ffffff;
+            background-color: #111; /* Đen tuyền */
+            color: #f8f4e6;
         }
         body.dark-theme header {
-            background: rgba(10, 10, 10, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(17, 17, 17, 0.95);
+            border-bottom: 1px solid rgba(248, 244, 230, 0.1);
         }
-        body.dark-theme .logo, body.dark-theme .nav-links a { color: #ffffff; }
-        body.dark-theme .nav-links a::after { background: #ffffff; }
-        body.dark-theme .cv-btn { background-color: #ffffff; color: #1a1a1a; }
+        body.dark-theme .logo, body.dark-theme .nav-links a { color: #f8f4e6; }
+        body.dark-theme .nav-links a::after { background: #e64a19; }
+        body.dark-theme .cv-btn { background-color: #e64a19; color: #fff; }
         
         /* HEADER */
         header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(248, 244, 230, 0.95);
             backdrop-filter: blur(10px);
             padding: 20px 40px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 51, 102, 0.1);
             transition: background-color 0.8s ease, border-color 0.8s ease;
         }
 
         nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; max-width: 1400px; margin: 0 auto; }
         .logo-wrapper { display: flex; justify-content: flex-start; }
-        .logo { font-size: 18px; font-weight: 600; text-decoration: none; color: #1a1a1a; transition: color 0.8s ease; }
+        .logo { font-size: 18px; font-weight: 600; text-decoration: none; color: #003366; transition: color 0.8s ease; }
         .nav-links { display: flex; gap: 40px; list-style: none; }
-        .nav-links a { text-decoration: none; color: #1a1a1a; font-size: 14px; font-weight: 500; transition: color 0.8s ease; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background: #1a1a1a; transition: width 0.3s ease; }
+        .nav-links a { text-decoration: none; color: #003366; font-size: 14px; font-weight: 500; transition: color 0.8s ease; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: #e64a19; transition: width 0.3s ease; }
         .nav-links a:hover::after { width: 100%; }
         .cv-wrapper { display: flex; justify-content: flex-end; }
-        .cv-btn { background-color: #1a1a1a; color: #ffffff; padding: 10px 24px; border-radius: 30px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.3s ease; }
-        .cv-btn:hover { animation: wobble 0.6s ease-in-out both; }
+        
+        .cv-btn { 
+            background-color: #e64a19; /* Nút đỏ cam */
+            color: #ffffff; 
+            padding: 10px 24px; 
+            border-radius: 30px; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 600; 
+            transition: all 0.3s ease; 
+        }
+        .cv-btn:hover { animation: wobble 0.6s ease-in-out both; background-color: #c93b12; }
 
         @keyframes wobble {
             0%, 100% { transform: translateX(0) rotate(0deg); }
@@ -74,13 +92,13 @@
 
         /* HERO */
         .hero { padding: 100px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; min-height: 85vh; }
-        .hero h1 { font-size: 56px; font-weight: 300; letter-spacing: -1px; margin-bottom: 10px; line-height: 1.1; font-family: 'Allright', sans-serif; }
-        .hero-subtitle { font-size: 24px; font-weight: 400; margin-bottom: 25px; color: #888; }
-        .hero p { font-size: 16px; color: #888; line-height: 1.8; max-width: 500px; }
-        .hero p strong { font-weight: 600; color: inherit; }
+        .hero h1 { font-size: 56px; font-weight: 300; letter-spacing: -1px; margin-bottom: 10px; line-height: 1.1; font-family: 'Allright', sans-serif; color: #e64a19; }
+        .hero-subtitle { font-size: 24px; font-weight: 400; margin-bottom: 25px; color: #003366; }
+        .hero p { font-size: 16px; color: #335577; line-height: 1.8; max-width: 500px; }
+        .hero p strong { font-weight: 600; color: #003366; }
         
         .hero-image-container { display: flex; justify-content: center; perspective: 1000px; }
-        .hero-image { width: 280px; height: 280px; border-radius: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform-style: preserve-3d; }
+        .hero-image { width: 280px; height: 280px; border-radius: 16px; background: linear-gradient(135deg, #003366 0%, #008080 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; cursor: pointer; box-shadow: 0 10px 30px rgba(0,51,102,0.2); transform-style: preserve-3d; }
         .hero-image:hover { background: none; }
         .hero-image img { width: 100%; height: 100%; object-fit: cover; position: absolute; transition: opacity 0.4s ease; transform: translateZ(20px); }
         .avatar-real { opacity: 1; z-index: 2; }
@@ -90,62 +108,63 @@
 
         /* EXPERIENCES */
         .experiences-section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
-        .exp-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 1px solid rgba(128, 128, 128, 0.2); padding-bottom: 20px; transition: border-color 0.8s ease; }
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 1px solid rgba(0, 51, 102, 0.2); padding-bottom: 20px; transition: border-color 0.8s ease; }
         
-        body.dark-theme .exp-header { border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
-        body.dark-theme .exp-btn { border: 1px solid #fff; color: #fff; }
-        body.dark-theme .exp-btn:hover { background: #fff; color: #000; }
+        body.dark-theme .exp-header { border-bottom: 1px solid rgba(248, 244, 230, 0.2); }
+        body.dark-theme .exp-btn { border: 1px solid #e64a19; color: #e64a19; }
+        body.dark-theme .exp-btn:hover { background: #e64a19; color: #f8f4e6; }
 
-        .exp-header h2 { font-size: 36px; font-family: 'Allright', sans-serif; font-weight: 500; }
-        .exp-header p { color: #888; font-size: 14px; }
+        .exp-header h2 { font-size: 36px; font-family: 'Allright', sans-serif; font-weight: 500; color: #e64a19; }
+        .exp-header p { color: #335577; font-size: 14px; }
         
         .exp-controls { display: flex; gap: 10px; }
-        .exp-btn { background: transparent; border: 1px solid #1a1a1a; color: #1a1a1a; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s, color 0.3s, border-color 0.8s ease; }
-        .exp-btn:hover { background: #1a1a1a; color: #fff; }
+        .exp-btn { background: transparent; border: 1px solid #e64a19; color: #e64a19; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s, color 0.3s, border-color 0.8s ease; }
+        .exp-btn:hover { background: #e64a19; color: #f8f4e6; }
 
         .exp-slider-wrapper { width: 100%; overflow: hidden; }
         .exp-slider { display: flex; gap: 40px; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-width: none; }
         .exp-slider::-webkit-scrollbar { display: none; }
 
-        .exp-card { flex: 0 0 100%; scroll-snap-align: start; display: grid; grid-template-columns: 1fr 1fr; background-color: #f4f4f4; color: #1a1a1a; border-radius: 12px; overflow: hidden; min-height: 500px; transition: background-color 0.8s ease; }
+        .exp-card { flex: 0 0 100%; scroll-snap-align: start; display: grid; grid-template-columns: 1fr 1fr; background-color: #ffffff; color: #003366; border-radius: 12px; overflow: hidden; min-height: 500px; transition: background-color 0.8s ease; border: 1px solid rgba(0,51,102,0.1); }
         
-        body.dark-theme .exp-card { background-color: #1a1a1a; color: #fff; }
-        body.dark-theme .exp-company { color: #ddd; }
-        body.dark-theme .exp-desc { color: #aaa; }
+        body.dark-theme .exp-card { background-color: #222; color: #f8f4e6; border-color: rgba(248,244,230,0.1); }
+        body.dark-theme .exp-company { color: #e64a19; }
+        body.dark-theme .exp-desc { color: #ccc; }
 
         .exp-content { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
         .exp-tags { display: flex; gap: 10px; margin-bottom: 30px; }
-        .exp-tags span { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #666; border: 1px solid #ccc; padding: 4px 12px; border-radius: 20px; }
+        .exp-tags span { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #008080; border: 1px solid #008080; padding: 4px 12px; border-radius: 20px; }
         .exp-title { font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 15px; letter-spacing: -1px; text-transform: uppercase; }
-        .exp-company { font-size: 16px; font-weight: 600; margin-bottom: 30px; letter-spacing: 1px; color: #333; }
-        .exp-desc { font-size: 15px; color: #555; line-height: 1.8; max-width: 90%; }
+        .exp-company { font-size: 16px; font-weight: 600; margin-bottom: 30px; letter-spacing: 1px; color: #e64a19; }
+        .exp-desc { font-size: 15px; color: #335577; line-height: 1.8; max-width: 90%; }
         
-        .exp-visual { position: relative; background: #333; }
+        .exp-visual { position: relative; background: #003366; }
         .exp-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        .exp-number { position: absolute; top: 30px; right: 40px; font-size: 80px; font-weight: 300; color: #fff; line-height: 1; }
-        .exp-date { position: absolute; bottom: 30px; left: 40px; font-size: 12px; font-weight: 600; color: #fff; letter-spacing: 2px; }
+        .exp-number { position: absolute; top: 30px; right: 40px; font-size: 80px; font-weight: 300; color: #f8f4e6; line-height: 1; }
+        .exp-date { position: absolute; bottom: 30px; left: 40px; font-size: 12px; font-weight: 600; color: #f8f4e6; letter-spacing: 2px; }
 
         /* WORKS SECTION */
         .works { padding: 100px 40px; max-width: 900px; margin: 0 auto; }
-        .works h2 { font-size: 36px; font-weight: 500; margin-bottom: 10px; text-align: center; font-family: 'Allright', sans-serif; }
-        .works-subtitle { text-align: center; font-size: 15px; color: #666; margin-bottom: 50px; font-style: italic; }
+        .works h2 { font-size: 36px; font-weight: 500; margin-bottom: 10px; text-align: center; font-family: 'Allright', sans-serif; color: #e64a19; }
+        .works-subtitle { text-align: center; font-size: 15px; color: #335577; margin-bottom: 50px; font-style: italic; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
 
-        .spryte-card { background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 20px; padding: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
-        .spryte-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05); }
-        .spryte-image { width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; margin-bottom: 16px; background: #f5f5f5; overflow: hidden; position: relative; }
+        .spryte-card { background: #ffffff; border: 1px solid rgba(0, 51, 102, 0.1); border-radius: 20px; padding: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+        .spryte-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 51, 102, 0.1); }
+        .spryte-image { width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; margin-bottom: 16px; background: #e0e0e0; overflow: hidden; position: relative; }
         .spryte-image img { width: 100%; height: 100%; object-fit: cover; }
         
         .spryte-info { flex-grow: 1; display: flex; flex-direction: column; align-items: flex-start; }
-        .spryte-info h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; letter-spacing: -0.5px; }
-        .spryte-info p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 20px; }
-        .spryte-tag { margin-top: auto; background: #1a1a1a; color: #ffffff; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+        .spryte-info h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #003366; letter-spacing: -0.5px; }
+        .spryte-info p { font-size: 13px; color: #335577; line-height: 1.5; margin-bottom: 20px; }
+        .spryte-tag { margin-top: auto; background: #008080; color: #ffffff; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; }
 
         /* ========================================= */
-        /* CTA / CONTACT SECTION MỚI (Y HỆT VIDEO)   */
+        /* CTA / CONTACT SECTION                     */
         /* ========================================= */
         .cta-section {
-            background: #f8f8f8; /* Nền xám nhạt */
+            background: #ffffff;
+            border: 1px solid rgba(0, 51, 102, 0.1);
             border-radius: 24px;
             max-width: 1200px;
             margin: 0 auto 100px auto;
@@ -155,112 +174,37 @@
             align-items: center;
         }
 
-        .cta-content {
-            max-width: 60%;
-        }
-
-        .cta-content h2 {
-            font-family: 'Allright', sans-serif;
-            font-size: 64px;
-            font-weight: normal;
-            margin-bottom: 10px;
-            color: #1a1a1a;
-        }
-
-        .cta-content p.cta-desc {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 40px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+        .cta-content { max-width: 60%; }
+        .cta-content h2 { font-family: 'Allright', sans-serif; font-size: 64px; font-weight: normal; margin-bottom: 10px; color: #e64a19; }
+        .cta-content p.cta-desc { font-size: 16px; color: #335577; margin-bottom: 40px; }
+        .cta-buttons { display: flex; gap: 15px; align-items: center; margin-bottom: 20px; }
 
         /* Nút Email */
-        .email-btn {
-            display: inline-flex;
-            align-items: center;
-            background: #1a1a1a;
-            color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            padding: 14px 24px;
-            font-size: 15px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-        
-        .copy-label {
-            display: inline-block;
-            max-width: 0;
-            opacity: 0;
-            overflow: hidden;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-        
-        .email-btn:hover .copy-label {
-            max-width: 80px;
-            opacity: 1;
-            margin-left: 12px;
-            color: #aaa;
-        }
+        .email-btn { display: inline-flex; align-items: center; background: #003366; color: #ffffff; border: none; border-radius: 12px; padding: 14px 24px; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: inherit; }
+        .copy-label { display: inline-block; max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; transition: all 0.3s ease; }
+        .email-btn:hover .copy-label { max-width: 80px; opacity: 1; margin-left: 12px; color: #f8f4e6; }
 
         /* Nút LinkedIn */
-        .linkedin-btn {
-            background: #1a1a1a;
-            color: #ffffff;
-            border: 1px solid #1a1a1a;
-            border-radius: 12px;
-            padding: 14px 30px;
-            font-size: 15px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        .linkedin-btn:hover {
-            background: #e5e5e5;
-            color: #1a1a1a;
-            border-color: #e5e5e5;
-        }
+        .linkedin-btn { background: #ffffff; color: #003366; border: 1px solid #003366; border-radius: 12px; padding: 14px 30px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.3s ease; display: inline-block; }
+        .linkedin-btn:hover { background: #003366; color: #ffffff; }
 
-        .cta-phone {
-            font-size: 15px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-left: 5px;
-        }
+        .cta-phone { font-size: 15px; font-weight: 600; color: #003366; margin-left: 5px; }
 
-        /* Hình ảnh bên phải */
-        .cta-visual img {
-            max-width: 280px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .cta-visual img:hover {
-            animation: wobble 0.6s ease-in-out both;
-        }
+        .cta-visual img { max-width: 280px; cursor: pointer; transition: transform 0.3s ease; }
+        .cta-visual img:hover { animation: wobble 0.6s ease-in-out both; }
 
-        footer { padding: 40px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid rgba(0,0,0,0.05); }
+        footer { padding: 40px; text-align: center; color: #335577; font-size: 12px; border-top: 1px solid rgba(0, 51, 102, 0.1); }
 
-        /* RESPONSIVE CTA */
+        /* RESPONSIVE */
         @media (max-width: 968px) {
-            .cta-section {
-                flex-direction: column;
-                padding: 60px 40px;
-                text-align: center;
-                gap: 50px;
-            }
+            .cta-section { flex-direction: column; padding: 60px 40px; text-align: center; gap: 50px; }
             .cta-content { max-width: 100%; }
             .cta-buttons { justify-content: center; flex-wrap: wrap; }
             .cta-visual img { max-width: 200px; }
+            .exp-card { grid-template-columns: 1fr; min-height: auto; }
+            .exp-content { padding: 40px; }
+            .exp-visual { min-height: 300px; }
+            .exp-title { font-size: 32px; }
             .hero { grid-template-columns: 1fr; text-align: center; }
             .hero-image-container { order: -1; }
             .grid { grid-template-columns: 1fr; gap: 30px; }
@@ -297,7 +241,6 @@
 
     <!-- EXPERIENCES -->
     <section class="experiences-section" id="experiences">
-        <!-- ... (Đã thu gọn để tiết kiệm chỗ, code cũ của bạn vẫn giữ nguyên ở đây) ... -->
         <div class="exp-header">
             <div>
                 <h2>EXPERIENCES</h2>
@@ -311,6 +254,7 @@
 
         <div class="exp-slider-wrapper">
             <div class="exp-slider" id="expSlider">
+                
                 <div class="exp-card">
                     <div class="exp-content">
                         <div class="exp-tags"><span>EDUCATION</span><span>DEGREE</span></div>
@@ -352,6 +296,7 @@
                         <div class="exp-date">2025 - 2026</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -363,7 +308,7 @@
         
         <div class="grid">
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #003366 0%, #008080 100%);"></div>
                 <div class="spryte-info">
                     <h3>Magazine Celine</h3>
                     <p>Editorial and layout design showcasing modern fashion aesthetics.</p>
@@ -371,7 +316,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #e64a19 0%, #ff8a65 100%);"></div>
                 <div class="spryte-info">
                     <h3>Sự im lặng của bầy cừu</h3>
                     <p>Book cover redesign bringing a fresh, thriller-focused visual approach.</p>
@@ -379,7 +324,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #008080 0%, #4db6ac 100%);"></div>
                 <div class="spryte-info">
                     <h3>Package Himalaya</h3>
                     <p>Conceptual packaging design focusing on natural elements.</p>
@@ -387,7 +332,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #003366 0%, #008080 100%);"></div>
                 <div class="spryte-info">
                     <h3>Thiên Mộc Hương</h3>
                     <p>UI/UX redesign to enhance user journey and modernize the storefront.</p>
@@ -395,7 +340,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #e64a19 0%, #ff8a65 100%);"></div>
                 <div class="spryte-info">
                     <h3>Campaign Beer Huda</h3>
                     <p>Key visuals and art direction for a beverage marketing campaign.</p>
@@ -403,7 +348,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #008080 0%, #4db6ac 100%);"></div>
                 <div class="spryte-info">
                     <h3>Traditional Research</h3>
                     <p>Engaging motion graphic videos aimed at illustrating complex cultural data.</p>
@@ -411,7 +356,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #003366 0%, #008080 100%);"></div>
                 <div class="spryte-info">
                     <h3>Marketing Posts</h3>
                     <p>A collection of high-converting social media creatives.</p>
@@ -419,7 +364,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #e64a19 0%, #ff8a65 100%);"></div>
                 <div class="spryte-info">
                     <h3>Delasol Exhibition</h3>
                     <p>Spatial and visual design planning for a contemporary lifestyle exhibition.</p>
@@ -427,7 +372,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #008080 0%, #4db6ac 100%);"></div>
                 <div class="spryte-info">
                     <h3>Pepsi Exhibition</h3>
                     <p>Vibrant, energetic pop-up exhibition design tailored for youth culture.</p>
@@ -435,7 +380,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #f83600 0%, #f9d423 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #003366 0%, #008080 100%);"></div>
                 <div class="spryte-info">
                     <h3>Fanta Motion</h3>
                     <p>Playful and bubbly motion design for digital advertisements.</p>
@@ -443,7 +388,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #e64a19 0%, #ff8a65 100%);"></div>
                 <div class="spryte-info">
                     <h3>Photography / Others</h3>
                     <p>A curated selection of personal photography and creative experiments.</p>
@@ -451,7 +396,7 @@
                 </div>
             </a>
             <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #b0eb6e 0%, #83c042 100%);"></div>
+                <div class="spryte-image" style="background: linear-gradient(135deg, #008080 0%, #4db6ac 100%);"></div>
                 <div class="spryte-info">
                     <h3>Kẹo kết Việt Game</h3>
                     <p>Visual assets and character design for a fun, interactive local mobile game.</p>
@@ -468,7 +413,7 @@
             <p class="cta-desc">Let's talk projects, collaborations, or anything design!</p>
             
             <div class="cta-buttons">
-                <!-- Nút copy Email có xài JS -->
+                <!-- Nút copy Email -->
                 <button class="email-btn" onclick="copyMyEmail()">
                     <span class="email-text">roses06022003@gmail.com</span>
                     <span class="copy-label">Copy</span>
@@ -503,9 +448,11 @@
 
         // 2. Logic Nền Đen
         const experiencesSection = document.getElementById('experiences');
+        
         window.addEventListener('scroll', () => {
             const rect = experiencesSection.getBoundingClientRect();
             const windowHeight = window.innerHeight;
+            
             if (rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4) {
                 document.body.classList.add('dark-theme');
             } else {
@@ -513,23 +460,29 @@
             }
         });
 
-        // 3. Slider Ngang
+        // 3. LOGIC SLIDER NGANG
         const slider = document.getElementById('expSlider');
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
-        nextBtn.addEventListener('click', () => { slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' }); });
-        prevBtn.addEventListener('click', () => { slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' }); });
+
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
+        });
 
         // 4. Hàm Copy Email siêu việt
         function copyMyEmail() {
             navigator.clipboard.writeText("roses06022003@gmail.com").then(() => {
                 const copyLabel = document.querySelector('.copy-label');
                 copyLabel.textContent = "Copied!";
-                copyLabel.style.color = "#4caf50"; // Chuyển chữ xanh cho ngầu
+                copyLabel.style.color = "#4caf50"; // Chuyển chữ xanh
                 setTimeout(() => {
                     copyLabel.textContent = "Copy";
-                    copyLabel.style.color = "#aaa";
-                }, 2000); // 2 giây sau tự trả về như cũ
+                    copyLabel.style.color = "#f8f4e6";
+                }, 2000); 
             });
         }
     </script>
