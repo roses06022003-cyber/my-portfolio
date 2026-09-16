@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dan's Portfolio | Graphic Designer</title>
+    <title>Bống's Portfolio | Graphic Designer</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
@@ -38,8 +38,8 @@
             color: #fff; 
             pointer-events: none; 
         }
-        .logo { font-size: 32px; font-family: var(--font-serif); font-weight: 500; letter-spacing: 2px; pointer-events: auto; }
-        .logo span { display: block; font-size: 11px; font-family: var(--font-sans); letter-spacing: 2px; margin-top: 5px; }
+        .logo { font-size: 28px; font-family: var(--font-serif); font-weight: 500; letter-spacing: 2px; pointer-events: auto; }
+        .logo span { display: block; font-size: 10px; font-family: var(--font-sans); letter-spacing: 2px; margin-top: 5px; text-transform: uppercase;}
         
         .nav-links { display: flex; gap: 40px; list-style: none; font-size: 13px; letter-spacing: 1.5px; font-weight: 500; pointer-events: auto; }
         .nav-links li a { color: #fff; text-decoration: none; text-transform: uppercase; }
@@ -63,6 +63,7 @@
         }
         .news-ticker span { font-weight: 600; font-size: 13px; }
 
+        /* Nút Download CV (Thay cho Contact) */
         .sticky-contact {
             position: fixed;
             bottom: 40px;
@@ -75,9 +76,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            text-align: center;
+            font-size: 11px;
             font-weight: 500;
             letter-spacing: 2px;
+            line-height: 1.6;
             z-index: 100;
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -108,11 +111,11 @@
             left: 0;
         }
 
-        /* Chỉnh lại font chữ bám viền cho mềm mại, to và giống ICHI hơn */
+        /* Chỉnh size chữ bám viền vừa vặn không bị cắt */
         .hero-text-path {
             font-family: var(--font-sans);
-            font-size: 32px; 
-            letter-spacing: 2px;
+            font-size: 38px; /* Thu nhỏ lại xíu để lọt thỏm vào thanh ray */
+            letter-spacing: 3px;
             font-weight: 400;
             fill: #1a1a1a;
         }
@@ -134,11 +137,12 @@
 <body>
 
     <header>
-        <div class="logo">DAN<br><span>Graphic Designer</span></div>
+        <!-- Thay tên Bống's Portfolio -->
+        <div class="logo">Bống's Portfolio<br><span>Graphic Designer</span></div>
         <ul class="nav-links">
+            <!-- Đã gỡ bỏ Profile theo yêu cầu -->
             <li><a href="#about">About</a></li>
             <li><a href="#works">Works</a></li>
-            <li><a href="#profile">Profile</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </header>
@@ -147,7 +151,8 @@
         <span>[ NEWS ]</span> Available for freelance projects in 2026 <span>→</span>
     </div>
 
-    <a href="#contact" class="sticky-contact">CONTACT</a>
+    <!-- Đổi thành Download CV -->
+    <a href="#" class="sticky-contact">DOWNLOAD<br>CV</a>
 
 
     <!-- KHU VỰC HIỆU ỨNG CUỘN -->
@@ -164,23 +169,34 @@
                 <!-- BỨC ẢNH ĐƯỢC CẮT BỞI MASK -->
                 <image id="hero-img" href="images/Avatar.jpg" x="0" y="0" width="1400" height="1080" preserveAspectRatio="xMidYMid slice" clip-path="url(#hero-clip)" />
 
-                <!-- DÒNG CHỮ ĐÃ ĐƯỢC TÁCH THÀNH 2 ĐƯỜNG THẲNG Y HỆT ICHI -->
+                <!-- TÁCH 4 DÒNG CHỮ ĐỘC LẬP Y HỆT ICHI -->
                 <g id="text-group">
-                    <!-- Thanh ray bên trái (Đẩy nhẹ ra ngoài để không đè lên ảnh) -->
-                    <path id="rail-left" d="M 425 490 L 595 270" fill="none" stroke="none" />
+                    
+                    <!-- 1. Cạnh Trái Dưới (Form) -->
+                    <!-- Kéo lùi ra ngoài shape một xíu để chữ khỏi ăn vô hình -->
+                    <path id="rail-bottom-left" d="M 485 755 L 414 479" fill="none" stroke="none" />
                     <text class="hero-text-path">
-                        <textPath href="#rail-left" startOffset="50%" text-anchor="middle">
-                            Shape Your Vision.
-                        </textPath>
+                        <textPath href="#rail-bottom-left" startOffset="50%" text-anchor="middle">Form</textPath>
                     </text>
 
-                    <!-- Thanh ray bên phải (Đẩy nhẹ ra ngoài để không đè lên ảnh) -->
-                    <path id="rail-right" d="M 885 365 L 985 585" fill="none" stroke="none" />
+                    <!-- 2. Cạnh Trái Trên (Your Style.) -->
+                    <path id="rail-top-left" d="M 428 452 L 585 262" fill="none" stroke="none" />
                     <text class="hero-text-path">
-                        <textPath href="#rail-right" startOffset="50%" text-anchor="middle">
-                            For Your Brand.
-                        </textPath>
+                        <textPath href="#rail-top-left" startOffset="50%" text-anchor="middle">Your Style.</textPath>
                     </text>
+
+                    <!-- 3. Cạnh Phải Trên (For Your) -->
+                    <path id="rail-top-right" d="M 625 272 L 883 346" fill="none" stroke="none" />
+                    <text class="hero-text-path">
+                        <textPath href="#rail-top-right" startOffset="50%" text-anchor="middle">For Your</textPath>
+                    </text>
+
+                    <!-- 4. Cạnh Phải Dưới (Vision.) -->
+                    <path id="rail-bottom-right" d="M 895 368 L 992 576" fill="none" stroke="none" />
+                    <text class="hero-text-path">
+                        <textPath href="#rail-bottom-right" startOffset="50%" text-anchor="middle">Vision.</textPath>
+                    </text>
+
                 </g>
             </svg>
 
@@ -210,14 +226,14 @@
             }
         });
 
-        // 1. Phóng to Mask từ ĐÚNG TÂM 
+        // Phóng to Mask từ ĐÚNG TÂM 
         tl.to("#mask-path", { 
             scale: 35, 
             svgOrigin: "703.7 540.7", 
             ease: "power2.inOut" 
         }, 0);
 
-        // 2. Phóng to và làm mờ nhóm chữ 
+        // Phóng to và làm mờ chữ 
         tl.to("#text-group", { 
             scale: 35, 
             opacity: 0, 
@@ -225,7 +241,7 @@
             ease: "power2.inOut" 
         }, 0);
 
-        // 3. Phóng to ảnh nhẹ nhẹ tạo cảm giác Parallax
+        // Phóng to ảnh nhẹ nhẹ
         tl.to("#hero-img", { 
             scale: 1.1, 
             svgOrigin: "700 540", 
