@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* HEADER & UI (GIỮ NGUYÊN) */
+        /* HEADER & UI */
         header {
             position: fixed;
             top: 0;
@@ -97,7 +97,7 @@
             height: 100vh;
             width: 100vw;
             overflow: hidden;
-            background-color: var(--bg-color); /* Đồng bộ màu nền */
+            background-color: var(--bg-color);
         }
 
         #hero-svg {
@@ -108,16 +108,16 @@
             left: 0;
         }
 
+        /* Chỉnh lại font chữ bám viền cho mềm mại, to và giống ICHI hơn */
         .hero-text-path {
             font-family: var(--font-sans);
-            font-size: 24px;
-            letter-spacing: 12px;
+            font-size: 32px; 
+            letter-spacing: 2px;
             font-weight: 400;
             fill: #1a1a1a;
-            text-transform: uppercase;
         }
 
-        /* SECTION NỘI DUNG KẾ TIẾP */
+        /* SECTION NỘI DUNG */
         .content-section {
             padding: 150px 50px;
             max-width: 1200px;
@@ -157,7 +157,6 @@
             <svg id="hero-svg" viewBox="0 0 1400 1080" preserveAspectRatio="xMidYMid slice">
                 <defs>
                     <clipPath id="hero-clip" clipPathUnits="userSpaceOnUse">
-                        <!-- Tọa độ Y đã được cộng thêm 180px để CHUẨN XÁC NẰM GIỮA MÀN HÌNH -->
                         <path id="mask-path" d="M 615 292.83 L 853.47 366.73 L 865.29 378.56 L 962.85 576.62 L 962.85 592.39 L 762.81 779.62 L 745.07 788.48 L 532.95 776.75 L 515.53 765.59 L 444.52 489.13 L 448.99 472.6 L 595.03 292.83 Z" />
                     </clipPath>
                 </defs>
@@ -165,12 +164,21 @@
                 <!-- BỨC ẢNH ĐƯỢC CẮT BỞI MASK -->
                 <image id="hero-img" href="images/Avatar.jpg" x="0" y="0" width="1400" height="1080" preserveAspectRatio="xMidYMid slice" clip-path="url(#hero-clip)" />
 
-                <!-- DÒNG CHỮ UỐN LƯỢN VIỀN NGOÀI -->
+                <!-- DÒNG CHỮ ĐÃ ĐƯỢC TÁCH THÀNH 2 ĐƯỜNG THẲNG Y HỆT ICHI -->
                 <g id="text-group">
-                    <path id="text-path-line" d="M 615 292.83 L 853.47 366.73 L 865.29 378.56 L 962.85 576.62 L 962.85 592.39 L 762.81 779.62 L 745.07 788.48 L 532.95 776.75 L 515.53 765.59 L 444.52 489.13 L 448.99 472.6 L 595.03 292.83 Z" fill="none" stroke="none" />
+                    <!-- Thanh ray bên trái (Đẩy nhẹ ra ngoài để không đè lên ảnh) -->
+                    <path id="rail-left" d="M 425 490 L 595 270" fill="none" stroke="none" />
                     <text class="hero-text-path">
-                        <textPath href="#text-path-line" startOffset="50%" text-anchor="middle">
-                            Form Your Style • Quality Driven Design • Creative Innovation • Form Your Style
+                        <textPath href="#rail-left" startOffset="50%" text-anchor="middle">
+                            Shape Your Vision.
+                        </textPath>
+                    </text>
+
+                    <!-- Thanh ray bên phải (Đẩy nhẹ ra ngoài để không đè lên ảnh) -->
+                    <path id="rail-right" d="M 885 365 L 985 585" fill="none" stroke="none" />
+                    <text class="hero-text-path">
+                        <textPath href="#rail-right" startOffset="50%" text-anchor="middle">
+                            For Your Brand.
                         </textPath>
                     </text>
                 </g>
@@ -179,7 +187,7 @@
         </div>
     </div>
 
-    <!-- NỘI DUNG SAU KHI CUỘN (Bà lướt qua ảnh sẽ tới đây) -->
+    <!-- NỘI DUNG SAU KHI CUỘN -->
     <section class="content-section" id="about">
         <h2>( CONCEPT )<br><br>Hình khối phác họa cá tính.</h2>
         <p>Thiết kế không chỉ là sắp xếp hình ảnh, mà là quá trình điêu khắc để phác họa cá tính riêng biệt của từng thương hiệu.<br>Không chạy theo trào lưu, mà là tìm kiếm sự phù hợp hoàn hảo.</p>
@@ -198,18 +206,18 @@
                 trigger: "#hero-scroll-container",
                 start: "top top", 
                 end: "bottom bottom", 
-                scrub: 1 // Độ dính của scroll
+                scrub: 1 
             }
         });
 
-        // 1. Phóng to Mask từ ĐÚNG TÂM của nó (703.7 540.7)
+        // 1. Phóng to Mask từ ĐÚNG TÂM 
         tl.to("#mask-path", { 
-            scale: 35, // Phóng siêu to để bao hết cả các màn hình cong siêu rộng
-            svgOrigin: "703.7 540.7", // Cú pháp thần thánh trị bách bệnh lệch tâm
+            scale: 35, 
+            svgOrigin: "703.7 540.7", 
             ease: "power2.inOut" 
         }, 0);
 
-        // 2. Phóng to và làm mờ chữ
+        // 2. Phóng to và làm mờ nhóm chữ 
         tl.to("#text-group", { 
             scale: 35, 
             opacity: 0, 
@@ -220,7 +228,7 @@
         // 3. Phóng to ảnh nhẹ nhẹ tạo cảm giác Parallax
         tl.to("#hero-img", { 
             scale: 1.1, 
-            svgOrigin: "700 540", // Tâm của cả cụm SVG
+            svgOrigin: "700 540", 
             ease: "power2.inOut" 
         }, 0);
     </script>
