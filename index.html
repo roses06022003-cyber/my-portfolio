@@ -63,30 +63,53 @@
         }
         .news-ticker span { font-weight: 600; font-size: 13px; }
 
-        /* Nút Download CV (Thay cho Contact) */
+        /* NÚT DOWNLOAD CV - HIỆU ỨNG CHỮ CHẠY & HOVER */
         .sticky-contact {
             position: fixed;
             bottom: 40px;
             right: 50px;
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             background-color: #1a1a1a;
             color: #F5F3EE;
             border-radius: 50%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
             font-size: 11px;
             font-weight: 500;
-            letter-spacing: 2px;
-            line-height: 1.6;
+            letter-spacing: 1.5px;
             z-index: 100;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
+            overflow: hidden;
+            border: 1px solid #1a1a1a;
         }
-        .sticky-contact:hover { transform: scale(1.05); }
+        
+        .sticky-contact:hover {
+            background-color: #F5F3EE;
+            color: #1a1a1a;
+            border-color: #1a1a1a;
+            transform: scale(1.05);
+        }
+
+        /* Khung chứa chữ chạy ngang (Marquee) */
+        .marquee-wrapper {
+            display: flex;
+            white-space: nowrap;
+            width: fit-content;
+            animation: scrollText 6s linear infinite;
+        }
+        
+        .marquee-wrapper span {
+            padding: 0 4px;
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(0%); }
+            /* Dịch chuyển mượt mà một nửa độ dài để vòng lặp hoàn hảo */
+            100% { transform: translateX(-50%); } 
+        }
 
         /* HERO SCROLL SECTION */
         #hero-scroll-container {
@@ -111,13 +134,32 @@
             left: 0;
         }
 
-        /* Chỉnh size chữ bám viền vừa vặn không bị cắt */
+        /* CHỮ BÁM VIỀN ĐÃ ĐƯỢC CHỈNH SIZE VÀ KHOẢNG CÁCH */
         .hero-text-path {
             font-family: var(--font-sans);
-            font-size: 38px; /* Thu nhỏ lại xíu để lọt thỏm vào thanh ray */
-            letter-spacing: 3px;
+            font-size: 34px; 
+            letter-spacing: 2px;
             font-weight: 400;
             fill: #1a1a1a;
+        }
+
+        /* HIỆU ỨNG SLIDESHOW ẢNH BÊN TRONG MASK */
+        .hero-slide {
+            animation: crossfade 16s infinite;
+            opacity: 0;
+        }
+        /* Cài đặt độ trễ để các ảnh nối đuôi nhau hiện ra */
+        .hero-slide:nth-child(4) { animation-delay: 0s; }  /* e.jpg */
+        .hero-slide:nth-child(3) { animation-delay: 4s; }  /* f.jpg */
+        .hero-slide:nth-child(2) { animation-delay: 8s; }  /* g.jpg */
+        .hero-slide:nth-child(1) { animation-delay: 12s; } /* h.jpg */
+
+        @keyframes crossfade {
+            0% { opacity: 1; }
+            20% { opacity: 1; }
+            25% { opacity: 0; }
+            95% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         /* SECTION NỘI DUNG */
@@ -137,10 +179,8 @@
 <body>
 
     <header>
-        <!-- Thay tên Bống's Portfolio -->
         <div class="logo">Bống's Portfolio<br><span>Graphic Designer</span></div>
         <ul class="nav-links">
-            <!-- Đã gỡ bỏ Profile theo yêu cầu -->
             <li><a href="#about">About</a></li>
             <li><a href="#works">Works</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -151,11 +191,17 @@
         <span>[ NEWS ]</span> Available for freelance projects in 2026 <span>→</span>
     </div>
 
-    <!-- Đổi thành Download CV -->
-    <a href="#" class="sticky-contact">DOWNLOAD<br>CV</a>
+    <!-- NÚT DOWNLOAD CV VỚI CHỮ CHẠY LIÊN TỤC -->
+    <a href="#" class="sticky-contact">
+        <div class="marquee-wrapper">
+            <span>DOWNLOAD CV • </span>
+            <span>DOWNLOAD CV • </span>
+            <span>DOWNLOAD CV • </span>
+            <span>DOWNLOAD CV • </span>
+        </div>
+    </a>
 
 
-    <!-- KHU VỰC HIỆU ỨNG CUỘN -->
     <div id="hero-scroll-container">
         <div id="hero-sticky">
             
@@ -166,35 +212,40 @@
                     </clipPath>
                 </defs>
 
-                <!-- BỨC ẢNH ĐƯỢC CẮT BỞI MASK -->
-                <image id="hero-img" href="images/Avatar.jpg" x="0" y="0" width="1400" height="1080" preserveAspectRatio="xMidYMid slice" clip-path="url(#hero-clip)" />
+                <!-- GROUP CHỨA SLIDESHOW ẢNH -->
+                <g id="hero-img-group" clip-path="url(#hero-clip)">
+                    <!-- Đã thay đổi thành e.jpg, f.jpg, g.jpg, h.jpg -->
+                    <image class="hero-slide" href="images/h.jpg" x="0" y="0" width="1400" height="1080" preserveAspectRatio="xMidYMid slice" />
+                    <image class="hero-slide" href="images/g.jpg" x="0" y="0" width="1400" height="1080" preserveAspectRatio="xMidYMid slice" />
+                    <image class="hero-slide" href="images/f.jpg" x="0" y="0" width="1400" height="1080" preserveAspectRatio="xMidYMid slice" />
+                    <image class="hero-slide" href="images/e.jpg" x="0" y="0" width="1400" height="1080" preserveAspectRatio="xMidYMid slice" />
+                </g>
 
-                <!-- TÁCH 4 DÒNG CHỮ ĐỘC LẬP Y HỆT ICHI -->
+                <!-- 4 DÒNG CHỮ ĐÃ ĐƯỢC CANH GÓC HOÀN HẢO -->
                 <g id="text-group">
                     
-                    <!-- 1. Cạnh Trái Dưới (Form) -->
-                    <!-- Kéo lùi ra ngoài shape một xíu để chữ khỏi ăn vô hình -->
-                    <path id="rail-bottom-left" d="M 485 755 L 414 479" fill="none" stroke="none" />
+                    <!-- 1. Cạnh Trái Dưới (Form) - Đọc từ dưới lên, Form ôm sát góc nhọn -->
+                    <path id="rail-bottom-left" d="M 525 780 L 434 490" fill="none" stroke="none" />
                     <text class="hero-text-path">
-                        <textPath href="#rail-bottom-left" startOffset="50%" text-anchor="middle">Form</textPath>
+                        <textPath href="#rail-bottom-left" startOffset="95%" text-anchor="end">Form</textPath>
                     </text>
 
-                    <!-- 2. Cạnh Trái Trên (Your Style.) -->
-                    <path id="rail-top-left" d="M 428 452 L 585 262" fill="none" stroke="none" />
+                    <!-- 2. Cạnh Trái Trên (Your Style.) - Đọc từ dưới lên, Your nằm sát góc nhọn -->
+                    <path id="rail-top-left" d="M 434 490 L 605 270" fill="none" stroke="none" />
                     <text class="hero-text-path">
-                        <textPath href="#rail-top-left" startOffset="50%" text-anchor="middle">Your Style.</textPath>
+                        <textPath href="#rail-top-left" startOffset="5%" text-anchor="start">Your Style.</textPath>
                     </text>
 
-                    <!-- 3. Cạnh Phải Trên (For Your) -->
-                    <path id="rail-top-right" d="M 625 272 L 883 346" fill="none" stroke="none" />
+                    <!-- 3. Cạnh Phải Trên (For Your) - Đọc từ trên xuống, Your ôm sát góc nhọn -->
+                    <path id="rail-top-right" d="M 840 355 L 980 580" fill="none" stroke="none" />
                     <text class="hero-text-path">
-                        <textPath href="#rail-top-right" startOffset="50%" text-anchor="middle">For Your</textPath>
+                        <textPath href="#rail-top-right" startOffset="95%" text-anchor="end">For Your</textPath>
                     </text>
 
-                    <!-- 4. Cạnh Phải Dưới (Vision.) -->
-                    <path id="rail-bottom-right" d="M 895 368 L 992 576" fill="none" stroke="none" />
+                    <!-- 4. Cạnh Phải Dưới (Vision.) - Đọc từ trên xuống, Vision ôm sát góc nhọn -->
+                    <path id="rail-bottom-right" d="M 980 580 L 760 795" fill="none" stroke="none" />
                     <text class="hero-text-path">
-                        <textPath href="#rail-bottom-right" startOffset="50%" text-anchor="middle">Vision.</textPath>
+                        <textPath href="#rail-bottom-right" startOffset="5%" text-anchor="start">Vision.</textPath>
                     </text>
 
                 </g>
@@ -226,14 +277,12 @@
             }
         });
 
-        // Phóng to Mask từ ĐÚNG TÂM 
         tl.to("#mask-path", { 
             scale: 35, 
             svgOrigin: "703.7 540.7", 
             ease: "power2.inOut" 
         }, 0);
 
-        // Phóng to và làm mờ chữ 
         tl.to("#text-group", { 
             scale: 35, 
             opacity: 0, 
@@ -241,8 +290,8 @@
             ease: "power2.inOut" 
         }, 0);
 
-        // Phóng to ảnh nhẹ nhẹ
-        tl.to("#hero-img", { 
+        // Áp dụng scale cho toàn bộ Group ảnh thay vì 1 ảnh tĩnh
+        tl.to("#hero-img-group", { 
             scale: 1.1, 
             svgOrigin: "700 540", 
             ease: "power2.inOut" 
