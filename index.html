@@ -39,7 +39,7 @@
             mix-blend-mode: multiply;
         }
 
-        /* HEADER & UI (GIỮ NGUYÊN) */
+        /* HEADER & UI DÀNH CHO HERO SECTION (GIỮ NGUYÊN 100%) */
         header {
             position: fixed;
             top: 0;
@@ -110,7 +110,7 @@
             transform: scale(1.05);
         }
 
-        /* HERO SCROLL SECTION (GIỮ NGUYÊN) */
+        /* HERO SCROLL SECTION (GIỮ NGUYÊN 100%) */
         #hero-scroll-container { height: 250vh; position: relative; }
         #hero-sticky { position: sticky; top: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: var(--bg-color); }
         #hero-svg { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; }
@@ -132,61 +132,69 @@
         .svg-text-fill { fill: #1a1a1a; }
 
         /* ========================================= */
-        /* PHẦN MỚI: ABOUT ME SECTION                */
+        /* PHẦN MỚI: ABOUT ME GRID DRAWING SECTION   */
         /* ========================================= */
         .about-section {
             position: relative;
-            padding: 150px 50px 200px 50px;
+            padding: 100px 50px 200px 50px;
             background-color: var(--bg-color);
             z-index: 10;
         }
 
-        /* LƯỚI GRID MÀU TRO XÁM CHẠY PHÍA SAU */
-        .grid-bg {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            /* Tạo lưới caro màu tro xám nhạt */
-            background-image: 
-                linear-gradient(to right, rgba(26, 26, 26, 0.08) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(26, 26, 26, 0.08) 1px, transparent 1px);
-            background-size: 80px 80px; /* Độ to của ô lưới */
-            opacity: 0; /* Giấu đi để GSAP làm nó từ từ hiện ra */
-            z-index: 0; /* Nằm dưới chữ */
-            pointer-events: none;
-        }
-
-        .about-container {
+        .about-grid-wrapper {
             position: relative;
-            z-index: 2; /* Nổi lên trên lưới Grid */
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        /* KHAI BÁO CÁC ĐƯỜNG KẺ KHUNG (LÚC ĐẦU CO RÚT BẰNG 0 ĐỂ CHUẨN BỊ ANIMATION) */
+        .grid-line {
+            position: absolute;
+            background-color: rgba(26, 26, 26, 0.2); /* Màu đen tro xám mờ */
+            z-index: 1;
+        }
+
+        /* 3 Đường Kẻ Ngang */
+        .h-line { height: 1px; left: 0; right: 0; transform-origin: left; transform: scaleX(0); }
+        .grid-line.top { top: 0; }
+        .grid-line.mid { top: 200px; } /* Phân tách chữ bự và nội dung */
+        .grid-line.bot { bottom: 0; }
+
+        /* 3 Đường Kẻ Dọc */
+        .v-line { width: 1px; top: 0; bottom: 0; transform-origin: top; transform: scaleY(0); }
+        .grid-line.left { left: 0; }
+        .grid-line.mid-v { left: 30%; top: 200px; } /* Kẻ dọc phân tách menu và text */
+        .grid-line.right { right: 0; }
+
+        /* NỘI DUNG CHỮ BÊN TRONG KHUNG LƯỚI */
+        .about-content-wrapper {
+            position: relative;
+            z-index: 2;
         }
 
         /* BEYOND WHAT'S SEEN CHÀ BÁ */
         .massive-text {
             font-family: var(--font-sans);
-            font-size: 9.5vw; /* Thu phóng theo chiều ngang màn hình */
+            font-size: 8.5vw;
             font-weight: 700;
             line-height: 1;
             letter-spacing: -2px;
             color: var(--text-color);
-            margin-bottom: 80px;
-            text-align: left;
+            margin: 0;
+            padding: 40px 50px;
         }
 
         /* KHUNG CHỨA CỘT TRÁI PHẢI */
         .about-content {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            border-top: 1px solid rgba(26, 26, 26, 0.3); /* Đường line vạch chia */
-            padding-top: 50px;
-            gap: 50px;
         }
 
         /* CỘT TRÁI: ABOUT ME */
         .about-label {
             width: 30%;
+            padding: 50px;
+        }
+        .about-label span {
             font-size: 13px;
             font-weight: 600;
             letter-spacing: 2px;
@@ -195,8 +203,8 @@
 
         /* CỘT PHẢI: TEXT */
         .about-text {
-            width: 65%;
-            max-width: 800px;
+            width: 70%;
+            padding: 50px;
         }
 
         .about-text p {
@@ -206,6 +214,7 @@
             margin-bottom: 30px;
             font-weight: 400;
             color: #333;
+            max-width: 800px;
         }
 
         .about-text p:last-child {
@@ -216,10 +225,9 @@
 </head>
 <body>
 
-    <!-- LỚP TEXTURE HẠT BAO PHỦ TOÀN BỘ WEB -->
     <div class="noise-overlay"></div>
 
-    <!-- KHÚC HEADER VÀ SVG HERO CŨ CỦA BÀ ĐƯỢC BẢO TỒN NGUYÊN VẸN -->
+    <!-- KHÚC HEADER VÀ SVG HERO GIỮ NGUYÊN -->
     <header>
         <div class="logo">
             <svg class="logo-svg" viewBox="350 510 1000 260" xmlns="http://www.w3.org/2000/svg">
@@ -291,30 +299,38 @@
 
 
     <!-- ========================================= -->
-    <!-- PHẦN MỚI: ABOUT ME SECTION THEO CONTENNA     -->
+    <!-- PHẦN ABOUT ME GRID MỚI (LƯỚI VẼ THEO SCROLL) -->
     <!-- ========================================= -->
     <section class="about-section" id="about">
-        <!-- LƯỚI GRID MÀU TRO XÁM NHẠT NẰM Ở LỚP ĐÁY -->
-        <div class="grid-bg"></div>
-
-        <div class="about-container">
-            <!-- CHỮ SIÊU TO KHỔNG LỒ CHUẨN AWWWARDS -->
-            <h1 class="massive-text">BEYOND WHAT'S SEEN</h1>
+        <div class="about-grid-wrapper">
             
-            <div class="about-content">
-                <!-- CỘT TRÁI -->
-                <div class="about-label">
-                    <span>▪ ABOUT ME</span>
-                </div>
+            <!-- CÁC ĐƯỜNG KẺ KHUNG (SẼ ĐƯỢC GSAP KÉO DÀI RA LÚC CUỘN) -->
+            <div class="grid-line h-line top"></div>
+            <div class="grid-line h-line mid"></div>
+            <div class="grid-line h-line bot"></div>
+            
+            <div class="grid-line v-line left"></div>
+            <div class="grid-line v-line mid-v"></div>
+            <div class="grid-line v-line right"></div>
+
+            <!-- NỘI DUNG CHỮ -->
+            <div class="about-content-wrapper">
+                <h1 class="massive-text">BEYOND WHAT'S SEEN</h1>
                 
-                <!-- CỘT PHẢI -->
-                <div class="about-text">
-                    <p>I’m Bống, a graphic designer interested in the ideas behind what we see.</p>
-                    <p>For me, design is not only about how something takes shape, but also about what gives that shape a reason to exist. I enjoy exploring the thoughts, details, and perspectives behind each project — then turning them into a visual language that feels intentional and distinct.</p>
-                    <p>BEYOND THE SHAPE reflects this way of working. It is about looking past the finished form to understand the idea behind it, and finding the shape that belongs to that idea.</p>
-                    <p>Every project starts from a different thought. The form is simply where that thought becomes visible.</p>
+                <div class="about-content">
+                    <div class="about-label">
+                        <span>▪ ABOUT ME</span>
+                    </div>
+                    
+                    <div class="about-text">
+                        <p>I’m Bống, a graphic designer interested in the ideas behind what we see.</p>
+                        <p>For me, design is not only about how something takes shape, but also about what gives that shape a reason to exist. I enjoy exploring the thoughts, details, and perspectives behind each project — then turning them into a visual language that feels intentional and distinct.</p>
+                        <p>BEYOND THE SHAPE reflects this way of working. It is about looking past the finished form to understand the idea behind it, and finding the shape that belongs to that idea.</p>
+                        <p>Every project starts from a different thought. The form is simply where that thought becomes visible.</p>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -325,7 +341,7 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        /* 1. HIỆU ỨNG TRANG CHỦ (HERO) - KHÔNG ĐỔI */
+        /* 1. HIỆU ỨNG TRANG CHỦ (HERO) - GIỮ NGUYÊN */
         gsap.set(["#mask-path", "#text-group"], { scale: 0.55, svgOrigin: "700 726" });
         let tl = gsap.timeline({
             scrollTrigger: { trigger: "#hero-scroll-container", start: "top top", end: "bottom bottom", scrub: 1 }
@@ -334,38 +350,32 @@
         tl.to("#text-group", { scale: 35, opacity: 0, svgOrigin: "700 726", ease: "power2.inOut" }, 0);
         tl.to("#hero-img-group", { scale: 1.1, svgOrigin: "700 726", ease: "power2.inOut" }, 0);
 
-        /* ========================================= */
-        /* 2. HIỆU ỨNG PHẦN ABOUT ME MỚI             */
-        /* ========================================= */
 
-        // Hiện lưới Grid từ từ khi cuộn tới
-        gsap.to(".grid-bg", {
-            opacity: 1, 
+        /* 2. HIỆU ỨNG LƯỚI KHUNG TỰ VẼ (ABOUT ME) */
+        let gridTl = gsap.timeline({
             scrollTrigger: {
-                trigger: ".about-section",
-                start: "top 60%", // Bắt đầu hiện khi mép trên của section chạm vào 60% màn hình
-                end: "top 20%",   // Hiện rõ 100% khi cuộn lên gần tới
-                scrub: true       // Dính mượt theo tốc độ cuộn chuột
+                trigger: ".about-grid-wrapper",
+                start: "top 75%", // Bắt đầu vẽ khi khung vừa ló lên 75% màn hình
+                end: "bottom 90%", // Hoàn thành vẽ khi cuộn gần hết
+                scrub: 1.5 // Gắn chặt độ dài nét vẽ vào tốc độ lăn chuột
             }
         });
 
-        // Chữ siêu to trượt nhẹ lên cho sang
+        // Vẽ các đường ngang (từ 0 ra 100% chiều rộng)
+        gridTl.to(".h-line", { scaleX: 1, duration: 1, ease: "none" }, 0);
+        // Vẽ các đường dọc (từ 0 ra 100% chiều cao)
+        gridTl.to(".v-line", { scaleY: 1, duration: 1, ease: "none" }, 0);
+
+
+        /* 3. HIỆU ỨNG NỘI DUNG BAY LÊN */
         gsap.from(".massive-text", {
-            y: 80,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: { trigger: ".about-section", start: "top 70%" }
+            y: 50, opacity: 0, duration: 1, ease: "power3.out",
+            scrollTrigger: { trigger: ".about-grid-wrapper", start: "top 60%" }
         });
 
-        // Từng đoạn văn lướt lên mượt mà
         gsap.from(".about-text p", {
-            y: 30,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2, // Lên lần lượt từng dòng
-            ease: "power3.out",
-            scrollTrigger: { trigger: ".about-content", start: "top 80%" }
+            y: 30, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out",
+            scrollTrigger: { trigger: ".about-content", start: "top 75%" }
         });
     </script>
 </body>
