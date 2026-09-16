@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BỐNGFOLIO | Graphic Designer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -39,7 +39,7 @@
             mix-blend-mode: multiply;
         }
 
-        /* HEADER & UI */
+        /* HEADER & UI (GIỮ NGUYÊN) */
         header {
             position: fixed;
             top: 0;
@@ -54,11 +54,8 @@
             pointer-events: none; 
         }
         
-        /* LOGO BỐNGFOLIO - ĐÃ CHỈNH LẠI CÁCH HIỂN THỊ ĐỂ ÔM SÁT LỀ TRÁI */
         .logo { display: flex; flex-direction: column; align-items: flex-start; pointer-events: auto; }
-        /* Tui thu nhỏ size hiển thị lại cho sang */
         .logo-svg { width: 140px; height: auto; fill: currentColor; margin-left: -5px; } 
-        /* Graphic Designer ngoan ngoãn nằm sát ngay dưới */
         .logo span { display: block; font-size: 10px; font-family: var(--font-sans); letter-spacing: 2px; margin-top: 8px; text-transform: uppercase;}
         
         .nav-links { display: flex; gap: 40px; list-style: none; font-size: 13px; letter-spacing: 1.5px; font-weight: 500; pointer-events: auto; }
@@ -83,7 +80,6 @@
         }
         .news-ticker span { font-weight: 600; font-size: 13px; }
 
-        /* NÚT DOWNLOAD CV */
         .sticky-contact {
             position: fixed;
             bottom: 40px;
@@ -114,33 +110,12 @@
             transform: scale(1.05);
         }
 
-        /* HERO SCROLL SECTION */
-        #hero-scroll-container {
-            height: 250vh; 
-            position: relative;
-        }
+        /* HERO SCROLL SECTION (GIỮ NGUYÊN) */
+        #hero-scroll-container { height: 250vh; position: relative; }
+        #hero-sticky { position: sticky; top: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: var(--bg-color); }
+        #hero-svg { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; }
 
-        #hero-sticky {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            background-color: var(--bg-color);
-        }
-
-        #hero-svg {
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .hero-slide {
-            animation: crossfade 16s infinite;
-            opacity: 0;
-        }
+        .hero-slide { animation: crossfade 16s infinite; opacity: 0; }
         .hero-slide:nth-child(4) { animation-delay: 0s; }
         .hero-slide:nth-child(3) { animation-delay: 4s; }
         .hero-slide:nth-child(2) { animation-delay: 8s; }
@@ -156,27 +131,97 @@
 
         .svg-text-fill { fill: #1a1a1a; }
 
-        .content-section {
-            padding: 150px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-            background-color: var(--bg-color);
+        /* ========================================= */
+        /* PHẦN MỚI: ABOUT ME SECTION                */
+        /* ========================================= */
+        .about-section {
             position: relative;
+            padding: 150px 50px 200px 50px;
+            background-color: var(--bg-color);
             z-index: 10;
         }
-        .content-section h2 { font-family: var(--font-serif); font-size: 42px; font-weight: 400; margin-bottom: 30px; letter-spacing: 2px; }
-        .content-section p { font-size: 16px; color: #666; max-width: 600px; margin: 0 auto; line-height: 2.2; }
+
+        /* LƯỚI GRID MÀU TRO XÁM CHẠY PHÍA SAU */
+        .grid-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Tạo lưới caro màu tro xám nhạt */
+            background-image: 
+                linear-gradient(to right, rgba(26, 26, 26, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(26, 26, 26, 0.08) 1px, transparent 1px);
+            background-size: 80px 80px; /* Độ to của ô lưới */
+            opacity: 0; /* Giấu đi để GSAP làm nó từ từ hiện ra */
+            z-index: 0; /* Nằm dưới chữ */
+            pointer-events: none;
+        }
+
+        .about-container {
+            position: relative;
+            z-index: 2; /* Nổi lên trên lưới Grid */
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* BEYOND WHAT'S SEEN CHÀ BÁ */
+        .massive-text {
+            font-family: var(--font-sans);
+            font-size: 9.5vw; /* Thu phóng theo chiều ngang màn hình */
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -2px;
+            color: var(--text-color);
+            margin-bottom: 80px;
+            text-align: left;
+        }
+
+        /* KHUNG CHỨA CỘT TRÁI PHẢI */
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-top: 1px solid rgba(26, 26, 26, 0.3); /* Đường line vạch chia */
+            padding-top: 50px;
+            gap: 50px;
+        }
+
+        /* CỘT TRÁI: ABOUT ME */
+        .about-label {
+            width: 30%;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* CỘT PHẢI: TEXT */
+        .about-text {
+            width: 65%;
+            max-width: 800px;
+        }
+
+        .about-text p {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 2.2;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- LỚP TEXTURE HẠT BAO PHỦ -->
+    <!-- LỚP TEXTURE HẠT BAO PHỦ TOÀN BỘ WEB -->
     <div class="noise-overlay"></div>
 
+    <!-- KHÚC HEADER VÀ SVG HERO CŨ CỦA BÀ ĐƯỢC BẢO TỒN NGUYÊN VẸN -->
     <header>
         <div class="logo">
-            <!-- TUI ĐÃ CẮT GỌT VIEWBOX: Xóa sạch khoảng trống thừa của Artboard -->
             <svg class="logo-svg" viewBox="350 510 1000 260" xmlns="http://www.w3.org/2000/svg">
                 <path d="M436.21,713.48c-8.41-2.89-16.78-5.91-25.16-8.9-6.07-2.17-12.12-4.39-18.61-6.74,1.43-.76,2.43-1.34,3.48-1.83,17.33-8.13,34.65-16.26,51.99-24.36,1.35-.63,2.5-1,2.18-3.04-1.1-6.92-1.91-13.89-2.99-20.81-.14-.91-1.05-2.07-1.9-2.46-24.05-10.93-48.13-21.79-72.22-32.64-3.42-1.54-6.89-2.96-10.97-4.7-16.49,57.28-34.6,113.63-55.11,168.77,.57,.72,.65,.93,.79,.98,6.79,2.63,13.57,5.27,20.39,7.81,.58,.21,1.51-.13,2.12-.48,1.67-.98,3.14-2.38,4.89-3.13,31.53-13.56,63.1-27.07,94.67-40.53,1.46-.62,2.26-1.38,2.65-2.97,1.78-7.24,3.63-14.46,5.61-21.65,.54-1.95,0-2.68-1.81-3.31Zm-58.55-72.21c13.64,6.07,26.92,11.99,40.84,18.19-18.18,8.98-35.72,17.65-53.26,26.32-.19-.14-.38-.28-.58-.42,4.28-14.51,8.55-29.02,13-44.08Zm26.34,85.7c-19.87,8.27-39.74,16.55-60.32,25.12,5.17-14.72,10.11-28.78,15.21-43.31,14.97,5.79,30.06,11.62,45.15,17.46-.01,.25-.03,.49-.04,.74Z"/>
                 <path d="M809.87,678.21c-22.9,7.15-45.41,14.18-68.11,21.26,2.49,9.33,4.81,18.03,7.21,27.06,13.01-4.7,25.54-9.22,38.54-13.92-2.93,14.22-5.72,27.79-8.55,41.53-1.37-.52-2.31-.83-3.21-1.22-20.19-8.79-40.36-17.61-60.57-26.35-1.71-.74-1.92-1.55-1.44-3.27,3.75-13.32,7.36-26.69,11.13-40.01,.29-1.03,1.25-2.18,2.2-2.66,21.15-10.75,42.34-21.41,63.52-32.1,6.08-3.07,12.15-6.14,18.45-9.32-3.6-7.3-7.07-14.34-10.65-21.6-3.75,1.95-7.23,3.79-10.74,5.57-27.01,13.68-54.03,27.36-81.07,41.01-1.55,.78-2.42,1.76-2.89,3.51-4.35,16.14-8.81,32.26-13.22,48.38-2.08,7.6-4.14,15.21-6.24,22.96,36.99,17.08,73.58,34.4,111.43,49.6,.39-1.5,.68-2.43,.88-3.38,4.7-23.06,9.47-46.11,14.04-69.2,1.31-6.64,3.17-13.23,1.7-20.23-1.18-5.58-1.57-11.32-2.39-17.61Z"/>
@@ -207,7 +252,6 @@
 
     <div id="hero-scroll-container">
         <div id="hero-sticky">
-            
             <svg id="hero-svg" viewBox="0 0 1400 1453.37" preserveAspectRatio="xMidYMid slice">
                 <defs>
                     <clipPath id="hero-clip" clipPathUnits="userSpaceOnUse">
@@ -245,10 +289,33 @@
         </div>
     </div>
 
-    <section class="content-section" id="about">
-        <h2>( CONCEPT )<br><br>Hình khối phác họa cá tính.</h2>
-        <p>Thiết kế không chỉ là sắp xếp hình ảnh, mà là quá trình điêu khắc để phác họa cá tính riêng biệt của từng thương hiệu.<br>Không chạy theo trào lưu, mà là tìm kiếm sự phù hợp hoàn hảo.</p>
-        <p><br>Đó không phải là đáp án của ai khác, mà là hình khối dành riêng cho bạn.<br>Dan luôn đối diện tỉ mỉ với từng dự án, để cùng bạn kiến tạo nên "bản ngã" độc bản.</p>
+
+    <!-- ========================================= -->
+    <!-- PHẦN MỚI: ABOUT ME SECTION THEO CONTENNA     -->
+    <!-- ========================================= -->
+    <section class="about-section" id="about">
+        <!-- LƯỚI GRID MÀU TRO XÁM NHẠT NẰM Ở LỚP ĐÁY -->
+        <div class="grid-bg"></div>
+
+        <div class="about-container">
+            <!-- CHỮ SIÊU TO KHỔNG LỒ CHUẨN AWWWARDS -->
+            <h1 class="massive-text">BEYOND WHAT'S SEEN</h1>
+            
+            <div class="about-content">
+                <!-- CỘT TRÁI -->
+                <div class="about-label">
+                    <span>▪ ABOUT ME</span>
+                </div>
+                
+                <!-- CỘT PHẢI -->
+                <div class="about-text">
+                    <p>I’m Bống, a graphic designer interested in the ideas behind what we see.</p>
+                    <p>For me, design is not only about how something takes shape, but also about what gives that shape a reason to exist. I enjoy exploring the thoughts, details, and perspectives behind each project — then turning them into a visual language that feels intentional and distinct.</p>
+                    <p>BEYOND THE SHAPE reflects this way of working. It is about looking past the finished form to understand the idea behind it, and finding the shape that belongs to that idea.</p>
+                    <p>Every project starts from a different thought. The form is simply where that thought becomes visible.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Thư viện GSAP -->
@@ -258,38 +325,48 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // THU NHỎ CỤM GIỮA MÀN HÌNH XUỐNG CÒN 55% LÚC MỚI VÀO WEB
+        /* 1. HIỆU ỨNG TRANG CHỦ (HERO) - KHÔNG ĐỔI */
         gsap.set(["#mask-path", "#text-group"], { scale: 0.55, svgOrigin: "700 726" });
-
         let tl = gsap.timeline({
+            scrollTrigger: { trigger: "#hero-scroll-container", start: "top top", end: "bottom bottom", scrub: 1 }
+        });
+        tl.to("#mask-path", { scale: 35, svgOrigin: "700 726", ease: "power2.inOut" }, 0);
+        tl.to("#text-group", { scale: 35, opacity: 0, svgOrigin: "700 726", ease: "power2.inOut" }, 0);
+        tl.to("#hero-img-group", { scale: 1.1, svgOrigin: "700 726", ease: "power2.inOut" }, 0);
+
+        /* ========================================= */
+        /* 2. HIỆU ỨNG PHẦN ABOUT ME MỚI             */
+        /* ========================================= */
+
+        // Hiện lưới Grid từ từ khi cuộn tới
+        gsap.to(".grid-bg", {
+            opacity: 1, 
             scrollTrigger: {
-                trigger: "#hero-scroll-container",
-                start: "top top", 
-                end: "bottom bottom", 
-                scrub: 1 
+                trigger: ".about-section",
+                start: "top 60%", // Bắt đầu hiện khi mép trên của section chạm vào 60% màn hình
+                end: "top 20%",   // Hiện rõ 100% khi cuộn lên gần tới
+                scrub: true       // Dính mượt theo tốc độ cuộn chuột
             }
         });
 
-        // KHI CUỘN CHUỘT: TỪ 55% PHÓNG LÊN TỚI 35 LẦN ĐỂ LẤP ĐẦY MÀN HÌNH
-        tl.to("#mask-path", { 
-            scale: 35, 
-            svgOrigin: "700 726", 
-            ease: "power2.inOut" 
-        }, 0);
+        // Chữ siêu to trượt nhẹ lên cho sang
+        gsap.from(".massive-text", {
+            y: 80,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: { trigger: ".about-section", start: "top 70%" }
+        });
 
-        tl.to("#text-group", { 
-            scale: 35, 
-            opacity: 0, 
-            svgOrigin: "700 726", 
-            ease: "power2.inOut" 
-        }, 0);
-
-        // ẢNH BÊN TRONG CŨNG ZOOM NHẸ ĐỂ TẠO CẢM GIÁC CHIỀU SÂU
-        tl.to("#hero-img-group", { 
-            scale: 1.1, 
-            svgOrigin: "700 726", 
-            ease: "power2.inOut" 
-        }, 0);
+        // Từng đoạn văn lướt lên mượt mà
+        gsap.from(".about-text p", {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2, // Lên lần lượt từng dòng
+            ease: "power3.out",
+            scrollTrigger: { trigger: ".about-content", start: "top 80%" }
+        });
     </script>
 </body>
 </html>
