@@ -3,491 +3,463 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bống's Portfolio | Graphic Designer</title>
+    <title>Dan's Portfolio | Graphic Designer</title>
+    <!-- Thư viện Font xịn xò giống phong cách ICHI -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ========================================= */
+        /* CSS RESET & VARIABLES                     */
+        /* ========================================= */
+        :root {
+            --bg-color: #EFECE5; /* Màu nền be xám chuẩn Ichi */
+            --text-color: #1a1a1a;
+            --accent-green: #7D8B78;
+            --accent-brown: #8C6A53;
+            --accent-grey: #6E6E6E;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-serif: 'Noto Serif JP', serif;
         }
 
-        @font-face {
-            font-family: 'Allright';
-            src: url('./font/allright.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        /* --- BẢNG MÀU CHUẨN BEAMS TAIWAN --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #F5F3EE; /* Nền kem sáng */
-            color: #1a1a1a; /* Chữ màu tro/đen */
-            line-height: 1.6;
-            transition: background-color 0.8s ease, color 0.8s ease;
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
-        /* --- DARK MODE DÀNH RIÊNG CHO EXPERIENCES (NỀN XANH DƯƠNG CHUẨN) --- */
-        body.dark-theme {
-            background-color: #2B66B0; /* Xanh dương chuẩn theo ý bà */
-            color: #F5F3EE; /* Chữ kem sáng */
+        /* Nút cố định góc phải dưới (RESERVATION -> CONTACT) */
+        .sticky-contact {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 100px;
+            height: 100px;
+            background-color: #1a1a1a;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            z-index: 9999;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
         }
-        body.dark-theme header {
-            background: rgba(43, 102, 176, 0.95); /* Màu 2B66B0 nhưng có độ mờ nhẹ */
-            border-bottom: 1px solid rgba(245, 243, 238, 0.15);
-        }
-        body.dark-theme .logo, body.dark-theme .nav-links a { color: #F5F3EE; }
-        body.dark-theme .nav-links a::after { background: #D75428; }
-        body.dark-theme .cv-btn { background-color: #D75428; color: #fff; }
-        
-        /* HEADER */
+        .sticky-contact:hover { transform: scale(1.1); }
+
+        /* ========================================= */
+        /* HEADER                                    */
+        /* ========================================= */
         header {
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
-            background: rgba(245, 243, 238, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 20px 40px;
-            border-bottom: 1px solid rgba(26, 26, 26, 0.05);
-            transition: background-color 0.8s ease, border-color 0.8s ease;
-        }
-
-        nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .logo-wrapper { display: flex; justify-content: flex-start; }
-        .logo { font-size: 18px; font-weight: 600; text-decoration: none; color: #1a1a1a; transition: color 0.8s ease; }
-        .nav-links { display: flex; gap: 40px; list-style: none; }
-        .nav-links a { text-decoration: none; color: #1a1a1a; font-size: 14px; font-weight: 500; transition: color 0.8s ease; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: #D75428; transition: width 0.3s ease; }
-        .nav-links a:hover::after { width: 100%; }
-        .cv-wrapper { display: flex; justify-content: flex-end; }
-        
-        .cv-btn { 
-            background-color: #D75428; /* Nút màu cam */
-            color: #ffffff; 
-            padding: 10px 24px; 
-            border-radius: 30px; 
-            text-decoration: none; 
-            font-size: 14px; 
-            font-weight: 600; 
-            transition: all 0.3s ease; 
-        }
-        .cv-btn:hover { animation: wobble 0.6s ease-in-out both; background-color: #ba4720; }
-
-        @keyframes wobble {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            15% { transform: translateX(-4px) rotate(-4deg); }
-            30% { transform: translateX(3px) rotate(3deg); }
-            45% { transform: translateX(-3px) rotate(-2.4deg); }
-            60% { transform: translateX(2px) rotate(1.2deg); }
-            75% { transform: translateX(-1px) rotate(-0.6deg); }
-        }
-
-        /* HERO */
-        .hero { padding: 100px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; min-height: 85vh; }
-        .hero h1 { font-size: 56px; font-weight: 300; letter-spacing: -1px; margin-bottom: 10px; line-height: 1.1; font-family: 'Allright', sans-serif; color: #D75428; }
-        .hero-subtitle { font-size: 24px; font-weight: 400; margin-bottom: 25px; color: #1a1a1a; }
-        .hero p { font-size: 16px; color: #666; line-height: 1.8; max-width: 500px; }
-        .hero p strong { font-weight: 600; color: #1a1a1a; }
-        
-        .hero-image-container { display: flex; justify-content: center; perspective: 1000px; }
-        .hero-image { width: 280px; height: 280px; border-radius: 16px; background: linear-gradient(135deg, #2B66B0 0%, #4DA989 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform-style: preserve-3d; }
-        .hero-image:hover { background: none; }
-        .hero-image img { width: 100%; height: 100%; object-fit: cover; position: absolute; transition: opacity 0.4s ease; transform: translateZ(20px); }
-        .avatar-real { opacity: 1; z-index: 2; }
-        .avatar-sketch { opacity: 0; z-index: 1; }
-        .hero-image:hover .avatar-real { opacity: 0; }
-        .hero-image:hover .avatar-sketch { opacity: 1; }
-
-        /* EXPERIENCES */
-        .experiences-section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
-        .exp-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 1px solid rgba(26, 26, 26, 0.1); padding-bottom: 20px; transition: border-color 0.8s ease; }
-        
-        body.dark-theme .exp-header { border-bottom: 1px solid rgba(245, 243, 238, 0.2); }
-        body.dark-theme .exp-btn { border: 1px solid #D75428; color: #D75428; }
-        body.dark-theme .exp-btn:hover { background: #D75428; color: #F5F3EE; }
-
-        .exp-header h2 { font-size: 36px; font-family: 'Allright', sans-serif; font-weight: 500; color: #D75428; }
-        .exp-header p { color: #666; font-size: 14px; }
-        body.dark-theme .exp-header p { color: #F5F3EE; opacity: 0.8; }
-        
-        .exp-controls { display: flex; gap: 10px; }
-        .exp-btn { background: transparent; border: 1px solid #1a1a1a; color: #1a1a1a; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s, color 0.3s, border-color 0.8s ease; }
-        .exp-btn:hover { background: #1a1a1a; color: #F5F3EE; }
-
-        .exp-slider-wrapper { width: 100%; overflow: hidden; }
-        .exp-slider { display: flex; gap: 40px; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-width: none; }
-        .exp-slider::-webkit-scrollbar { display: none; }
-
-        .exp-card { flex: 0 0 100%; scroll-snap-align: start; display: grid; grid-template-columns: 1fr 1fr; background-color: #ffffff; color: #1a1a1a; border-radius: 12px; overflow: hidden; min-height: 500px; transition: background-color 0.8s ease; border: 1px solid rgba(0,0,0,0.05); }
-        
-        /* Chỉnh lại thẻ Card lúc vào Dark Mode nền Xanh */
-        body.dark-theme .exp-card { 
-            background-color: transparent; /* Trong suốt tệp với màu nền */
-            color: #F5F3EE; 
-            border-color: rgba(245, 243, 238, 0.25); 
-        }
-        body.dark-theme .exp-company { color: #D75428; }
-        
-        /* --- Đây là phần chỉnh màu body text thành trắng kem chuẩn #F5F3EE --- */
-        body.dark-theme .exp-desc { color: #F5F3EE; }
-
-        .exp-content { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
-        .exp-tags { display: flex; gap: 10px; margin-bottom: 30px; }
-        .exp-tags span { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #4DA989; border: 1px solid #4DA989; padding: 4px 12px; border-radius: 20px; font-weight: 600; }
-        body.dark-theme .exp-tags span { color: #F5F3EE; border-color: #F5F3EE; } /* Chữ Tag trắng kem để nổi trên xanh */
-        .exp-title { font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 15px; letter-spacing: -1px; text-transform: uppercase; }
-        .exp-company { font-size: 16px; font-weight: 600; margin-bottom: 30px; letter-spacing: 1px; color: #D75428; }
-        .exp-desc { font-size: 15px; color: #666; line-height: 1.8; max-width: 90%; }
-        
-        .exp-visual { position: relative; background: #1a1a1a; }
-        body.dark-theme .exp-visual { background: rgba(0,0,0,0.1); }
-        .exp-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
-        .exp-number { position: absolute; top: 30px; right: 40px; font-size: 80px; font-weight: 300; color: #F5F3EE; line-height: 1; }
-        .exp-date { position: absolute; bottom: 30px; left: 40px; font-size: 12px; font-weight: 600; color: #F5F3EE; letter-spacing: 2px; }
-
-        /* WORKS SECTION */
-        .works { padding: 100px 40px; max-width: 900px; margin: 0 auto; }
-        .works h2 { font-size: 36px; font-weight: 500; margin-bottom: 10px; text-align: center; font-family: 'Allright', sans-serif; color: #D75428; }
-        .works-subtitle { text-align: center; font-size: 15px; color: #666; margin-bottom: 50px; font-style: italic; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-
-        .spryte-card { background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 20px; padding: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
-        .spryte-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05); }
-        .spryte-image { width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; margin-bottom: 16px; background: #e0e0e0; overflow: hidden; position: relative; }
-        .spryte-image img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .spryte-info { flex-grow: 1; display: flex; flex-direction: column; align-items: flex-start; }
-        .spryte-info h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; letter-spacing: -0.5px; }
-        .spryte-info p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 20px; }
-        .spryte-tag { margin-top: auto; background: #2B66B0; color: #ffffff; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; }
-
-        /* ========================================= */
-        /* CTA / CONTACT SECTION                     */
-        /* ========================================= */
-        .cta-section {
-            background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 24px;
-            max-width: 1200px;
-            margin: 0 auto 100px auto;
-            padding: 80px 100px;
+            width: 100%;
+            padding: 30px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference; /* Giúp chữ luôn đổi màu tương phản với nền */
+            color: #fff; 
+        }
+        .logo { font-size: 28px; font-family: var(--font-serif); font-weight: 500; letter-spacing: 2px; }
+        .logo span { display: block; font-size: 10px; font-family: var(--font-sans); letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 30px; list-style: none; font-size: 12px; letter-spacing: 1px; font-weight: 500; }
+        .nav-links li a { color: #fff; text-decoration: none; text-transform: uppercase; }
+
+        /* ========================================= */
+        /* HERO SECTION                              */
+        /* ========================================= */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
 
-        .cta-content { max-width: 60%; }
-        .cta-content h2 { font-family: 'Allright', sans-serif; font-size: 64px; font-weight: normal; margin-bottom: 10px; color: #D75428; }
-        .cta-content p.cta-desc { font-size: 16px; color: #666; margin-bottom: 40px; }
-        .cta-buttons { display: flex; gap: 15px; align-items: center; margin-bottom: 20px; }
-
-        /* Nút Email */
-        .email-btn { display: inline-flex; align-items: center; background: #2B66B0; color: #ffffff; border: none; border-radius: 12px; padding: 14px 24px; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: inherit; }
-        .copy-label { display: inline-block; max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; transition: all 0.3s ease; }
-        .email-btn:hover .copy-label { max-width: 80px; opacity: 1; margin-left: 12px; color: #F5F3EE; }
-
-        /* Nút LinkedIn */
-        .linkedin-btn { background: transparent; color: #2B66B0; border: 1px solid #2B66B0; border-radius: 12px; padding: 14px 30px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.3s ease; display: inline-block; }
-        .linkedin-btn:hover { background: #2B66B0; color: #ffffff; }
-
-        .cta-phone { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-left: 5px; }
-
-        .cta-visual img { max-width: 280px; cursor: pointer; transition: transform 0.3s ease; }
-        .cta-visual img:hover { animation: wobble 0.6s ease-in-out both; }
-
-        footer { padding: 40px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid rgba(0, 0, 0, 0.05); }
-
-        /* RESPONSIVE */
-        @media (max-width: 968px) {
-            .cta-section { flex-direction: column; padding: 60px 40px; text-align: center; gap: 50px; }
-            .cta-content { max-width: 100%; }
-            .cta-buttons { justify-content: center; flex-wrap: wrap; }
-            .cta-visual img { max-width: 200px; }
-            .exp-card { grid-template-columns: 1fr; min-height: auto; }
-            .exp-content { padding: 40px; }
-            .exp-visual { min-height: 300px; }
-            .exp-title { font-size: 32px; }
-            .hero { grid-template-columns: 1fr; text-align: center; }
-            .hero-image-container { order: -1; }
-            .grid { grid-template-columns: 1fr; gap: 30px; }
+        .hero-img-wrapper {
+            position: relative;
+            width: 450px;
+            height: 550px;
+            /* Cắt chéo y hệt ảnh đầu tiên của ICHI */
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
         }
+        .hero-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Chữ xoay tròn quanh ảnh SVG */
+        .rotating-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            animation: rotateText 20s linear infinite;
+            pointer-events: none;
+        }
+        .rotating-text svg { width: 100%; height: 100%; }
+        .rotating-text text { font-family: var(--font-sans); font-size: 24px; letter-spacing: 8px; fill: #1a1a1a; }
+        @keyframes rotateText { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        /* News Ticker góc trái dưới */
+        .news-ticker {
+            position: absolute;
+            bottom: 40px;
+            left: 50px;
+            border: 1px solid #1a1a1a;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .news-ticker span { font-weight: 600; }
+
+        /* ========================================= */
+        /* CONCEPT SECTION (GIỚI THIỆU)              */
+        /* ========================================= */
+        .concept {
+            padding: 150px 20px;
+            text-align: center;
+            position: relative;
+            min-height: 80vh;
+        }
+        .section-tag { font-size: 13px; font-weight: 600; letter-spacing: 2px; margin-bottom: 40px; color: #666; }
+        .concept h2 { font-family: var(--font-serif); font-size: 42px; margin-bottom: 40px; font-weight: 400; letter-spacing: 3px; }
+        .concept p { font-size: 15px; max-width: 600px; margin: 0 auto 20px auto; line-height: 2.2; color: #444; }
+
+        /* Các khối hình trôi nổi (Parallax Shapes) */
+        .floating-shape { position: absolute; z-index: -1; opacity: 0.9; }
+        .shape-1 { width: 120px; height: 120px; background: var(--accent-brown); clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); top: 10%; left: 15%; }
+        .shape-2 { width: 150px; height: 150px; background: var(--accent-green); clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%); top: 50%; right: 10%; }
+        .shape-3 { width: 80px; height: 80px; background: var(--accent-grey); clip-path: circle(50% at 50% 50%); bottom: 10%; left: 30%; }
+
+        /* SVG Chữ uốn lượn (Shape is identity) */
+        .curved-text-concept {
+            position: absolute;
+            right: 5%;
+            top: 40%;
+            width: 400px;
+            height: 200px;
+            transform: rotate(-10deg);
+            pointer-events: none;
+        }
+        .curved-text-concept text { font-family: var(--font-sans); font-size: 42px; font-weight: 300; fill: #1a1a1a; letter-spacing: 2px; }
+
+        /* ========================================= */
+        /* SALON / EXPERIENCES SECTION               */
+        /* ========================================= */
+        .experiences {
+            position: relative;
+            background-color: #fff;
+            padding: 150px 50px;
+            /* Cắt vát chéo màn hình kinh điển của ICHI */
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+            margin-top: -100px;
+        }
+        .exp-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 80px; }
+        .exp-image { width: 50%; height: 600px; overflow: hidden; border-radius: 4px; }
+        .exp-image img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .exp-text { width: 50%; }
+        .exp-text h3 { font-family: var(--font-serif); font-size: 36px; margin-bottom: 30px; font-weight: 400; }
+        .exp-text p { font-size: 14px; line-height: 2.2; color: #444; margin-bottom: 20px; }
+
+        /* ========================================= */
+        /* PROFILE SECTION                           */
+        /* ========================================= */
+        .profile {
+            padding: 150px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+        .profile-text { width: 50%; }
+        .profile-text h3 { font-family: var(--font-serif); font-size: 28px; margin-bottom: 20px; font-weight: 400; border-bottom: 1px solid #ccc; padding-bottom: 20px;}
+        .profile-text p { font-size: 14px; line-height: 2.2; color: #444; }
+        
+        .profile-img { width: 50%; height: 500px; }
+        .profile-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ========================================= */
+        /* MENU / WORKS SECTION                      */
+        /* ========================================= */
+        .works {
+            background-color: #E2DFD6; /* Nền xám xanh nhẹ */
+            padding: 150px 50px;
+            clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
+        }
+        .works-container { max-width: 1000px; margin: 0 auto; }
+        .work-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 60px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 40px;
+        }
+        /* Cục màu biểu tượng hệt như ICHI (Cut, Color...) */
+        .work-badge {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); /* Cắt chéo 2 bên */
+        }
+        .bg-brown { background-color: var(--accent-brown); }
+        .bg-green { background-color: var(--accent-green); }
+        .bg-grey { background-color: var(--accent-grey); }
+
+        .work-info { flex: 1; }
+        .work-info-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .work-info h4 { font-family: var(--font-serif); font-size: 20px; font-weight: 500; }
+        .work-info span { font-size: 16px; font-weight: 600; }
+        .work-info p { font-size: 13px; color: #666; line-height: 1.8; }
+
+        /* ========================================= */
+        /* CONTACT BỰ (MAKE AN APPOINTMENT)          */
+        /* ========================================= */
+        .contact-large {
+            padding: 200px 20px;
+            text-align: center;
+            position: relative;
+        }
+        .contact-box {
+            background-color: #2A2C2B;
+            color: #fff;
+            width: 450px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            border-radius: 16px;
+            position: relative;
+            z-index: 10;
+        }
+        .contact-box h3 { font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; }
+        .contact-box p { font-size: 14px; line-height: 2; margin-bottom: 30px; opacity: 0.8; }
+        .contact-btn { display: inline-block; background: #fff; color: #1a1a1a; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; transition: transform 0.3s; margin-bottom: 15px; width: 100%;}
+        .contact-btn.brown { background: var(--accent-brown); color: #fff; }
+        .contact-btn:hover { transform: translateY(-3px); }
+
+        /* Chữ cong chạy quanh hộp Contact */
+        .curved-text-contact {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .curved-text-contact text { font-family: var(--font-sans); font-size: 52px; font-weight: 300; fill: #1a1a1a; letter-spacing: 5px; }
+
+        /* Footer */
+        footer { padding: 40px; text-align: center; font-size: 11px; letter-spacing: 2px; color: #666; }
+
     </style>
 </head>
 <body>
 
+    <!-- NÚT GÓC PHẢI DƯỚI -->
+    <a href="#contact" class="sticky-contact">CONTACT</a>
+
+    <!-- HEADER -->
     <header>
-        <nav>
-            <div class="logo-wrapper"><a href="#" class="logo">Bống's Portfolio</a></div>
-            <ul class="nav-links">
-                <li><a href="#experiences">about</a></li>
-                <li><a href="#works">work</a></li>
-                <li><a href="#contact">contact</a></li>
-            </ul>
-            <div class="cv-wrapper"><a href="#" class="cv-btn">Download CV</a></div>
-        </nav>
+        <div class="logo">
+            DAN 
+            <span>Graphic Designer</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </header>
 
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <h1>hi! I'm Dan,</h1>
-            <p class="hero-subtitle">a graphic designer</p>
-            <p style="min-height: 80px;"><span id="typed-text"></span></p>
+    <!-- 1. HERO SECTION -->
+    <section class="hero">
+        <!-- Chữ xoay tròn -->
+        <div class="rotating-text">
+            <svg viewBox="0 0 500 500">
+                <path id="circlePath" d="M 250, 250 m -180, 0 a 180,180 0 1,1 360,0 a 180,180 0 1,1 -360,0" fill="none" />
+                <text>
+                    <textPath href="#circlePath" startOffset="0%">
+                        Quality Driven Design • Creative Innovation • 
+                    </textPath>
+                </text>
+            </svg>
         </div>
-        <div class="hero-image-container">
-            <div class="hero-image" data-tilt data-tilt-max="15" data-tilt-speed="400">
-                <img src="images/Avatar.jpg" alt="Avatar" class="avatar-real">
-                <img src="images/avasketch.png" alt="Avatar Sketch" class="avatar-sketch">
+
+        <div class="hero-img-wrapper" data-speed="0.8">
+            <img src="images/Avatar.jpg" alt="Hero Image">
+        </div>
+
+        <div class="news-ticker">
+            <span>[ NEWS ]</span> Available for freelance projects in 2026 <span>→</span>
+        </div>
+    </section>
+
+    <!-- 2. CONCEPT SECTION -->
+    <section class="concept" id="about">
+        <!-- Các cục hình học Parallax -->
+        <div class="floating-shape shape-1" data-speed="1.5"></div>
+        <div class="floating-shape shape-2" data-speed="0.5"></div>
+        <div class="floating-shape shape-3" data-speed="2"></div>
+
+        <div class="curved-text-concept" data-speed="1.2">
+            <svg viewBox="0 0 500 200">
+                <path id="curve" d="M50,150 Q250,50 450,150" fill="transparent" />
+                <text><textPath href="#curve">Shape is identity.</textPath></text>
+            </svg>
+        </div>
+
+        <div class="section-tag">( CONCEPT )</div>
+        <h2>Hình khối phác họa cá tính.</h2>
+        <p>Thiết kế không chỉ là sắp xếp hình ảnh, mà là quá trình điêu khắc để phác họa cá tính riêng biệt của từng thương hiệu.<br>Không chạy theo trào lưu, mà là tìm kiếm sự phù hợp hoàn hảo.</p>
+        <p>Đó không phải là đáp án của ai khác, mà là hình khối dành riêng cho bạn.<br>Dan luôn đối diện tỉ mỉ với từng dự án, để cùng bạn kiến tạo nên "bản ngã" độc bản.</p>
+    </section>
+
+    <!-- 3. EXPERIENCES (Giống phần Salon) -->
+    <section class="experiences">
+        <div class="exp-container">
+            <div class="exp-image" data-speed="0.9">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop" alt="Experience Workspace">
+            </div>
+            <div class="exp-text">
+                <div class="section-tag">( EXPERIENCES )</div>
+                <h3>Vai trò, hệ thống<br>và những tác phẩm phía sau</h3>
+                <p>Từ việc định hình hình ảnh nghệ thuật cho các dự án giáo dục tại KIRA ART EDU, đến vai trò Graphic Designer độc lập cho các thương hiệu và chiến dịch truyền thông lớn.</p>
+                <p>Từng trải nghiệm là một viên gạch vững chắc xây dựng nên tư duy thẩm mỹ và kỹ năng công cụ chuyên nghiệp.</p>
             </div>
         </div>
     </section>
 
-    <!-- EXPERIENCES -->
-    <section class="experiences-section" id="experiences">
-        <div class="exp-header">
-            <div>
-                <h2>EXPERIENCES</h2>
-                <p>Roles, systems, and the work behind them</p>
-            </div>
-            <div class="exp-controls">
-                <button class="exp-btn" id="prevBtn">&#8592;</button>
-                <button class="exp-btn" id="nextBtn">&#8594;</button>
-            </div>
+    <!-- 4. PROFILE SECTION -->
+    <section class="profile" id="profile">
+        <div class="profile-text">
+            <div class="section-tag">( PROFILE )</div>
+            <h3>Trần Đan — Graphic Designer</h3>
+            <p>Tốt nghiệp loại Giỏi chuyên ngành Thiết kế đồ họa tại Đại học Văn Lang. Với nền tảng vững chắc về tư duy thiết kế, thẩm mỹ và các công cụ đồ họa chuyên nghiệp.</p>
+            <p>Sở trường tập trung vào các giải pháp hình ảnh mang tính ứng dụng cao, từ thiết kế UI/UX, ấn phẩm truyền thông mạng xã hội đến quy chuẩn thiết kế bao bì và bộ nhận diện thương hiệu.</p>
         </div>
-
-        <div class="exp-slider-wrapper">
-            <div class="exp-slider" id="expSlider">
-                
-                <div class="exp-card">
-                    <div class="exp-content">
-                        <div class="exp-tags"><span>EDUCATION</span><span>DEGREE</span></div>
-                        <h3 class="exp-title">VAN LANG UNIVERSITY</h3>
-                        <div class="exp-company">BẰNG GIỎI</div>
-                        <p class="exp-desc">Hoàn thành chương trình học 4 năm với thành tích xuất sắc. Nền tảng vững chắc về tư duy thiết kế, thẩm mỹ và các công cụ đồ họa chuyên nghiệp.</p>
-                    </div>
-                    <div class="exp-visual">
-                        <div class="exp-number">01</div>
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000&auto=format&fit=crop" alt="Education">
-                        <div class="exp-date">2020 - 2025</div>
-                    </div>
-                </div>
-
-                <div class="exp-card">
-                    <div class="exp-content">
-                        <div class="exp-tags"><span>EXPERIENCE</span><span>WORK</span></div>
-                        <h3 class="exp-title">KIRA ART EDU</h3>
-                        <div class="exp-company">& ECON GROUPS</div>
-                        <p class="exp-desc">Đảm nhận vai trò thiết kế chính cho các dự án giáo dục nghệ thuật và kinh tế. Chịu trách nhiệm về mặt hình ảnh, xây dựng hệ thống nhận diện thương hiệu.</p>
-                    </div>
-                    <div class="exp-visual">
-                        <div class="exp-number">02</div>
-                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop" alt="Kira Art">
-                        <div class="exp-date">2024</div>
-                    </div>
-                </div>
-
-                <div class="exp-card">
-                    <div class="exp-content">
-                        <div class="exp-tags"><span>EXPERIENCE</span><span>FREELANCE</span></div>
-                        <h3 class="exp-title">DIGIUNI & FREELANCE</h3>
-                        <div class="exp-company">GRAPHIC DESIGNER</div>
-                        <p class="exp-desc">Cộng tác viên thiết kế tại Digiuni và thực hiện hàng loạt dự án freelance độc lập.</p>
-                    </div>
-                    <div class="exp-visual">
-                        <div class="exp-number">03</div>
-                        <img src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?q=80&w=1000&auto=format&fit=crop" alt="Digiuni">
-                        <div class="exp-date">2025 - 2026</div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="profile-img" data-speed="1.1">
+            <img src="images/avasketch.png" alt="Dan Profile">
         </div>
     </section>
 
-    <!-- WORKS -->
+    <!-- 5. MENU / WORKS SECTION -->
     <section class="works" id="works">
-        <h2>Featured Works.</h2>
-        <p class="works-subtitle">Click to see more of my playfulness</p>
-        
-        <div class="grid">
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #2B66B0 0%, #4DA989 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Magazine Celine</h3>
-                    <p>Editorial and layout design showcasing modern fashion aesthetics.</p>
-                    <span class="spryte-tag">Editorial Design</span>
+        <div class="section-tag" style="text-align: center;">( FEATURED WORKS )</div>
+        <div class="works-container">
+            
+            <!-- Item 1 -->
+            <div class="work-item">
+                <div class="work-badge bg-brown">UI/UX</div>
+                <div class="work-info">
+                    <div class="work-info-header">
+                        <h4>Spryte Mobile App</h4>
+                        <span>2026</span>
+                    </div>
+                    <p>Thiết kế giao diện người dùng và trải nghiệm cho ứng dụng di động khám phá thiên nhiên.</p>
                 </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #D75428 0%, #ff8a65 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Sự im lặng của bầy cừu</h3>
-                    <p>Book cover redesign bringing a fresh, thriller-focused visual approach.</p>
-                    <span class="spryte-tag">Book Cover</span>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="work-item">
+                <div class="work-badge bg-green">PACKAGING</div>
+                <div class="work-info">
+                    <div class="work-info-header">
+                        <h4>Moji Creamery</h4>
+                        <span>2025</span>
+                    </div>
+                    <p>Hệ thống bao bì và nhận diện thương hiệu cho dòng sản phẩm kem thủ công cao cấp.</p>
                 </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #4DA989 0%, #84fab0 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Package Himalaya</h3>
-                    <p>Conceptual packaging design focusing on natural elements.</p>
-                    <span class="spryte-tag">Packaging</span>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="work-item">
+                <div class="work-badge bg-grey">CAMPAIGN</div>
+                <div class="work-info">
+                    <div class="work-info-header">
+                        <h4>Beer Huda Art Direction</h4>
+                        <span>2024</span>
+                    </div>
+                    <p>Định hướng hình ảnh nghệ thuật và key visual cho chiến dịch quảng bá thương hiệu đồ uống.</p>
                 </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #2B66B0 0%, #4DA989 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Thiên Mộc Hương</h3>
-                    <p>UI/UX redesign to enhance user journey and modernize the storefront.</p>
-                    <span class="spryte-tag">UI/UX Design</span>
-                </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #D75428 0%, #ff8a65 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Campaign Beer Huda</h3>
-                    <p>Key visuals and art direction for a beverage marketing campaign.</p>
-                    <span class="spryte-tag">Campaign</span>
-                </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #4DA989 0%, #84fab0 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Traditional Research</h3>
-                    <p>Engaging motion graphic videos aimed at illustrating complex cultural data.</p>
-                    <span class="spryte-tag">Motion Graphics</span>
-                </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #2B66B0 0%, #4DA989 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Marketing Posts</h3>
-                    <p>A collection of high-converting social media creatives.</p>
-                    <span class="spryte-tag">Social Media</span>
-                </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #D75428 0%, #ff8a65 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Delasol Exhibition</h3>
-                    <p>Spatial and visual design planning for a contemporary lifestyle exhibition.</p>
-                    <span class="spryte-tag">Exhibition</span>
-                </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #4DA989 0%, #84fab0 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Pepsi Exhibition</h3>
-                    <p>Vibrant, energetic pop-up exhibition design tailored for youth culture.</p>
-                    <span class="spryte-tag">Exhibition</span>
-                </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #2B66B0 0%, #4DA989 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Fanta Motion</h3>
-                    <p>Playful and bubbly motion design for digital advertisements.</p>
-                    <span class="spryte-tag">Motion Graphics</span>
-                </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #D75428 0%, #ff8a65 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Photography / Others</h3>
-                    <p>A curated selection of personal photography and creative experiments.</p>
-                    <span class="spryte-tag">Photography</span>
-                </div>
-            </a>
-            <a href="#" class="spryte-card">
-                <div class="spryte-image" style="background: linear-gradient(135deg, #4DA989 0%, #84fab0 100%);"></div>
-                <div class="spryte-info">
-                    <h3>Kẹo kết Việt Game</h3>
-                    <p>Visual assets and character design for a fun, interactive local mobile game.</p>
-                    <span class="spryte-tag">Game Design</span>
-                </div>
-            </a>
+            </div>
+
         </div>
     </section>
 
-    <!-- CTA / CONTACT -->
-    <section class="cta-section" id="contact">
-        <div class="cta-content">
-            <h2>Like what you see?</h2>
-            <p class="cta-desc">Let's talk projects, collaborations, or anything design!</p>
-            
-            <div class="cta-buttons">
-                <!-- Nút copy Email -->
-                <button class="email-btn" onclick="copyMyEmail()">
-                    <span class="email-text">roses06022003@gmail.com</span>
-                    <span class="copy-label">Copy</span>
-                </button>
-                
-                <a href="https://www.linkedin.com/in/tran-dan-86270023a" target="_blank" class="linkedin-btn">LinkedIn</a>
-            </div>
-            <p class="cta-phone">033 697 6142</p>
+    <!-- 6. CONTACT SECTION -->
+    <section class="contact-large" id="contact">
+        <!-- Chữ cong bao quanh -->
+        <div class="curved-text-contact" data-speed="1.3">
+            <svg viewBox="0 0 600 600">
+                <path id="curveContact" d="M 300, 300 m -250, 0 a 250,250 0 1,1 500,0 a 250,250 0 1,1 -500,0" fill="none" />
+                <text>
+                    <textPath href="#curveContact" startOffset="0%">
+                        Let's Talk Projects • Let's Talk Design • 
+                    </textPath>
+                </text>
+            </svg>
         </div>
-        
-        <div class="cta-visual">
-            <img src="images/avasketch.png" alt="Avatar Sketch">
+
+        <div class="contact-box">
+            <h3>( COLLABORATION )</h3>
+            <p>Liên hệ trao đổi về dự án hoặc bất cứ điều gì về thiết kế. Sẵn sàng nhận việc freelance.</p>
+            <a href="#" class="contact-btn">roses06022003@gmail.com</a>
+            <a href="https://www.linkedin.com/in/tran-dan-86270023a" target="_blank" class="contact-btn brown">LinkedIn</a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Bống's Portfolio. All rights reserved.</p>
+        © 2026 BỐNG'S PORTFOLIO. ALL RIGHTS RESERVED.
     </footer>
 
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <!-- Thư viện GSAP thần thánh để làm hiệu ứng Cuộn mượt và Parallax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
-        // 1. Hiệu ứng gõ chữ
-        new Typed('#typed-text', {
-            strings: ['<strong>Quality-driven design</strong> paired with <strong>creative innovation</strong> is my foundation for delivering <strong>impactful visual solutions</strong>.'],
-            typeSpeed: 25,
-            startDelay: 500,
-            showCursor: true,
-            cursorChar: '█',
-        });
+        gsap.registerPlugin(ScrollTrigger);
 
-        // 2. Logic Nền Xanh Đậm (Khu vực Experiences)
-        const experiencesSection = document.getElementById('experiences');
+        // Hiệu ứng Parallax (Cuộn chuột làm trôi hình)
+        const parallaxElements = document.querySelectorAll('[data-speed]');
         
-        window.addEventListener('scroll', () => {
-            const rect = experiencesSection.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            if (rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4) {
-                document.body.classList.add('dark-theme');
-            } else {
-                document.body.classList.remove('dark-theme');
-            }
-        });
-
-        // 3. LOGIC SLIDER NGANG
-        const slider = document.getElementById('expSlider');
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
-
-        nextBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
-        });
-
-        prevBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
-        });
-
-        // 4. Hàm Copy Email
-        function copyMyEmail() {
-            navigator.clipboard.writeText("roses06022003@gmail.com").then(() => {
-                const copyLabel = document.querySelector('.copy-label');
-                copyLabel.textContent = "Copied!";
-                copyLabel.style.color = "#4DA989"; // Đổi màu xanh lá khi báo copy thành công
-                setTimeout(() => {
-                    copyLabel.textContent = "Copy";
-                    copyLabel.style.color = "#F5F3EE";
-                }, 2000); 
+        parallaxElements.forEach(el => {
+            const speed = el.getAttribute('data-speed');
+            gsap.to(el, {
+                y: () => (1 - parseFloat(speed)) * 200,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
             });
-        }
+        });
+
+        // Hút màu Header (đổi đen/trắng khi cuộn qua nền sáng/tối)
+        // Bằng CSS mix-blend-mode: difference; ở trên header đã xử lý ngon lành rồi.
     </script>
 </body>
 </html>
