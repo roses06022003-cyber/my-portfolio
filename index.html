@@ -131,6 +131,7 @@
 
         .svg-text-fill { fill: #1a1a1a; }
 
+
         /* ========================================= */
         /* ABOUT ME SECTION - ÔM SÁT CẤU TRÚC TABLE  */
         /* ========================================= */
@@ -214,7 +215,7 @@
             position: relative; 
         }
         .left-col span {
-            font-size: 15px; /* Size to hơn theo yêu cầu */
+            font-size: 15px; 
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -229,14 +230,14 @@
             line-height: 2.2;
             font-weight: 400;
             color: #333;
-            margin: 0 0 30px 0; /* Khoảng cách giữa các đoạn text trong cùng 1 ô lưới */
+            margin: 0 0 30px 0; 
             max-width: 800px;
         }
         .right-col p:last-child {
             margin-bottom: 0;
         }
 
-        /* STYLE RIÊNG ĐỂ NHẤN MẠNH CÂU CHÀO ĐẦU */
+        /* STYLE NHẤN MẠNH CÂU CHÀO ĐẦU */
         .right-col p.intro-text {
             font-weight: 600;
             color: var(--text-color);
@@ -249,7 +250,7 @@
         .avatar-container {
             position: absolute;
             top: 40px; 
-            left: 50px; /* Thẳng hàng tuyệt đối với chữ ▪ ABOUT ME */
+            left: 50px; 
             width: calc(100% - 100px);
             max-width: 380px;
             z-index: 5;
@@ -308,10 +309,10 @@
                 </defs>
 
                 <g id="hero-img-group" clip-path="url(#hero-clip)">
-                    <image class="hero-slide" href="images/h.jpg" x="0" y="0" width="1400" height="1453.37" preserveAspectRatio="xMidYMid slice" />
-                    <image class="hero-slide" href="images/g.jpg" x="0" y="0" width="1400" height="1453.37" preserveAspectRatio="xMidYMid slice" />
-                    <image class="hero-slide" href="images/f.jpg" x="0" y="0" width="1400" height="1453.37" preserveAspectRatio="xMidYMid slice" />
-                    <image class="hero-slide" href="images/e.jpg" x="0" y="0" width="1400" height="1453.37" preserveAspectRatio="xMidYMid slice" />
+                    <image class="hero-slide" href="images/c.jpg" x="0" y="0" width="1400" height="1453.37" preserveAspectRatio="xMidYMid slice" />
+                    <image class="hero-slide" href="images/b.jpg" x="0" y="0" width="1400" height="1453.37" preserveAspectRatio="xMidYMid slice" />
+                    <image class="hero-slide" href="images/a.jpg" x="0" y="0" width="1400" height="1453.37" preserveAspectRatio="xMidYMid slice" />
+                    <image class="hero-slide" href="images/aa.jpg" x="0" y="0" width="1400" height="1453.37" preserveAspectRatio="xMidYMid slice" />
                 </g>
 
                 <g id="text-group" class="svg-text-fill">
@@ -337,7 +338,7 @@
         </div>
     </div>
 
-    <!-- MỤC ABOUT ME - LƯỚI KHÍT TỪNG DÒNG -->
+    <!-- MỤC ABOUT ME -->
     <section class="about-section" id="about">
         
         <div class="massive-svg-wrapper">
@@ -374,6 +375,7 @@
                 </div>
             </div>
 
+            <!-- CHỈ CÒN LẠI DÒNG ĐẦU TIÊN CÓ H-LINE Ở TRÊN -->
             <div class="about-row">
                 <div class="h-line-container"><div class="h-line"></div></div>
                 <div class="about-col left-col">
@@ -384,9 +386,8 @@
                 </div>
             </div>
 
-            <!-- GỘP DÒNG 2 & 3: ĐOẠN GRID TỰ CANH KHÍT VỚI CHỮ -->
+            <!-- DÒNG 2 & 3 ĐÃ XÓA H-LINE Ở GIỮA ĐỂ TẠO SỰ LIỀN MẠCH -->
             <div class="about-row">
-                <div class="h-line-container"><div class="h-line"></div></div>
                 <div class="about-col left-col">
                     <div class="avatar-container">
                         <svg viewBox="0 0 501.29 416.46" class="avatar-svg">
@@ -414,6 +415,7 @@
                 <div class="about-col right-col">
                     <p>Every project starts from a different thought. The form is simply where that thought becomes visible.</p>
                 </div>
+                <!-- ĐƯỜNG KẺ CHỐT BẢNG Ở DƯỚI CÙNG -->
                 <div class="h-line-container h-line-bottom"><div class="h-line"></div></div>
             </div>
             
