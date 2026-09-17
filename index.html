@@ -25,7 +25,7 @@
             position: relative;
         }
 
-        /* LỚP TEXTURE HẠT (NOISE) */
+        /* TEXTURE HẠT (NOISE) */
         .noise-overlay {
             position: fixed;
             top: 0;
@@ -131,14 +131,10 @@
 
         .svg-text-fill { fill: #1a1a1a; }
 
-
-        /* ========================================= */
-        /* ABOUT ME SECTION - ÔM SÁT CẤU TRÚC TABLE  */
-        /* ========================================= */
+        /* ABOUT ME SECTION */
         .about-section {
             position: relative;
-            padding: 50px 0 200px 0;
-            background-color: var(--bg-color);
+            padding: 50px 0 100px 0;
             z-index: 10;
         }
 
@@ -177,7 +173,7 @@
         }
         .v-line {
             width: 100%; height: 100%;
-            background-color: rgba(26, 26, 26, 0.2);
+            background-color: rgba(150, 150, 150, 0.3); /* Chuyển màu xám sáng hơn để tương thích dark mode */
             transform-origin: top;
             transform: scaleY(0); 
         }
@@ -200,20 +196,14 @@
         }
         .h-line {
             width: 100%; height: 100%;
-            background-color: rgba(26, 26, 26, 0.2);
+            background-color: rgba(150, 150, 150, 0.3);
             transform-origin: left;
             transform: scaleX(0); 
         }
         .h-line-bottom { top: auto; bottom: 0; }
 
-        .about-col { 
-            padding: 40px 50px; 
-        }
-        
-        .left-col { 
-            width: 30%; 
-            position: relative; 
-        }
+        .about-col { padding: 40px 50px; }
+        .left-col { width: 30%; position: relative; }
         .left-col span {
             font-size: 15px; 
             font-weight: 600;
@@ -221,32 +211,22 @@
             text-transform: uppercase;
         }
 
-        .right-col {
-            width: 70%;
-        }
+        .right-col { width: 70%; }
         .right-col p {
             font-family: var(--font-sans);
             font-size: 16px;
             line-height: 2.2;
             font-weight: 400;
-            color: #333;
             margin: 0 0 30px 0; 
             max-width: 800px;
         }
-        .right-col p:last-child {
-            margin-bottom: 0;
-        }
+        .right-col p:last-child { margin-bottom: 0; }
 
-        /* STYLE NHẤN MẠNH CÂU CHÀO ĐẦU */
         .right-col p.intro-text {
             font-weight: 600;
-            color: var(--text-color);
             font-size: 17px;
         }
 
-        /* ========================================= */
-        /* AVATAR SHAPE & TRƯỢT MÀN ĐEN              */
-        /* ========================================= */
         .avatar-container {
             position: absolute;
             top: 40px; 
@@ -255,11 +235,215 @@
             max-width: 380px;
             z-index: 5;
         }
-        
-        .avatar-svg {
-            width: 100%;
-            height: auto;
+        .avatar-svg { width: 100%; height: auto; display: block; }
+
+        /* ========================================= */
+        /* EXPERIENCES SECTION - HORIZONTAL SCROLL   */
+        /* ========================================= */
+        .exp-section {
+            position: relative;
+            padding-top: 150px;
+            overflow: hidden;
+            /* GSAP sẽ điều khiển màu nền của body khi vào section này */
+        }
+
+        .exp-bg-text {
+            position: absolute;
+            top: 150px;
+            left: 50px;
+            font-family: var(--font-sans);
+            font-size: 15vw;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.03); 
+            line-height: 0.8;
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 0;
+            letter-spacing: -2px;
+        }
+
+        .exp-header {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 50px;
+            margin-bottom: 80px;
+            z-index: 2;
+        }
+
+        .exp-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #888;
             display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .exp-header h2 {
+            font-family: var(--font-sans);
+            font-size: 48px;
+            font-weight: 500;
+            letter-spacing: -1px;
+        }
+
+        .exp-header p {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .exp-scroll-wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .exp-container {
+            display: flex;
+            padding: 0 50vw 0 50px; /* Thêm padding phải để item cuối scroll ra giữa màn hình */
+            gap: 40px;
+            width: fit-content;
+        }
+
+        /* CARD THIẾT KẾ GIỐNG REFERENCE */
+        .exp-item {
+            width: 80vw; 
+            max-width: 1100px;
+            height: 65vh;
+            min-height: 500px;
+            flex-shrink: 0;
+        }
+
+        .exp-card {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            background-color: #F5F7F3; 
+            color: #1a1a1a;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .exp-left {
+            width: 50%;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .exp-meta {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .exp-meta span {
+            display: inline-block;
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+
+        .exp-left h3 {
+            font-family: var(--font-sans);
+            font-size: 52px;
+            font-weight: 600;
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .exp-company {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .exp-desc p {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #333;
+        }
+
+        /* HIGHLIGHTS SECTION DƯỚI ĐÁY BÊN TRÁI */
+        .exp-highlights-container {
+            margin-top: auto; 
+        }
+
+        .exp-highlights-title {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #888;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .exp-highlights-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 0;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .exp-highlights-list span {
+            width: 50%;
+            text-transform: uppercase;
+        }
+
+        .exp-highlights-list span b {
+            color: #888;
+            margin-right: 5px;
+            font-weight: 500;
+        }
+
+        .exp-right {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            background-color: #222; 
+        }
+        
+        .exp-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.1); /* Ảnh trắng đen ngầu */
+        }
+
+        .exp-number {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 70px;
+            font-weight: 400;
+            color: #fff;
+            line-height: 1;
+            mix-blend-mode: overlay;
+        }
+
+        .exp-date {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #fff;
+            text-transform: uppercase;
         }
 
     </style>
@@ -338,7 +522,7 @@
         </div>
     </div>
 
-    <!-- MỤC ABOUT ME -->
+    <!-- MỤC ABOUT ME - LƯỚI KHÍT TỪNG DÒNG -->
     <section class="about-section" id="about">
         
         <div class="massive-svg-wrapper">
@@ -375,7 +559,6 @@
                 </div>
             </div>
 
-            <!-- CHỈ CÒN LẠI DÒNG ĐẦU TIÊN CÓ H-LINE Ở TRÊN -->
             <div class="about-row">
                 <div class="h-line-container"><div class="h-line"></div></div>
                 <div class="about-col left-col">
@@ -386,7 +569,6 @@
                 </div>
             </div>
 
-            <!-- DÒNG 2 & 3 ĐÃ XÓA H-LINE Ở GIỮA ĐỂ TẠO SỰ LIỀN MẠCH -->
             <div class="about-row">
                 <div class="about-col left-col">
                     <div class="avatar-container">
@@ -415,10 +597,152 @@
                 <div class="about-col right-col">
                     <p>Every project starts from a different thought. The form is simply where that thought becomes visible.</p>
                 </div>
-                <!-- ĐƯỜNG KẺ CHỐT BẢNG Ở DƯỚI CÙNG -->
                 <div class="h-line-container h-line-bottom"><div class="h-line"></div></div>
             </div>
             
+        </div>
+    </section>
+
+    <!-- ========================================= -->
+    <!-- EXPERIENCES SECTION - HORIZONTAL SCROLL   -->
+    <!-- ========================================= -->
+    <section class="exp-section" id="experiences">
+        <!-- Chữ BACKGROUND siêu mờ chìm phía sau -->
+        <div class="exp-bg-text">EXPERIENCES</div>
+
+        <!-- Tiêu đề dính ở góc trên -->
+        <div class="exp-header">
+            <div class="exp-header-left">
+                <span class="exp-label">CAREER ARCHIVE</span>
+                <h2>EXPERIENCES</h2>
+            </div>
+            <div class="exp-header-right">
+                <p>Roles, systems, and the work behind them.</p>
+            </div>
+        </div>
+
+        <!-- Khung bao khu vực trượt ngang -->
+        <div class="exp-scroll-wrapper">
+            <div class="exp-container">
+                
+                <!-- CARD 1: EDUCATION -->
+                <div class="exp-item">
+                    <div class="exp-card">
+                        <div class="exp-left">
+                            <div class="exp-meta">
+                                <span>01 — EDUCATION</span>
+                            </div>
+                            <h3>GRAPHIC DESIGN</h3>
+                            <div class="exp-company">VAN LANG UNIVERSITY</div>
+                            <div class="exp-desc">
+                                <p>Studied Graphic Design with a focus on visual communication, developing skills across branding, editorial, digital media, and visual storytelling. Graduated with a Good classification.</p>
+                            </div>
+                            <div class="exp-highlights-container">
+                                <div class="exp-highlights-title">HIGHLIGHTS</div>
+                                <div class="exp-highlights-list">
+                                    <span><b>01</b> VISUAL COMMUNICATION</span>
+                                    <span><b>02</b> GRAPHIC DESIGN</span>
+                                    <span><b>03</b> VISUAL STORYTELLING</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="exp-right">
+                            <img src="images/a.jpg" alt="Van Lang University">
+                            <div class="exp-number">01</div>
+                            <div class="exp-date">2021 - 2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: KIRA ART EDU -->
+                <div class="exp-item">
+                    <div class="exp-card">
+                        <div class="exp-left">
+                            <div class="exp-meta">
+                                <span>02 — CREATIVE EXPERIENCE</span>
+                            </div>
+                            <h3>GRAPHIC DESIGNER</h3>
+                            <div class="exp-company">KIRA ART EDU</div>
+                            <div class="exp-desc">
+                                <p>Created visual content for communication and social media, while also working across art education and photography. Combined visual thinking with hands-on creative practice across different media.</p>
+                            </div>
+                            <div class="exp-highlights-container">
+                                <div class="exp-highlights-title">HIGHLIGHTS</div>
+                                <div class="exp-highlights-list">
+                                    <span><b>01</b> SOCIAL MEDIA DESIGN</span>
+                                    <span><b>02</b> ART EDUCATION</span>
+                                    <span><b>03</b> PHOTOGRAPHY</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="exp-right">
+                            <img src="images/aa.jpg" alt="Kira Art Edu">
+                            <div class="exp-number">02</div>
+                            <div class="exp-date">2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3: ECON GROUPS -->
+                <div class="exp-item">
+                    <div class="exp-card">
+                        <div class="exp-left">
+                            <div class="exp-meta">
+                                <span>03 — CREATIVE EXPERIENCE</span>
+                            </div>
+                            <h3>GRAPHIC DESIGNER</h3>
+                            <div class="exp-company">ECON GROUPS</div>
+                            <div class="exp-desc">
+                                <p>Developed visual materials for communication and social media, alongside video editing and print production. Worked across both digital and physical outputs to maintain consistent visual communication.</p>
+                            </div>
+                            <div class="exp-highlights-container">
+                                <div class="exp-highlights-title">HIGHLIGHTS</div>
+                                <div class="exp-highlights-list">
+                                    <span><b>01</b> SOCIAL MEDIA DESIGN</span>
+                                    <span><b>02</b> VIDEO EDITING</span>
+                                    <span><b>03</b> PRINT PRODUCTION</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="exp-right">
+                            <img src="images/b.jpg" alt="Econ Groups">
+                            <div class="exp-number">03</div>
+                            <div class="exp-date">2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4: DIGIUNI & FREELANCE -->
+                <div class="exp-item">
+                    <div class="exp-card">
+                        <div class="exp-left">
+                            <div class="exp-meta">
+                                <span>04 — CREATIVE PRACTICE</span>
+                            </div>
+                            <h3>GRAPHIC DESIGNER</h3>
+                            <div class="exp-company">DIGIUNI & FREELANCE</div>
+                            <div class="exp-desc">
+                                <p>Working across graphic design, visual communication, video, education, and digital image-making. Exploring both 2D and 3D approaches to expand how ideas can take shape across different formats.</p>
+                            </div>
+                            <div class="exp-highlights-container">
+                                <div class="exp-highlights-title">HIGHLIGHTS</div>
+                                <div class="exp-highlights-list">
+                                    <span><b>01</b> SOCIAL MEDIA DESIGN</span>
+                                    <span><b>02</b> VIDEO EDITING</span>
+                                    <span><b>03</b> ART EDUCATION</span>
+                                    <span><b>04</b> 2D & 3D DESIGN</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="exp-right">
+                            <img src="images/c.jpg" alt="DigiUni & Freelance">
+                            <div class="exp-number">04</div>
+                            <div class="exp-date">2025 - 2026</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -470,6 +794,37 @@
             scrollTrigger: {
                 trigger: ".avatar-container",
                 start: "top 80%" 
+            }
+        });
+
+        /* ========================================= */
+        /* 6. HIỆU ỨNG EXPERIENCES                   */
+        /* ========================================= */
+        
+        // Hiệu ứng đổi màu Body từ Trắng Ngà -> Đen Tro
+        gsap.to("body", {
+            backgroundColor: "#1a1a1a",
+            color: "#F5F7F3",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".exp-section",
+                start: "top 50%", 
+                end: "bottom 50%", 
+                toggleActions: "play reverse play reverse"
+            }
+        });
+
+        // Hiệu ứng ghim màn hình và trượt thẻ Card ngang
+        let expWrapper = document.querySelector('.exp-container');
+        
+        gsap.to(expWrapper, {
+            x: () => -(expWrapper.scrollWidth - window.innerWidth) + "px",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".exp-section",
+                pin: true,           
+                scrub: 1,            
+                end: () => "+=" + expWrapper.scrollWidth 
             }
         });
 
