@@ -238,17 +238,22 @@
         .avatar-svg { width: 100%; height: auto; display: block; }
 
         /* ========================================= */
-        /* EXPERIENCES SECTION - HORIZONTAL SCROLL   */
+        /* EXPERIENCES SECTION - ĐÃ FIX CHIỀU CAO    */
         /* ========================================= */
         .exp-section {
             position: relative;
-            padding-top: 150px;
+            /* FIX 1: Ép section này cao chính xác bằng màn hình (100vh) và cho flex để chứa nội dung ở giữa */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             overflow: hidden;
         }
 
         .exp-bg-text {
             position: absolute;
-            top: 150px;
+            top: 50%;
+            transform: translateY(-50%);
             left: 50px;
             font-family: var(--font-sans);
             font-size: 15vw;
@@ -267,7 +272,7 @@
             justify-content: space-between;
             align-items: flex-end;
             padding: 0 50px;
-            margin-bottom: 80px;
+            margin-bottom: 5vh;
             z-index: 2;
         }
 
@@ -295,14 +300,14 @@
 
         .exp-scroll-wrapper {
             width: 100vw;
-            height: 100vh;
+            /* FIX 2: Bỏ đi cái height 100vh ngớ ngẩn gây lỗi cắt hình */
             display: flex;
             align-items: center;
         }
 
         .exp-container {
             display: flex;
-            padding: 0 50vw 0 50px; 
+            padding: 0 50vw 0 50px;
             gap: 40px;
             width: fit-content;
         }
@@ -442,28 +447,50 @@
             color: #fff;
             text-transform: uppercase;
         }
-
+        
         /* ========================================= */
-        /* MỤC DỰ PHÒNG TẠO KHÔNG GIAN CUỘN CHO GSAP */
+        /* WORKS SECTION (DUMMY SECTION)             */
         /* ========================================= */
         .works-section {
-            height: 100vh;
-            background-color: var(--bg-color); /* Trắng ngà */
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
+            height: 100vh;
+            padding: 150px 50px;
+            background-color: var(--bg-color); 
             z-index: 10;
         }
-        .works-title {
-            font-family: var(--font-sans);
-            font-size: 40px;
-            font-weight: 600;
-            letter-spacing: -1px;
-            opacity: 0.2;
-            text-transform: uppercase;
+        
+        .works-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 20px;
         }
 
+        .works-header-left span {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #888;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .works-header-left h2 {
+            font-family: var(--font-sans);
+            font-size: 40px;
+            font-weight: 500;
+        }
+
+        .works-header-right a {
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            color: inherit;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
     </style>
 </head>
 <body>
@@ -540,7 +567,7 @@
         </div>
     </div>
 
-    <!-- MỤC ABOUT ME - LƯỚI KHÍT TỪNG DÒNG -->
+    <!-- MỤC ABOUT ME -->
     <section class="about-section" id="about">
         
         <div class="massive-svg-wrapper">
@@ -628,6 +655,7 @@
         <!-- Chữ BACKGROUND siêu mờ chìm phía sau -->
         <div class="exp-bg-text">EXPERIENCES</div>
 
+        <!-- Tiêu đề dính ở góc trên -->
         <div class="exp-header">
             <div class="exp-header-left">
                 <span class="exp-label">CAREER ARCHIVE</span>
@@ -638,10 +666,11 @@
             </div>
         </div>
 
+        <!-- Khung bao khu vực trượt ngang -->
         <div class="exp-scroll-wrapper">
             <div class="exp-container">
                 
-                <!-- CARD 1 -->
+                <!-- CARD 1: EDUCATION -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -670,7 +699,7 @@
                     </div>
                 </div>
 
-                <!-- CARD 2 -->
+                <!-- CARD 2: KIRA ART EDU -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -699,7 +728,7 @@
                     </div>
                 </div>
 
-                <!-- CARD 3 -->
+                <!-- CARD 3: ECON GROUPS -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -728,7 +757,7 @@
                     </div>
                 </div>
 
-                <!-- CARD 4 -->
+                <!-- CARD 4: DIGIUNI & FREELANCE -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -762,9 +791,19 @@
         </div>
     </section>
 
-    <!-- MỤC DỰ PHÒNG TẠO KHÔNG GIAN CUỘN CHO GSAP (SAU NÀY LÀ MỤC WORKS) -->
-    <section class="works-section" id="works" style="height: 100vh; background-color: var(--bg-color); display: flex; align-items: center; justify-content: center;">
-        <h2 style="font-family: var(--font-serif); font-size: 40px; color: var(--text-color); opacity: 0.3;">[ SELECTED PROJECTS COMING SOON ]</h2>
+    <!-- ========================================= -->
+    <!-- PROJECTS SECTION (DUMMY ĐỂ CÓ CHỖ CUỘN TỚI)-->
+    <!-- ========================================= -->
+    <section class="works-section" id="works">
+        <div class="works-header">
+            <div class="works-header-left">
+                <span>PORTFOLIO SHOWCASE</span>
+                <h2>SELECTED PROJECTS</h2>
+            </div>
+            <div class="works-header-right">
+                <a href="#">VIEW ALL PROJECTS →</a>
+            </div>
+        </div>
     </section>
 
     <!-- Thư viện GSAP -->
@@ -783,19 +822,19 @@
         tl.to("#text-group", { scale: 35, opacity: 0, svgOrigin: "700 726", ease: "power2.inOut" }, 0);
         tl.to("#hero-img-group", { scale: 1.1, svgOrigin: "700 726", ease: "power2.inOut" }, 0);
 
-        /* 2. BEYOND WHAT'S SEEN */
+        /* 2. BEYOND WHAT'S SEEN: BAY LÊN KHI CUỘN TỚI */
         gsap.from(".massive-svg", {
             y: 50, opacity: 0, duration: 1, ease: "power3.out",
             scrollTrigger: { trigger: ".massive-svg-wrapper", start: "top 70%" }
         });
 
-        /* 3. HIỆU ỨNG CHỮ ABOUT ME LƯỚT LÊN */
+        /* 3. HIỆU ỨNG CHỮ ABOUT ME LƯỚT LÊN LẦN LƯỢT */
         gsap.from(".right-col p", {
             y: 30, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out",
             scrollTrigger: { trigger: ".about-table", start: "top 75%" }
         });
 
-        /* 4. VẼ KẺ LƯỚI */
+        /* 4. HIỆU ỨNG KẺ LƯỚI (VẼ LINE) THEO NHỊP CUỘN CHUỘT */
         let gridTl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".about-table",
@@ -821,22 +860,8 @@
         /* ========================================= */
         /* 6. HIỆU ỨNG EXPERIENCES                   */
         /* ========================================= */
-        
         let expWrapper = document.querySelector('.exp-container');
-
-        // Hiệu ứng ghim màn hình và trượt thẻ Card ngang
-        let pinScroll = gsap.to(expWrapper, {
-            x: () => -(expWrapper.scrollWidth - window.innerWidth) + "px",
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".exp-section",
-                pin: true,           
-                scrub: 1,            
-                end: () => "+=" + expWrapper.scrollWidth 
-            }
-        });
-
-        // Hiệu ứng đổi màu Body từ Trắng Ngà -> Đen Tro (đồng bộ tọa độ với thanh scroll ngang)
+        
         gsap.to("body", {
             backgroundColor: "#1a1a1a",
             color: "#F5F7F3",
@@ -844,8 +869,20 @@
             scrollTrigger: {
                 trigger: ".exp-section",
                 start: "top 50%", 
-                end: () => "+=" + (expWrapper.scrollWidth + window.innerHeight/2), 
+                end: () => "+=" + (expWrapper.scrollWidth + window.innerHeight), 
                 toggleActions: "play reverse play reverse"
+            }
+        });
+
+        gsap.to(expWrapper, {
+            x: () => -(expWrapper.scrollWidth - window.innerWidth) + "px",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".exp-section",
+                start: "center center", 
+                pin: true,           
+                scrub: 1,            
+                end: () => "+=" + expWrapper.scrollWidth 
             }
         });
 
