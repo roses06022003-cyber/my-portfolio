@@ -238,22 +238,19 @@
         .avatar-svg { width: 100%; height: auto; display: block; }
 
         /* ========================================= */
-        /* EXPERIENCES SECTION - ĐÃ FIX CHIỀU CAO    */
+        /* EXPERIENCES SECTION - CLICK TO SLIDE      */
         /* ========================================= */
         .exp-section {
             position: relative;
-            /* FIX 1: Ép section này cao chính xác bằng màn hình (100vh) và cho flex để chứa nội dung ở giữa */
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            /* Đã chuyển từ height 100vh sang padding bình thường để tránh ngắt ngứ cuộn chuột */
+            padding-top: 150px;
+            padding-bottom: 150px;
             overflow: hidden;
         }
 
         .exp-bg-text {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 150px;
             left: 50px;
             font-family: var(--font-sans);
             font-size: 15vw;
@@ -272,7 +269,7 @@
             justify-content: space-between;
             align-items: flex-end;
             padding: 0 50px;
-            margin-bottom: 5vh;
+            margin-bottom: 80px;
             z-index: 2;
         }
 
@@ -285,12 +282,54 @@
             text-transform: uppercase;
         }
 
-        .exp-header h2 {
+        /* KHU VỰC TIÊU ĐỀ & MŨI TÊN CHUYỂN SLIDE */
+        .exp-title-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .exp-title-wrapper h2 {
             font-family: var(--font-sans);
             font-size: 48px;
             font-weight: 500;
             letter-spacing: -1px;
         }
+
+        /* CSS NÚT BẤM (ARROWS) MỚI */
+        .exp-nav-arrows {
+            display: flex;
+            gap: 15px;
+            margin-left: 30px;
+        }
+
+        .exp-nav-arrows button {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .exp-nav-arrows button:hover {
+            background: #fff;
+            color: #1a1a1a;
+        }
+
+        .exp-nav-arrows button svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .exp-nav-arrows button:focus { outline: none; }
 
         .exp-header p {
             color: #888;
@@ -298,18 +337,23 @@
             margin-bottom: 10px;
         }
 
+        /* KHUNG BAO CHỨA CÁC THẺ CARD TRƯỢT NGANG */
         .exp-scroll-wrapper {
             width: 100vw;
-            /* FIX 2: Bỏ đi cái height 100vh ngớ ngẩn gây lỗi cắt hình */
+            overflow: hidden; /* Giấu các mục bị tràn */
             display: flex;
             align-items: center;
+            /* Giúp người dùng biết có thể tương tác */
+            transition: cursor 0.2s ease;
         }
 
         .exp-container {
             display: flex;
-            padding: 0 50vw 0 50px;
+            padding: 0 50px;
             gap: 40px;
             width: fit-content;
+            /* TRANSITION LÀM HIỆU ỨNG TRƯỢT MƯỢT MÀ NHƯ BÔI MỠ */
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .exp-item {
@@ -318,6 +362,8 @@
             height: 65vh;
             min-height: 500px;
             flex-shrink: 0;
+            /* Chống highlight text lúc click chuột nhanh */
+            user-select: none; 
         }
 
         .exp-card {
@@ -378,9 +424,7 @@
             color: #333;
         }
 
-        .exp-highlights-container {
-            margin-top: auto; 
-        }
+        .exp-highlights-container { margin-top: auto; }
 
         .exp-highlights-title {
             font-size: 11px;
@@ -401,16 +445,8 @@
             letter-spacing: 1px;
         }
 
-        .exp-highlights-list span {
-            width: 50%;
-            text-transform: uppercase;
-        }
-
-        .exp-highlights-list span b {
-            color: #888;
-            margin-right: 5px;
-            font-weight: 500;
-        }
+        .exp-highlights-list span { width: 50%; text-transform: uppercase; }
+        .exp-highlights-list span b { color: #888; margin-right: 5px; font-weight: 500; }
 
         .exp-right {
             width: 50%;
@@ -649,25 +685,40 @@
     </section>
 
     <!-- ========================================= -->
-    <!-- EXPERIENCES SECTION - HORIZONTAL SCROLL   -->
+    <!-- EXPERIENCES SECTION - CUSTOM CURSOR SLIDE -->
     <!-- ========================================= -->
     <section class="exp-section" id="experiences">
         <!-- Chữ BACKGROUND siêu mờ chìm phía sau -->
         <div class="exp-bg-text">EXPERIENCES</div>
 
-        <!-- Tiêu đề dính ở góc trên -->
+        <!-- Tiêu đề và nút bấm -->
         <div class="exp-header">
             <div class="exp-header-left">
                 <span class="exp-label">CAREER ARCHIVE</span>
-                <h2>EXPERIENCES</h2>
+                <div class="exp-title-wrapper">
+                    <h2>EXPERIENCES</h2>
+                    
+                    <!-- 2 NÚT BẤM MŨI TÊN NHỎ GỌN NHƯ HÌNH CHỤP -->
+                    <div class="exp-nav-arrows">
+                        <button class="exp-nav-prev" aria-label="Previous">
+                            <!-- SVG mũi tên trái -->
+                            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <button class="exp-nav-next" aria-label="Next">
+                            <!-- SVG mũi tên phải -->
+                            <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                    </div>
+
+                </div>
             </div>
             <div class="exp-header-right">
                 <p>Roles, systems, and the work behind them.</p>
             </div>
         </div>
 
-        <!-- Khung bao khu vực trượt ngang -->
-        <div class="exp-scroll-wrapper">
+        <!-- Khung bao khu vực trượt ngang (Không ghim nữa) -->
+        <div class="exp-scroll-wrapper" id="exp-wrapper">
             <div class="exp-container">
                 
                 <!-- CARD 1: EDUCATION -->
@@ -792,7 +843,7 @@
     </section>
 
     <!-- ========================================= -->
-    <!-- PROJECTS SECTION (DUMMY ĐỂ CÓ CHỖ CUỘN TỚI)-->
+    <!-- PROJECTS SECTION (LÀM BƯỚC ĐỆM BÊN DƯỚI)  -->
     <!-- ========================================= -->
     <section class="works-section" id="works">
         <div class="works-header">
@@ -858,10 +909,10 @@
         });
 
         /* ========================================= */
-        /* 6. HIỆU ỨNG EXPERIENCES                   */
+        /* 6. HIỆU ỨNG EXPERIENCES (CLICK ĐỂ SLIDE)  */
         /* ========================================= */
-        let expWrapper = document.querySelector('.exp-container');
         
+        // Hiệu ứng đổi màu Body mượt mà khi lướt tới khu vực Experiences
         gsap.to("body", {
             backgroundColor: "#1a1a1a",
             color: "#F5F7F3",
@@ -869,22 +920,82 @@
             scrollTrigger: {
                 trigger: ".exp-section",
                 start: "top 50%", 
-                end: () => "+=" + (expWrapper.scrollWidth + window.innerHeight), 
+                end: "bottom 50%", 
                 toggleActions: "play reverse play reverse"
             }
         });
 
-        gsap.to(expWrapper, {
-            x: () => -(expWrapper.scrollWidth - window.innerWidth) + "px",
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".exp-section",
-                start: "center center", 
-                pin: true,           
-                scrub: 1,            
-                end: () => "+=" + expWrapper.scrollWidth 
+        // XỬ LÝ LOGIC SLIDER VÀ CUSTOM CURSOR
+        const expContainer = document.querySelector('.exp-container');
+        const expItems = document.querySelectorAll('.exp-item');
+        const btnPrev = document.querySelector('.exp-nav-prev');
+        const btnNext = document.querySelector('.exp-nav-next');
+        const expWrapper = document.getElementById('exp-wrapper');
+        
+        let currentIndex = 0;
+        
+        // Hàm trượt slide
+        function updateSlider() {
+            if(expItems[currentIndex]) {
+                const gap = 40; // Khoảng cách gap giữa các thẻ
+                const itemWidth = expItems[0].offsetWidth; // Lấy chiều rộng của 1 thẻ
+                const shift = (itemWidth + gap) * currentIndex; // Tính độ dời
+                
+                expContainer.style.transform = `translateX(-${shift}px)`;
+                
+                // Nút bấm mờ đi khi tới điểm mù (kịch trái hoặc kịch phải)
+                btnPrev.style.opacity = currentIndex === 0 ? "0.3" : "1";
+                btnNext.style.opacity = currentIndex === expItems.length - 1 ? "0.3" : "1";
+            }
+        }
+        
+        // Nút mũi tên mini bấm qua lại
+        btnPrev.addEventListener('click', () => { 
+            if(currentIndex > 0) { currentIndex--; updateSlider(); } 
+        });
+        btnNext.addEventListener('click', () => { 
+            if(currentIndex < expItems.length - 1) { currentIndex++; updateSlider(); } 
+        });
+        
+        // Custom Cursor: Đổi trỏ chuột khi rê vô mép trái / mép phải
+        expWrapper.addEventListener('mousemove', (e) => {
+            const rect = expWrapper.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const width = rect.width;
+            
+            // Nếu rê vô vùng 30% bên trái -> Chuột thành mũi tên trái
+            if (x < width * 0.3) {
+                expWrapper.style.cursor = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E\") 16 16, w-resize";
+                expWrapper.dataset.direction = 'prev';
+            } 
+            // Nếu rê vô vùng 30% bên phải -> Chuột thành mũi tên phải
+            else if (x > width * 0.7) {
+                expWrapper.style.cursor = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E\") 16 16, e-resize";
+                expWrapper.dataset.direction = 'next';
+            } 
+            // Nếu rê vô giữa thẻ -> Chuột bình thường
+            else {
+                expWrapper.style.cursor = "auto";
+                expWrapper.dataset.direction = 'none';
             }
         });
+        
+        // Xử lý Click trên toàn bộ khung để chuyển slide
+        expWrapper.addEventListener('click', (e) => {
+            // Không can thiệp nếu người ta cố tình bấm vô mấy nút mũi tên (để mũi tên tự xử)
+            if(e.target.closest('.exp-nav-arrows')) return;
+            
+            if (expWrapper.dataset.direction === 'prev' && currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            } else if (expWrapper.dataset.direction === 'next' && currentIndex < expItems.length - 1) {
+                currentIndex++;
+                updateSlider();
+            }
+        });
+
+        // Khởi chạy slider lần đầu
+        updateSlider();
 
     </script>
 </body>
