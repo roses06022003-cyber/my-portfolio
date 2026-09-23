@@ -25,7 +25,7 @@
             position: relative;
         }
 
-        /* LỚP TEXTURE HẠT TỪ FILE ẢNH THẬT */
+        /* LỚP TEXTURE NẰM DƯỚI ĐÁY CÙNG (Z-INDEX: 0) */
         .noise-overlay {
             position: fixed;
             top: 0;
@@ -33,15 +33,15 @@
             width: 100vw;
             height: 100vh;
             pointer-events: none; 
-            z-index: 9999;
+            z-index: 0; /* Ép xuống dưới cùng để không đè lên text */
             background-image: url("images/texture.jpg"); 
-            background-repeat: repeat; /* Cho lặp lại họa tiết dập nổi lấp đầy web */
-            background-size: 400px 400px; /* Chỉnh độ to nhỏ của vân giấy (tùy file ảnh bà xuất) */
-            opacity: 1; /* Chỉnh độ đậm nhạt (từ 0.1 đến 1) */
+            background-repeat: repeat; 
+            background-size: 400px 400px; 
+            opacity: 1; /* Hiển thị rõ vân giấy 100% */
             mix-blend-mode: multiply; 
         }
 
-        /* HEADER & UI */
+        /* HEADER & UI (Luôn nổi lên trên cùng) */
         header {
             position: fixed;
             top: 0;
@@ -113,8 +113,9 @@
         }
 
         /* HERO SCROLL SECTION */
-        #hero-scroll-container { height: 250vh; position: relative; }
-        #hero-sticky { position: sticky; top: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: var(--bg-color); }
+        #hero-scroll-container { height: 250vh; position: relative; z-index: 10; }
+        /* Xóa background-color để nhìn xuyên thấu lớp texture */
+        #hero-sticky { position: sticky; top: 0; height: 100vh; width: 100vw; overflow: hidden; }
         #hero-svg { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; }
 
         .hero-slide { animation: crossfade 16s infinite; opacity: 0; }
@@ -138,6 +139,7 @@
             position: relative;
             padding: 50px 0 100px 0;
             z-index: 10;
+            /* Đã gỡ nền đặc để nhìn thấy vân giấy */
         }
 
         .massive-svg-wrapper {
@@ -245,6 +247,7 @@
             padding-top: 150px;
             padding-bottom: 150px;
             overflow: hidden;
+            z-index: 10;
         }
 
         .exp-bg-text {
@@ -366,6 +369,8 @@
             background-color: #F5F7F3; 
             color: #1a1a1a;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 10;
         }
 
         .exp-left {
@@ -477,12 +482,11 @@
             text-transform: uppercase;
         }
         
-        /* WORKS SECTION (DUMMY) */
+        /* WORKS SECTION */
         .works-section {
             position: relative;
             height: 100vh;
             padding: 150px 50px;
-            background-color: var(--bg-color); 
             z-index: 10;
         }
         
@@ -676,7 +680,7 @@
     </section>
 
     <!-- ========================================= -->
-    <!-- EXPERIENCES SECTION - CUSTOM CURSOR SLIDE -->
+    <!-- EXPERIENCES SECTION                       -->
     <!-- ========================================= -->
     <section class="exp-section" id="experiences">
         
@@ -689,7 +693,6 @@
                 <div class="exp-title-wrapper">
                     <h2>EXPERIENCES</h2>
                     
-                    <!-- NÚT BẤM TRÁI PHẢI BÊN CẠNH CHỮ EXPERIENCES -->
                     <div class="exp-nav-arrows">
                         <button class="exp-nav-prev" aria-label="Previous" style="opacity: 0.3;">
                             <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -706,10 +709,10 @@
             </div>
         </div>
 
-        <!-- Bỏ PIN, chuyển sang click để cuộn -->
         <div class="exp-scroll-wrapper" id="exp-wrapper">
             <div class="exp-container">
                 
+                <!-- CARD 1 -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -738,6 +741,7 @@
                     </div>
                 </div>
 
+                <!-- CARD 2 -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -766,6 +770,7 @@
                     </div>
                 </div>
 
+                <!-- CARD 3 -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -794,6 +799,7 @@
                     </div>
                 </div>
 
+                <!-- CARD 4 -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -828,7 +834,7 @@
     </section>
 
     <!-- ========================================= -->
-    <!-- PROJECTS SECTION (LÀM BƯỚC ĐỆM BÊN DƯỚI)  -->
+    <!-- PROJECTS SECTION (DUMMY)                 -->
     <!-- ========================================= -->
     <section class="works-section" id="works">
         <div class="works-header">
@@ -858,19 +864,19 @@
         tl.to("#text-group", { scale: 35, opacity: 0, svgOrigin: "700 726", ease: "power2.inOut" }, 0);
         tl.to("#hero-img-group", { scale: 1.1, svgOrigin: "700 726", ease: "power2.inOut" }, 0);
 
-        /* 2. BEYOND WHAT'S SEEN: BAY LÊN KHI CUỘN TỚI */
+        /* 2. BEYOND WHAT'S SEEN */
         gsap.from(".massive-svg", {
             y: 50, opacity: 0, duration: 1, ease: "power3.out",
             scrollTrigger: { trigger: ".massive-svg-wrapper", start: "top 70%" }
         });
 
-        /* 3. HIỆU ỨNG CHỮ ABOUT ME LƯỚT LÊN LẦN LƯỢT */
+        /* 3. HIỆU ỨNG CHỮ ABOUT ME LƯỚT LÊN */
         gsap.from(".right-col p", {
             y: 30, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out",
             scrollTrigger: { trigger: ".about-table", start: "top 75%" }
         });
 
-        /* 4. HIỆU ỨNG KẺ LƯỚI (VẼ LINE) THEO NHỊP CUỘN CHUỘT */
+        /* 4. HIỆU ỨNG KẺ LƯỚI (VẼ LINE) */
         let gridTl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".about-table",
@@ -897,7 +903,6 @@
         /* 6. HIỆU ỨNG EXPERIENCES (CLICK ĐỂ SLIDE)  */
         /* ========================================= */
         
-        // Đổi nền đen mượt mà khi cuộn tới vùng Experiences
         gsap.to("body", {
             backgroundColor: "#1a1a1a",
             color: "#F5F7F3",
@@ -910,7 +915,6 @@
             }
         });
 
-        // TÍNH NĂNG SLIDER BẰNG JAVASCRIPT
         const expContainer = document.querySelector('.exp-container');
         const expItems = document.querySelectorAll('.exp-item');
         const btnPrev = document.querySelector('.exp-nav-prev');
@@ -932,7 +936,6 @@
             }
         }
         
-        // Nút mũi tên mini
         btnPrev.addEventListener('click', () => { 
             if(currentIndex > 0) { currentIndex--; updateSlider(); } 
         });
@@ -940,7 +943,6 @@
             if(currentIndex < expItems.length - 1) { currentIndex++; updateSlider(); } 
         });
         
-        // Custom Cursor khi rê mép trái phải
         expWrapper.addEventListener('mousemove', (e) => {
             const rect = expWrapper.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -960,7 +962,6 @@
             }
         });
         
-        // Click để chuyển
         expWrapper.addEventListener('click', (e) => {
             if(e.target.closest('.exp-nav-arrows')) return;
             
