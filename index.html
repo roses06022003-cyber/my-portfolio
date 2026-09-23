@@ -33,15 +33,15 @@
             width: 100vw;
             height: 100vh;
             pointer-events: none; 
-            z-index: 0; /* Ép xuống dưới cùng để không đè lên text */
+            z-index: 0; 
             background-image: url("images/texture.jpg"); 
-            background-repeat: repeat; 
-            background-size: 400px 400px; 
-            opacity: 1; /* Hiển thị rõ vân giấy 100% */
+            background-repeat: repeat-y; /* CHỈ SỬA Ở ĐÂY: Chỉ lặp dọc xuống dưới */
+            background-size: 100vw auto; /* CHỈ SỬA Ở ĐÂY: Kéo giãn hình full chiều ngang màn hình */
+            opacity: 1; 
             mix-blend-mode: multiply; 
         }
 
-        /* HEADER & UI (Luôn nổi lên trên cùng) */
+        /* HEADER & UI */
         header {
             position: fixed;
             top: 0;
@@ -114,7 +114,6 @@
 
         /* HERO SCROLL SECTION */
         #hero-scroll-container { height: 250vh; position: relative; z-index: 10; }
-        /* Xóa background-color để nhìn xuyên thấu lớp texture */
         #hero-sticky { position: sticky; top: 0; height: 100vh; width: 100vw; overflow: hidden; }
         #hero-svg { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; }
 
@@ -139,7 +138,6 @@
             position: relative;
             padding: 50px 0 100px 0;
             z-index: 10;
-            /* Đã gỡ nền đặc để nhìn thấy vân giấy */
         }
 
         .massive-svg-wrapper {
@@ -686,7 +684,6 @@
         
         <div class="exp-bg-text">EXPERIENCES</div>
 
-        <!-- Tiêu đề và nút bấm -->
         <div class="exp-header">
             <div class="exp-header-left">
                 <span class="exp-label">CAREER ARCHIVE</span>
@@ -712,7 +709,6 @@
         <div class="exp-scroll-wrapper" id="exp-wrapper">
             <div class="exp-container">
                 
-                <!-- CARD 1 -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -741,7 +737,6 @@
                     </div>
                 </div>
 
-                <!-- CARD 2 -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -770,7 +765,6 @@
                     </div>
                 </div>
 
-                <!-- CARD 3 -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -799,7 +793,6 @@
                     </div>
                 </div>
 
-                <!-- CARD 4 -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
