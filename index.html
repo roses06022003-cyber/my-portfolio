@@ -25,7 +25,7 @@
             position: relative;
         }
 
-        /* TEXTURE HẠT (NOISE) */
+        /* LỚP TEXTURE HẠT TỪ FILE ẢNH THẬT */
         .noise-overlay {
             position: fixed;
             top: 0;
@@ -34,10 +34,11 @@
             height: 100vh;
             pointer-events: none; 
             z-index: 9999;
-            /* Đã tăng tần số và độ chi tiết để hạt nhuyễn mịn giống giấy */
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.08; /* Nâng độ đậm lên một xíu để rõ vân hơn */
-            mix-blend-mode: multiply;
+            background-image: url("images/texture.jpg"); /* GỌI FILE ẢNH CỦA BÀ Ở ĐÂY */
+            background-repeat: repeat; /* Cho lặp lại họa tiết dập nổi lấp đầy web */
+            background-size: 400px 400px; /* Chỉnh độ to nhỏ của vân giấy (tùy file ảnh bà xuất) */
+            opacity: 0.3; /* Chỉnh độ đậm nhạt (từ 0.1 đến 1) */
+            mix-blend-mode: multiply; /* Hòa trộn vi diệu vào nền web */
         }
 
         /* HEADER & UI */
@@ -238,12 +239,9 @@
         }
         .avatar-svg { width: 100%; height: auto; display: block; }
 
-        /* ========================================= */
-        /* EXPERIENCES SECTION - CLICK TO SLIDE      */
-        /* ========================================= */
+        /* EXPERIENCES SECTION */
         .exp-section {
             position: relative;
-            /* Đã chuyển từ height 100vh sang padding bình thường để tránh ngắt ngứ cuộn chuột */
             padding-top: 150px;
             padding-bottom: 150px;
             overflow: hidden;
@@ -283,7 +281,6 @@
             text-transform: uppercase;
         }
 
-        /* KHU VỰC TIÊU ĐỀ & MŨI TÊN CHUYỂN SLIDE */
         .exp-title-wrapper {
             display: flex;
             align-items: center;
@@ -296,7 +293,6 @@
             letter-spacing: -1px;
         }
 
-        /* CSS NÚT BẤM (ARROWS) MỚI */
         .exp-nav-arrows {
             display: flex;
             gap: 15px;
@@ -338,13 +334,11 @@
             margin-bottom: 10px;
         }
 
-        /* KHUNG BAO CHỨA CÁC THẺ CARD TRƯỢT NGANG */
         .exp-scroll-wrapper {
             width: 100vw;
-            overflow: hidden; /* Giấu các mục bị tràn */
+            overflow: hidden; 
             display: flex;
             align-items: center;
-            /* Giúp người dùng biết có thể tương tác */
             transition: cursor 0.2s ease;
         }
 
@@ -353,7 +347,6 @@
             padding: 0 50px;
             gap: 40px;
             width: fit-content;
-            /* TRANSITION LÀM HIỆU ỨNG TRƯỢT MƯỢT MÀ NHƯ BÔI MỠ */
             transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -363,7 +356,6 @@
             height: 65vh;
             min-height: 500px;
             flex-shrink: 0;
-            /* Chống highlight text lúc click chuột nhanh */
             user-select: none; 
         }
 
@@ -485,9 +477,7 @@
             text-transform: uppercase;
         }
         
-        /* ========================================= */
-        /* WORKS SECTION (DUMMY SECTION)             */
-        /* ========================================= */
+        /* WORKS SECTION (DUMMY) */
         .works-section {
             position: relative;
             height: 100vh;
@@ -689,7 +679,7 @@
     <!-- EXPERIENCES SECTION - CUSTOM CURSOR SLIDE -->
     <!-- ========================================= -->
     <section class="exp-section" id="experiences">
-        <!-- Chữ BACKGROUND siêu mờ chìm phía sau -->
+        
         <div class="exp-bg-text">EXPERIENCES</div>
 
         <!-- Tiêu đề và nút bấm -->
@@ -699,14 +689,12 @@
                 <div class="exp-title-wrapper">
                     <h2>EXPERIENCES</h2>
                     
-                    <!-- 2 NÚT BẤM MŨI TÊN NHỎ GỌN NHƯ HÌNH CHỤP -->
+                    <!-- NÚT BẤM TRÁI PHẢI BÊN CẠNH CHỮ EXPERIENCES -->
                     <div class="exp-nav-arrows">
-                        <button class="exp-nav-prev" aria-label="Previous">
-                            <!-- SVG mũi tên trái -->
+                        <button class="exp-nav-prev" aria-label="Previous" style="opacity: 0.3;">
                             <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </button>
                         <button class="exp-nav-next" aria-label="Next">
-                            <!-- SVG mũi tên phải -->
                             <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </button>
                     </div>
@@ -718,11 +706,10 @@
             </div>
         </div>
 
-        <!-- Khung bao khu vực trượt ngang (Không ghim nữa) -->
+        <!-- Bỏ PIN, chuyển sang click để cuộn -->
         <div class="exp-scroll-wrapper" id="exp-wrapper">
             <div class="exp-container">
                 
-                <!-- CARD 1: EDUCATION -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -751,7 +738,6 @@
                     </div>
                 </div>
 
-                <!-- CARD 2: KIRA ART EDU -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -780,7 +766,6 @@
                     </div>
                 </div>
 
-                <!-- CARD 3: ECON GROUPS -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -809,7 +794,6 @@
                     </div>
                 </div>
 
-                <!-- CARD 4: DIGIUNI & FREELANCE -->
                 <div class="exp-item">
                     <div class="exp-card">
                         <div class="exp-left">
@@ -913,7 +897,7 @@
         /* 6. HIỆU ỨNG EXPERIENCES (CLICK ĐỂ SLIDE)  */
         /* ========================================= */
         
-        // Hiệu ứng đổi màu Body mượt mà khi lướt tới khu vực Experiences
+        // Đổi nền đen mượt mà khi cuộn tới vùng Experiences
         gsap.to("body", {
             backgroundColor: "#1a1a1a",
             color: "#F5F7F3",
@@ -926,7 +910,7 @@
             }
         });
 
-        // XỬ LÝ LOGIC SLIDER VÀ CUSTOM CURSOR
+        // TÍNH NĂNG SLIDER BẰNG JAVASCRIPT
         const expContainer = document.querySelector('.exp-container');
         const expItems = document.querySelectorAll('.exp-item');
         const btnPrev = document.querySelector('.exp-nav-prev');
@@ -935,22 +919,20 @@
         
         let currentIndex = 0;
         
-        // Hàm trượt slide
         function updateSlider() {
             if(expItems[currentIndex]) {
-                const gap = 40; // Khoảng cách gap giữa các thẻ
-                const itemWidth = expItems[0].offsetWidth; // Lấy chiều rộng của 1 thẻ
-                const shift = (itemWidth + gap) * currentIndex; // Tính độ dời
+                const gap = 40; 
+                const itemWidth = expItems[0].offsetWidth; 
+                const shift = (itemWidth + gap) * currentIndex; 
                 
                 expContainer.style.transform = `translateX(-${shift}px)`;
                 
-                // Nút bấm mờ đi khi tới điểm mù (kịch trái hoặc kịch phải)
                 btnPrev.style.opacity = currentIndex === 0 ? "0.3" : "1";
                 btnNext.style.opacity = currentIndex === expItems.length - 1 ? "0.3" : "1";
             }
         }
         
-        // Nút mũi tên mini bấm qua lại
+        // Nút mũi tên mini
         btnPrev.addEventListener('click', () => { 
             if(currentIndex > 0) { currentIndex--; updateSlider(); } 
         });
@@ -958,32 +940,28 @@
             if(currentIndex < expItems.length - 1) { currentIndex++; updateSlider(); } 
         });
         
-        // Custom Cursor: Đổi trỏ chuột khi rê vô mép trái / mép phải
+        // Custom Cursor khi rê mép trái phải
         expWrapper.addEventListener('mousemove', (e) => {
             const rect = expWrapper.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const width = rect.width;
             
-            // Nếu rê vô vùng 30% bên trái -> Chuột thành mũi tên trái
             if (x < width * 0.3) {
                 expWrapper.style.cursor = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E\") 16 16, w-resize";
                 expWrapper.dataset.direction = 'prev';
             } 
-            // Nếu rê vô vùng 30% bên phải -> Chuột thành mũi tên phải
             else if (x > width * 0.7) {
                 expWrapper.style.cursor = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E\") 16 16, e-resize";
                 expWrapper.dataset.direction = 'next';
             } 
-            // Nếu rê vô giữa thẻ -> Chuột bình thường
             else {
                 expWrapper.style.cursor = "auto";
                 expWrapper.dataset.direction = 'none';
             }
         });
         
-        // Xử lý Click trên toàn bộ khung để chuyển slide
+        // Click để chuyển
         expWrapper.addEventListener('click', (e) => {
-            // Không can thiệp nếu người ta cố tình bấm vô mấy nút mũi tên (để mũi tên tự xử)
             if(e.target.closest('.exp-nav-arrows')) return;
             
             if (expWrapper.dataset.direction === 'prev' && currentIndex > 0) {
@@ -995,7 +973,6 @@
             }
         });
 
-        // Khởi chạy slider lần đầu
         updateSlider();
 
     </script>
