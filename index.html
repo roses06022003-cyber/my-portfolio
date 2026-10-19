@@ -41,7 +41,7 @@
             mix-blend-mode: multiply; 
         }
 
-        /* HEADER KÍNH MỜ (FROSTED GLASS) */
+        /* HEADER KÍNH MỜ */
         header {
             position: fixed;
             top: 0;
@@ -195,12 +195,7 @@
         .work-img-container img { width: 100%; height: 100%; object-fit: cover; transition: filter 0.4s ease; }
         .work-card:hover .work-img-container img { filter: brightness(0.6); }
         .work-info h3 { font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; text-transform: capitalize; }
-        
-        .work-info p { 
-            font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 15px; 
-            display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; 
-        }
-        
+        .work-info p { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .work-tag { display: inline-block; background-color: #1a1a1a; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
 
         /* CUSTOM CURSOR "SEE MORE!" */
@@ -212,99 +207,152 @@
         }
         #see-more-cursor.active { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 
-        /* ========================================= */
-        /* SKILLS SECTION (ĐÃ PHỤC HỒI NGUYÊN VẸN)    */
-        /* ========================================= */
-        .skills-section {
-            position: relative;
-            padding: 100px 50px 200px 50px;
-            background-color: transparent;
-            z-index: 10;
-        }
+        /* SKILLS SECTION */
+        .skills-section { position: relative; padding: 100px 50px 100px 50px; background-color: transparent; z-index: 10; }
+        .skills-header { text-align: center; margin-bottom: 60px; }
+        .skills-header span { font-size: 11px; letter-spacing: 2px; color: #888; text-transform: uppercase; display: block; margin-bottom: 10px; }
+        .skills-header h2 { font-family: var(--font-sans); font-size: 48px; font-weight: 500; color: var(--text-color); letter-spacing: -1px; }
 
-        .skills-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .skills-header span {
-            font-size: 11px;
-            letter-spacing: 2px;
-            color: #888;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .skills-header h2 {
-            font-family: var(--font-sans);
-            font-size: 48px;
-            font-weight: 500;
-            color: var(--text-color);
-            letter-spacing: -1px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .skill-card {
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,0,0,0.04);
-            cursor: default; 
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
-        }
-
-        .skill-card:hover {
-            transform: scale(1.06) translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-            border-color: rgba(0,0,0,0.1);
-        }
-
-        .skill-icon {
-            width: 44px;
-            height: 44px;
-            margin-right: 15px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .skill-card { display: flex; align-items: center; background-color: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04); cursor: default; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease; }
+        .skill-card:hover { transform: scale(1.06) translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: rgba(0,0,0,0.1); }
+        .skill-icon { width: 44px; height: 44px; margin-right: 15px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
         .skill-icon svg { width: 100%; height: auto; }
-
         .skill-info { display: flex; flex-direction: column; }
-        .skill-info h4 {
-            font-family: var(--font-sans);
-            font-size: 15px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 2px;
-        }
-        .skill-info p {
-            font-size: 11px;
-            font-weight: 500;
-            color: #888;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin: 0;
-        }
+        .skill-info h4 { font-family: var(--font-sans); font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 2px; }
+        .skill-info p { font-size: 11px; font-weight: 500; color: #888; letter-spacing: 1px; text-transform: uppercase; margin: 0; }
 
-        /* SVG ICONS CSS */
         .icon-ps { background: #31A8FF; border-radius: 8px; color: #001E36; font-weight: 700; font-size: 22px; }
         .icon-ai { background: #FF9A00; border-radius: 8px; color: #330000; font-weight: 700; font-size: 22px; }
         .icon-id { background: #FF3366; border-radius: 8px; color: #49021F; font-weight: 700; font-size: 22px; }
         .icon-pr { background: #9999FF; border-radius: 8px; color: #00005C; font-weight: 700; font-size: 22px; }
         .icon-lr { background: #31A8FF; border-radius: 8px; color: #001E36; font-weight: 700; font-size: 22px; }
+
+        /* ========================================= */
+        /* CONTACT SECTION                           */
+        /* ========================================= */
+        .contact-section {
+            position: relative;
+            padding: 150px 50px 80px 50px;
+            background-color: transparent;
+            z-index: 10;
+            border-top: 1px solid rgba(0,0,0,0.1); /* Line mờ phân cách giống video */
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Đồng bộ font header y chang Featured Works/Skills */
+        .contact-content h2 {
+            font-family: var(--font-sans);
+            font-size: 48px;
+            font-weight: 500;
+            color: var(--text-color);
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .contact-content p {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .contact-btns {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-btns button, .contact-btns a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Nút Email */
+        #copy-email-btn {
+            background-color: #1a1a1a;
+            color: #fff;
+            border: 1px solid #1a1a1a;
+        }
+
+        /* Tooltip bám theo chuột cho nút Email */
+        #email-tooltip {
+            position: fixed;
+            top: 0; left: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            pointer-events: none; /* Tránh kẹt click chuột */
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            transform: translate(15px, 15px); /* Lệch ra so với mũi tên chuột */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Nút LinkedIn */
+        .linkedin-btn {
+            background-color: #1a1a1a;
+            color: #fff;
+            border: 1px solid #1a1a1a;
+        }
+        .linkedin-btn:hover {
+            background-color: #fff;
+            color: #1a1a1a;
+        }
+
+        /* Khối hình ảnh bên phải */
+        .contact-graphic {
+            width: 300px;
+        }
+
+        .wiggle-img {
+            width: 100%;
+            height: auto;
+            transform-origin: center;
+        }
+
+        /* Chuyển động lắc lư tưng tưng */
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-6deg); }
+            50% { transform: rotate(6deg); }
+            75% { transform: rotate(-6deg); }
+        }
+
+        .wiggle-img:hover {
+            animation: wiggle 0.4s ease-in-out infinite;
+        }
+
+        /* Chữ bản quyền góc dưới */
+        .footer-copy {
+            position: absolute;
+            bottom: 30px;
+            left: 50px;
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
     </style>
 </head>
@@ -312,8 +360,10 @@
 
     <div class="noise-overlay"></div>
 
-    <!-- CUSTOM CURSOR SEE MORE -->
     <div id="see-more-cursor">see more!</div>
+    
+    <!-- Tooltip chớp chớp báo Copy -->
+    <div id="email-tooltip">Copy</div>
 
     <header>
         <div class="logo">
@@ -613,9 +663,7 @@
         </div>
     </section>
 
-    <!-- ========================================= -->
-    <!-- FEATURED WORKS SECTION                    -->
-    <!-- ========================================= -->
+    <!-- FEATURED WORKS SECTION -->
     <section class="works-section" id="works">
         <div class="works-header">
             <h2>Featured Works</h2>
@@ -758,9 +806,7 @@
         </div>
     </section>
 
-    <!-- ========================================= -->
-    <!-- SKILLS SECTION                            -->
-    <!-- ========================================= -->
+    <!-- SKILLS SECTION -->
     <section class="skills-section" id="skills">
         <div class="skills-header">
             <span>TECHNICAL ARSENAL</span>
@@ -872,6 +918,35 @@
         </div>
     </section>
 
+    <!-- ========================================= -->
+    <!-- CONTACT SECTION (CHỐT ĐƠN)                -->
+    <!-- ========================================= -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            
+            <div class="contact-content">
+                <h2>Like what you see?</h2>
+                <p>Let's talk projects, collaborations, or anything design!</p>
+                
+                <div class="contact-btns">
+                    <!-- Nút Email -->
+                    <button id="copy-email-btn">roses06022003@gmail.com</button>
+                    <!-- Nút LinkedIn -->
+                    <a href="#" class="linkedin-btn" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+            
+            <div class="contact-graphic">
+                <img src="images/avasketch.png" alt="Let's connect" class="wiggle-img">
+            </div>
+
+        </div>
+        
+        <div class="footer-copy">
+            © 2026 BỐNGFOLIO. ALL RIGHTS RESERVED.
+        </div>
+    </section>
+
     <!-- Thư viện GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -923,9 +998,7 @@
             }
         });
 
-        /* ========================================= */
-        /* 6. HIỆU ỨNG EXPERIENCES (CLICK ĐỂ SLIDE)  */
-        /* ========================================= */
+        /* 6. HIỆU ỨNG EXPERIENCES (CLICK ĐỂ SLIDE) */
         gsap.to("body", {
             backgroundColor: "#1a1a1a",
             color: "#F5F7F3",
@@ -999,9 +1072,7 @@
 
         updateSlider();
 
-        /* ========================================= */
-        /* 7. CUSTOM CURSOR CHO FEATURED WORKS       */
-        /* ========================================= */
+        /* 7. CUSTOM CURSOR CHO FEATURED WORKS */
         const customCursor = document.getElementById('see-more-cursor');
         const workCards = document.querySelectorAll('.work-card');
 
@@ -1015,9 +1086,7 @@
             card.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
         });
 
-        /* ========================================= */
-        /* 8. HIỆU ỨNG POP-UP CHO SKILLS             */
-        /* ========================================= */
+        /* 8. HIỆU ỨNG POP-UP CHO SKILLS */
         gsap.set(".skill-card", { opacity: 0, scale: 0.8, y: 40 });
 
         gsap.to(".skill-card", {
@@ -1031,6 +1100,37 @@
             duration: 0.6,
             stagger: 0.08, 
             ease: "back.out(1.5)" 
+        });
+
+        /* ========================================= */
+        /* 9. LOGIC CHẠY TOOLTIP COPY CHO NÚT EMAIL  */
+        /* ========================================= */
+        const emailBtn = document.getElementById('copy-email-btn');
+        const emailTooltip = document.getElementById('email-tooltip');
+        const emailText = "roses06022003@gmail.com";
+
+        // Cho tooltip chạy bám theo trỏ chuột khi lướt lên nút
+        emailBtn.addEventListener('mousemove', (e) => {
+            emailTooltip.style.left = e.clientX + 'px';
+            emailTooltip.style.top = e.clientY + 'px';
+        });
+
+        // Bật tooltip khi rê vô
+        emailBtn.addEventListener('mouseenter', () => {
+            emailTooltip.style.opacity = '1';
+        });
+
+        // Tắt tooltip khi thả chuột ra, đồng thời reset lại chữ "Copy"
+        emailBtn.addEventListener('mouseleave', () => {
+            emailTooltip.style.opacity = '0';
+            setTimeout(() => { emailTooltip.textContent = "Copy"; }, 300);
+        });
+
+        // Khi click vào sẽ sao chép Email và đổi dòng chữ
+        emailBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(emailText).then(() => {
+                emailTooltip.textContent = "Copied!";
+            });
         });
 
     </script>
