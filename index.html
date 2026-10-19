@@ -42,7 +42,7 @@
         }
 
         /* ========================================= */
-        /* HEADER ĐÃ FIX: NỀN TRẮNG, CHỮ ĐEN, CÓ LINE ĐEN DƯỚI ĐÁY */
+        /* HEADER KÍNH MỜ (FROSTED GLASS) Y VIDEO    */
         /* ========================================= */
         header {
             position: fixed;
@@ -51,11 +51,13 @@
             padding: 20px 50px;
             display: flex;
             justify-content: space-between;
-            align-items: center; /* Căn giữa theo chiều dọc */
+            align-items: center; 
             z-index: 999;
-            background-color: #fff; /* Nền trắng cứng */
-            border-bottom: 1px solid #1a1a1a; /* Line ngang màu đen */
-            color: #1a1a1a; /* Chữ đen */
+            background-color: rgba(245, 247, 243, 0.85); /* Nền hơi trong suốt */
+            backdrop-filter: blur(12px); /* Hiệu ứng làm mờ nội dung phía sau */
+            -webkit-backdrop-filter: blur(12px); /* Dành cho Safari */
+            border-bottom: 1px solid rgba(26, 26, 26, 0.2); /* Line ngang mỏng tinh tế */
+            color: #1a1a1a; 
         }
         
         .logo { display: flex; flex-direction: column; align-items: flex-start; pointer-events: auto; }
@@ -112,7 +114,6 @@
         .sticky-contact:hover { background-color: transparent; color: #1a1a1a; transform: scale(1.05); }
 
         /* HERO SCROLL SECTION */
-        /* Hạ margin top xuống xíu để né cái header trắng mới */
         #hero-scroll-container { height: 250vh; position: relative; z-index: 10; margin-top: 80px;}
         #hero-sticky { position: sticky; top: 80px; height: calc(100vh - 80px); width: 100vw; overflow: hidden; }
         #hero-svg { width: 100vw; height: calc(100vh - 80px); position: absolute; top: 0; left: 0; }
@@ -186,12 +187,12 @@
         .exp-date { position: absolute; bottom: 30px; left: 40px; font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #fff; text-transform: uppercase; }
         
         /* ========================================= */
-        /* FEATURED WORKS SECTION (NEW)              */
+        /* FEATURED WORKS SECTION                    */
         /* ========================================= */
         .works-section {
             position: relative;
             padding: 150px 50px;
-            background-color: transparent; /* Để lộ nền body / texture */
+            background-color: transparent; 
             z-index: 10;
         }
         
@@ -208,29 +209,26 @@
             letter-spacing: -1px;
         }
 
-        /* Lưới 2 cột, ép width nhỏ nhắn vừa màn hình */
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 Cột */
+            grid-template-columns: repeat(2, 1fr); 
             gap: 40px;
-            max-width: 900px; /* Khống chế kích thước bé bé xinh xinh như video */
+            max-width: 900px; 
             margin: 0 auto;
         }
 
         .work-card {
-            background-color: #fff; /* Box nền trắng */
+            background-color: #fff; 
             border-radius: 12px;
             padding: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            /* Chống highlight lúc lướt */
             user-select: none;
-            /* Giấu chuột thường khi hover để xài custom cursor */
             cursor: none; 
         }
 
         .work-img-container {
             width: 100%;
-            aspect-ratio: 4 / 3; /* Tỉ lệ khung hình ngang gọn gàng */
+            aspect-ratio: 4 / 3; 
             border-radius: 8px;
             overflow: hidden;
             background-color: #eee;
@@ -242,10 +240,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: filter 0.4s ease; /* Transition cho hiệu ứng làm tối */
+            transition: filter 0.4s ease; 
         }
 
-        /* Hover vào Card thì Hình tối lại như trong video */
         .work-card:hover .work-img-container img {
             filter: brightness(0.6); 
         }
@@ -264,7 +261,7 @@
             line-height: 1.6;
             margin-bottom: 15px;
             display: -webkit-box;
-            -webkit-line-clamp: 2; /* Cắt gọn text nếu dài quá 2 dòng */
+            -webkit-line-clamp: 2; 
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
@@ -292,9 +289,9 @@
             font-weight: 600;
             padding: 8px 16px;
             border-radius: 30px;
-            pointer-events: none; /* Không cản trở click chuột */
+            pointer-events: none; 
             z-index: 9999;
-            transform: translate(-50%, -50%) scale(0); /* Giấu đi mặc định */
+            transform: translate(-50%, -50%) scale(0); 
             opacity: 0;
             transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease;
         }
@@ -624,7 +621,7 @@
             <!-- Work 1 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work1.jpg" alt="Magazine Celine">
+                    <img src="images/magazine.jpg" alt="Magazine Celine">
                 </div>
                 <div class="work-info">
                     <h3>Magazine Celine</h3>
@@ -636,7 +633,7 @@
             <!-- Work 2 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work2.jpg" alt="Sự Im Lặng Của Bầy Cừu">
+                    <img src="images/bookcover.jpg" alt="Sự Im Lặng Của Bầy Cừu">
                 </div>
                 <div class="work-info">
                     <h3>Sự im lặng của bầy cừu</h3>
@@ -648,7 +645,7 @@
             <!-- Work 3 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work3.jpg" alt="Package Himalaya">
+                    <img src="images/packagehima.jpg" alt="Package Himalaya">
                 </div>
                 <div class="work-info">
                     <h3>Package Himalaya</h3>
@@ -660,7 +657,7 @@
             <!-- Work 4 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work4.jpg" alt="UI UX Thiên Mộc Hương">
+                    <img src="images/thienmochuong.jpg" alt="UI UX Thiên Mộc Hương">
                 </div>
                 <div class="work-info">
                     <h3>UI UX Thiên Mộc Hương</h3>
@@ -672,7 +669,7 @@
             <!-- Work 5 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work5.jpg" alt="Campaign Beer Huda">
+                    <img src="images/huda.jpg" alt="Campaign Beer Huda">
                 </div>
                 <div class="work-info">
                     <h3>Campaign Beer Huda</h3>
@@ -684,7 +681,7 @@
             <!-- Work 6 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work6.jpg" alt="Traditional Research motion">
+                    <img src="images/tramotion.jpg" alt="Traditional Research motion">
                 </div>
                 <div class="work-info">
                     <h3>Traditional Research motion</h3>
@@ -696,7 +693,7 @@
             <!-- Work 7 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work7.jpg" alt="Marketing (social post)">
+                    <img src="images/marketing.jpg" alt="Marketing (social post)">
                 </div>
                 <div class="work-info">
                     <h3>Marketing (social post)</h3>
@@ -708,7 +705,7 @@
             <!-- Work 8 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work8.jpg" alt="Delasol social">
+                    <img src="images/delasol.jpg" alt="Delasol social">
                 </div>
                 <div class="work-info">
                     <h3>Delasol social</h3>
@@ -720,7 +717,7 @@
             <!-- Work 9 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work9.jpg" alt="Pepsi exhibition">
+                    <img src="images/pepsi.jpg" alt="Pepsi exhibition">
                 </div>
                 <div class="work-info">
                     <h3>Pepsi exhibition</h3>
@@ -732,7 +729,7 @@
             <!-- Work 10 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work10.jpg" alt="Fanta motion">
+                    <img src="images/fanta.jpg" alt="Fanta motion">
                 </div>
                 <div class="work-info">
                     <h3>Fanta motion</h3>
@@ -744,7 +741,7 @@
             <!-- Work 11 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work11.jpg" alt="Photography">
+                    <img src="images/photo.jpg" alt="Photography">
                 </div>
                 <div class="work-info">
                     <h3>Photography</h3>
@@ -756,7 +753,7 @@
             <!-- Work 12 -->
             <div class="work-card">
                 <div class="work-img-container">
-                    <img src="images/work12.jpg" alt="Kẹo kết việt game">
+                    <img src="images/game.jpg" alt="Kẹo kết việt game">
                 </div>
                 <div class="work-info">
                     <h3>Kẹo kết việt game</h3>
@@ -902,13 +899,11 @@
         const customCursor = document.getElementById('see-more-cursor');
         const workCards = document.querySelectorAll('.work-card');
 
-        // Hàm cho con trỏ "see more!" chạy theo chuột
         document.addEventListener('mousemove', (e) => {
             customCursor.style.left = e.clientX + 'px';
             customCursor.style.top = e.clientY + 'px';
         });
 
-        // Bật/tắt con trỏ custom khi rê vô từng card
         workCards.forEach(card => {
             card.addEventListener('mouseenter', () => customCursor.classList.add('active'));
             card.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
