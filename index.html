@@ -41,27 +41,30 @@
             mix-blend-mode: multiply; 
         }
 
-        /* HEADER & UI */
+        /* ========================================= */
+        /* HEADER ĐÃ FIX: NỀN TRẮNG, CHỮ ĐEN, CÓ LINE ĐEN DƯỚI ĐÁY */
+        /* ========================================= */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 30px 50px;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            z-index: 100;
-            mix-blend-mode: difference; 
-            color: #fff; 
-            pointer-events: none; 
+            align-items: center; /* Căn giữa theo chiều dọc */
+            z-index: 999;
+            background-color: #fff; /* Nền trắng cứng */
+            border-bottom: 1px solid #1a1a1a; /* Line ngang màu đen */
+            color: #1a1a1a; /* Chữ đen */
         }
         
         .logo { display: flex; flex-direction: column; align-items: flex-start; pointer-events: auto; }
-        .logo-svg { width: 140px; height: auto; fill: currentColor; margin-left: -5px; } 
-        .logo span { display: block; font-size: 10px; font-family: var(--font-sans); letter-spacing: 2px; margin-top: 8px; text-transform: uppercase;}
+        .logo-svg { width: 120px; height: auto; fill: #1a1a1a; margin-left: -5px; } 
+        .logo span { display: block; font-size: 9px; font-family: var(--font-sans); letter-spacing: 2px; margin-top: 5px; text-transform: uppercase;}
         
         .nav-links { display: flex; gap: 40px; list-style: none; font-size: 13px; letter-spacing: 1.5px; font-weight: 500; pointer-events: auto; }
-        .nav-links li a { color: #fff; text-decoration: none; text-transform: uppercase; }
+        .nav-links li a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s; }
+        .nav-links li a:hover { opacity: 0.5; }
 
         .news-ticker {
             position: fixed;
@@ -106,16 +109,13 @@
             border: 1px solid #1a1a1a; 
             pointer-events: auto;
         }
-        .sticky-contact:hover {
-            background-color: transparent;
-            color: #1a1a1a;
-            transform: scale(1.05);
-        }
+        .sticky-contact:hover { background-color: transparent; color: #1a1a1a; transform: scale(1.05); }
 
         /* HERO SCROLL SECTION */
-        #hero-scroll-container { height: 250vh; position: relative; z-index: 10; }
-        #hero-sticky { position: sticky; top: 0; height: 100vh; width: 100vw; overflow: hidden; }
-        #hero-svg { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; }
+        /* Hạ margin top xuống xíu để né cái header trắng mới */
+        #hero-scroll-container { height: 250vh; position: relative; z-index: 10; margin-top: 80px;}
+        #hero-sticky { position: sticky; top: 80px; height: calc(100vh - 80px); width: 100vw; overflow: hidden; }
+        #hero-svg { width: 100vw; height: calc(100vh - 80px); position: absolute; top: 0; left: 0; }
 
         .hero-slide { animation: crossfade 16s infinite; opacity: 0; }
         .hero-slide:nth-child(4) { animation-delay: 0s; }
@@ -123,409 +123,195 @@
         .hero-slide:nth-child(2) { animation-delay: 8s; }
         .hero-slide:nth-child(1) { animation-delay: 12s; }
 
-        @keyframes crossfade {
-            0% { opacity: 1; }
-            20% { opacity: 1; }
-            25% { opacity: 0; }
-            95% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
+        @keyframes crossfade { 0% { opacity: 1; } 20% { opacity: 1; } 25% { opacity: 0; } 95% { opacity: 0; } 100% { opacity: 1; } }
         .svg-text-fill { fill: #1a1a1a; }
 
         /* ABOUT ME SECTION */
-        .about-section {
-            position: relative;
-            padding: 50px 0 100px 0;
-            z-index: 10;
-        }
+        .about-section { position: relative; padding: 50px 0 100px 0; z-index: 10; }
+        .massive-svg-wrapper { max-width: 1400px; margin: 0 auto; padding: 50px 50px 100px 50px; }
+        .massive-svg { width: 100%; height: auto; fill: var(--text-color); }
+        .about-table { position: relative; width: 100%; margin-top: 20px; }
 
-        .massive-svg-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 50px 50px 100px 50px;
-        }
-        .massive-svg {
-            width: 100%;
-            height: auto;
-            fill: var(--text-color);
-        }
+        .v-line-wrapper { position: absolute; width: 100%; max-width: 1400px; left: 50%; transform: translateX(-50%); top: 0; bottom: 0; pointer-events: none; z-index: 1; }
+        .v-line-container { position: absolute; top: 0; bottom: 0; left: 30%; width: 1px; }
+        .v-line { width: 100%; height: 100%; background-color: rgba(150, 150, 150, 0.3); transform-origin: top; transform: scaleY(0); }
 
-        .about-table {
-            position: relative;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .v-line-wrapper {
-            position: absolute;
-            width: 100%;
-            max-width: 1400px;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 0; bottom: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-        .v-line-container {
-            position: absolute;
-            top: 0; bottom: 0;
-            left: 30%; 
-            width: 1px;
-        }
-        .v-line {
-            width: 100%; height: 100%;
-            background-color: rgba(150, 150, 150, 0.3);
-            transform-origin: top;
-            transform: scaleY(0); 
-        }
-
-        .about-row {
-            position: relative;
-            display: flex;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .h-line-container {
-            position: absolute;
-            top: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 100vw;
-            height: 1px;
-            z-index: 1;
-        }
-        .h-line {
-            width: 100%; height: 100%;
-            background-color: rgba(150, 150, 150, 0.3);
-            transform-origin: left;
-            transform: scaleX(0); 
-        }
+        .about-row { position: relative; display: flex; width: 100%; max-width: 1400px; margin: 0 auto; }
+        .h-line-container { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 1px; z-index: 1; }
+        .h-line { width: 100%; height: 100%; background-color: rgba(150, 150, 150, 0.3); transform-origin: left; transform: scaleX(0); }
         .h-line-bottom { top: auto; bottom: 0; }
 
         .about-col { padding: 40px 50px; }
         .left-col { width: 30%; position: relative; }
-        .left-col span {
-            font-size: 15px; 
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        .left-col span { font-size: 15px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
 
         .right-col { width: 70%; }
-        .right-col p {
-            font-family: var(--font-sans);
-            font-size: 16px;
-            line-height: 2.2;
-            font-weight: 400;
-            margin: 0 0 30px 0; 
-            max-width: 800px;
-        }
-        .right-col p:last-child { margin-bottom: 0; }
+        .right-col p { font-family: var(--font-sans); font-size: 16px; line-height: 2.2; font-weight: 400; margin: 0 0 30px 0; max-width: 800px; }
+        .right-col p.intro-text { font-weight: 600; font-size: 17px; }
 
-        .right-col p.intro-text {
-            font-weight: 600;
-            font-size: 17px;
-        }
-
-        .avatar-container {
-            position: absolute;
-            top: 40px; 
-            left: 50px; 
-            width: calc(100% - 100px);
-            max-width: 380px;
-            z-index: 5;
-        }
+        .avatar-container { position: absolute; top: 40px; left: 50px; width: calc(100% - 100px); max-width: 380px; z-index: 5; }
         .avatar-svg { width: 100%; height: auto; display: block; }
 
         /* EXPERIENCES SECTION */
-        .exp-section {
-            position: relative;
-            padding-top: 150px;
-            padding-bottom: 150px;
-            overflow: hidden;
-            z-index: 10;
-        }
+        .exp-section { position: relative; padding-top: 150px; padding-bottom: 150px; overflow: hidden; z-index: 10; }
+        .exp-bg-text { position: absolute; top: 150px; left: 50px; font-family: var(--font-sans); font-size: 15vw; font-weight: 700; color: rgba(255, 255, 255, 0.03); line-height: 0.8; pointer-events: none; white-space: nowrap; z-index: 0; letter-spacing: -2px; }
+        .exp-header { position: relative; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 50px; margin-bottom: 80px; z-index: 2; }
+        .exp-label { font-size: 11px; letter-spacing: 2px; color: #888; display: block; margin-bottom: 10px; text-transform: uppercase; }
+        .exp-title-wrapper { display: flex; align-items: center; }
+        .exp-title-wrapper h2 { font-family: var(--font-sans); font-size: 48px; font-weight: 500; letter-spacing: -1px; }
+        .exp-nav-arrows { display: flex; gap: 15px; margin-left: 30px; }
+        .exp-nav-arrows button { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.3s ease; }
+        .exp-nav-arrows button:hover { background: #fff; color: #1a1a1a; }
+        .exp-nav-arrows button svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; fill: none; }
+        .exp-header p { color: #888; font-size: 14px; margin-bottom: 10px; }
 
-        .exp-bg-text {
-            position: absolute;
-            top: 150px;
-            left: 50px;
-            font-family: var(--font-sans);
-            font-size: 15vw;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.03); 
-            line-height: 0.8;
-            pointer-events: none;
-            white-space: nowrap;
-            z-index: 0;
-            letter-spacing: -2px;
-        }
-
-        .exp-header {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding: 0 50px;
-            margin-bottom: 80px;
-            z-index: 2;
-        }
-
-        .exp-label {
-            font-size: 11px;
-            letter-spacing: 2px;
-            color: #888;
-            display: block;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .exp-title-wrapper {
-            display: flex;
-            align-items: center;
-        }
-
-        .exp-title-wrapper h2 {
-            font-family: var(--font-sans);
-            font-size: 48px;
-            font-weight: 500;
-            letter-spacing: -1px;
-        }
-
-        .exp-nav-arrows {
-            display: flex;
-            gap: 15px;
-            margin-left: 30px;
-        }
-
-        .exp-nav-arrows button {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.3);
-            color: #fff;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .exp-nav-arrows button:hover {
-            background: #fff;
-            color: #1a1a1a;
-        }
-
-        .exp-nav-arrows button svg {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            stroke-width: 2;
-            fill: none;
-        }
-        
-        .exp-nav-arrows button:focus { outline: none; }
-
-        .exp-header p {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .exp-scroll-wrapper {
-            width: 100vw;
-            overflow: hidden; 
-            display: flex;
-            align-items: center;
-            transition: cursor 0.2s ease;
-        }
-
-        .exp-container {
-            display: flex;
-            padding: 0 50px;
-            gap: 40px;
-            width: fit-content;
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .exp-item {
-            width: 80vw; 
-            max-width: 1100px;
-            height: 65vh;
-            min-height: 500px;
-            flex-shrink: 0;
-            user-select: none; 
-        }
-
-        .exp-card {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            background-color: #F5F7F3; 
-            color: #1a1a1a;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 10;
-        }
-
-        .exp-left {
-            width: 50%;
-            padding: 60px 50px;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .exp-meta {
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            color: #888;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-
-        .exp-meta span {
-            display: inline-block;
-            border: 1px solid rgba(0,0,0,0.1);
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-right: 10px;
-        }
-
-        .exp-left h3 {
-            font-family: var(--font-sans);
-            font-size: 52px;
-            font-weight: 600;
-            line-height: 1.05;
-            letter-spacing: -1.5px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .exp-company {
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-        }
-
-        .exp-desc p {
-            font-size: 15px;
-            line-height: 1.9;
-            color: #333;
-        }
-
+        .exp-scroll-wrapper { width: 100vw; overflow: hidden; display: flex; align-items: center; transition: cursor 0.2s ease; }
+        .exp-container { display: flex; padding: 0 50px; gap: 40px; width: fit-content; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+        .exp-item { width: 80vw; max-width: 1100px; height: 65vh; min-height: 500px; flex-shrink: 0; user-select: none; }
+        .exp-card { display: flex; width: 100%; height: 100%; background-color: #F5F7F3; color: #1a1a1a; box-shadow: 0 10px 40px rgba(0,0,0,0.2); position: relative; z-index: 10; }
+        .exp-left { width: 50%; padding: 60px 50px; display: flex; flex-direction: column; border-right: 1px solid rgba(0,0,0,0.1); }
+        .exp-meta { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; color: #888; margin-bottom: 30px; text-transform: uppercase; }
+        .exp-meta span { display: inline-block; border: 1px solid rgba(0,0,0,0.1); padding: 4px 10px; border-radius: 20px; margin-right: 10px; }
+        .exp-left h3 { font-family: var(--font-sans); font-size: 52px; font-weight: 600; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 15px; text-transform: uppercase; }
+        .exp-company { font-size: 13px; font-weight: 600; letter-spacing: 1.5px; margin-bottom: 40px; text-transform: uppercase; }
+        .exp-desc p { font-size: 15px; line-height: 1.9; color: #333; }
         .exp-highlights-container { margin-top: auto; }
-
-        .exp-highlights-title {
-            font-size: 11px;
-            letter-spacing: 2px;
-            color: #888;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .exp-highlights-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px 0;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
+        .exp-highlights-title { font-size: 11px; letter-spacing: 2px; color: #888; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 15px; margin-bottom: 20px; text-transform: uppercase; }
+        .exp-highlights-list { display: flex; flex-wrap: wrap; gap: 15px 0; font-size: 11px; font-weight: 600; letter-spacing: 1px; }
         .exp-highlights-list span { width: 50%; text-transform: uppercase; }
         .exp-highlights-list span b { color: #888; margin-right: 5px; font-weight: 500; }
-
-        .exp-right {
-            width: 50%;
-            height: 100%;
-            position: relative;
-            background-color: #222; 
-        }
+        .exp-right { width: 50%; height: 100%; position: relative; background-color: #222; }
+        .exp-right img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.1); }
+        .exp-number { position: absolute; top: 30px; right: 40px; font-size: 70px; font-weight: 400; color: #fff; line-height: 1; mix-blend-mode: overlay; }
+        .exp-date { position: absolute; bottom: 30px; left: 40px; font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #fff; text-transform: uppercase; }
         
-        .exp-right img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%) contrast(1.1); 
-        }
-
-        .exp-number {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            font-size: 70px;
-            font-weight: 400;
-            color: #fff;
-            line-height: 1;
-            mix-blend-mode: overlay;
-        }
-
-        .exp-date {
-            position: absolute;
-            bottom: 30px;
-            left: 40px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-        
-        /* WORKS SECTION (DUMMY) */
+        /* ========================================= */
+        /* FEATURED WORKS SECTION (NEW)              */
+        /* ========================================= */
         .works-section {
             position: relative;
-            height: 100vh;
             padding: 150px 50px;
-            background-color: var(--bg-color); 
+            background-color: transparent; /* Để lộ nền body / texture */
             z-index: 10;
         }
         
         .works-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding-bottom: 20px;
+            text-align: center;
+            margin-bottom: 80px;
         }
 
-        .works-header-left span {
-            font-size: 11px;
-            letter-spacing: 2px;
-            color: #888;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .works-header-left h2 {
+        .works-header h2 {
             font-family: var(--font-sans);
-            font-size: 40px;
+            font-size: 48px;
             font-weight: 500;
+            color: var(--text-color);
+            letter-spacing: -1px;
         }
 
-        .works-header-right a {
+        /* Lưới 2 cột, ép width nhỏ nhắn vừa màn hình */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 Cột */
+            gap: 40px;
+            max-width: 900px; /* Khống chế kích thước bé bé xinh xinh như video */
+            margin: 0 auto;
+        }
+
+        .work-card {
+            background-color: #fff; /* Box nền trắng */
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            /* Chống highlight lúc lướt */
+            user-select: none;
+            /* Giấu chuột thường khi hover để xài custom cursor */
+            cursor: none; 
+        }
+
+        .work-img-container {
+            width: 100%;
+            aspect-ratio: 4 / 3; /* Tỉ lệ khung hình ngang gọn gàng */
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #eee;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .work-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.4s ease; /* Transition cho hiệu ứng làm tối */
+        }
+
+        /* Hover vào Card thì Hình tối lại như trong video */
+        .work-card:hover .work-img-container img {
+            filter: brightness(0.6); 
+        }
+
+        .work-info h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            text-transform: capitalize;
+        }
+
+        .work-info p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Cắt gọn text nếu dài quá 2 dòng */
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+
+        .work-tag {
+            display: inline-block;
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* CUSTOM CURSOR "SEE MORE!" */
+        #see-more-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: var(--font-sans);
             font-size: 12px;
             font-weight: 600;
-            text-decoration: none;
-            color: inherit;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            pointer-events: none; /* Không cản trở click chuột */
+            z-index: 9999;
+            transform: translate(-50%, -50%) scale(0); /* Giấu đi mặc định */
+            opacity: 0;
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease;
         }
-        
+
+        #see-more-cursor.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="noise-overlay"></div>
+
+    <!-- CUSTOM CURSOR SEE MORE -->
+    <div id="see-more-cursor">see more!</div>
 
     <header>
         <div class="logo">
@@ -678,9 +464,7 @@
         </div>
     </section>
 
-    <!-- ========================================= -->
-    <!-- EXPERIENCES SECTION                       -->
-    <!-- ========================================= -->
+    <!-- EXPERIENCES SECTION -->
     <section class="exp-section" id="experiences">
         
         <div class="exp-bg-text">EXPERIENCES</div>
@@ -816,7 +600,7 @@
                             </div>
                         </div>
                         <div class="exp-right">
-                            <img src="images/Digi.jpg" alt="DigiUni & Freelance">
+                            <img src="images/digi.jpg" alt="DigiUni & Freelance">
                             <div class="exp-number">04</div>
                             <div class="exp-date">2025 - 2026</div>
                         </div>
@@ -828,17 +612,159 @@
     </section>
 
     <!-- ========================================= -->
-    <!-- PROJECTS SECTION (DUMMY)                 -->
+    <!-- FEATURED WORKS SECTION                    -->
     <!-- ========================================= -->
     <section class="works-section" id="works">
         <div class="works-header">
-            <div class="works-header-left">
-                <span>PORTFOLIO SHOWCASE</span>
-                <h2>SELECTED PROJECTS</h2>
+            <h2>Featured Works</h2>
+        </div>
+
+        <div class="works-grid">
+            
+            <!-- Work 1 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work1.jpg" alt="Magazine Celine">
+                </div>
+                <div class="work-info">
+                    <h3>Magazine Celine</h3>
+                    <p>Editorial design focusing on sophisticated typography and high-fashion visual storytelling.</p>
+                    <span class="work-tag">Editorial Design</span>
+                </div>
             </div>
-            <div class="works-header-right">
-                <a href="#">VIEW ALL PROJECTS →</a>
+
+            <!-- Work 2 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work2.jpg" alt="Sự Im Lặng Của Bầy Cừu">
+                </div>
+                <div class="work-info">
+                    <h3>Sự im lặng của bầy cừu</h3>
+                    <p>Book cover redesign exploring psychological themes through dark, conceptual visuals.</p>
+                    <span class="work-tag">Book Cover Design</span>
+                </div>
             </div>
+
+            <!-- Work 3 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work3.jpg" alt="Package Himalaya">
+                </div>
+                <div class="work-info">
+                    <h3>Package Himalaya</h3>
+                    <p>Brand packaging concept utilizing organic forms and natural color palettes.</p>
+                    <span class="work-tag">Packaging Design</span>
+                </div>
+            </div>
+
+            <!-- Work 4 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work4.jpg" alt="UI UX Thiên Mộc Hương">
+                </div>
+                <div class="work-info">
+                    <h3>UI UX Thiên Mộc Hương</h3>
+                    <p>User interface and experience design for a premium agarwood brand's digital platform.</p>
+                    <span class="work-tag">UI/UX Design</span>
+                </div>
+            </div>
+
+            <!-- Work 5 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work5.jpg" alt="Campaign Beer Huda">
+                </div>
+                <div class="work-info">
+                    <h3>Campaign Beer Huda</h3>
+                    <p>Integrated marketing campaign celebrating local culture and vibrant energy.</p>
+                    <span class="work-tag">Campaign & Branding</span>
+                </div>
+            </div>
+
+            <!-- Work 6 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work6.jpg" alt="Traditional Research motion">
+                </div>
+                <div class="work-info">
+                    <h3>Traditional Research motion</h3>
+                    <p>Animated exploration bringing traditional cultural research to life through motion.</p>
+                    <span class="work-tag">Motion Graphics</span>
+                </div>
+            </div>
+
+            <!-- Work 7 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work7.jpg" alt="Marketing (social post)">
+                </div>
+                <div class="work-info">
+                    <h3>Marketing (social post)</h3>
+                    <p>Engaging digital content crafted to drive engagement across social media channels.</p>
+                    <span class="work-tag">Social Media Design</span>
+                </div>
+            </div>
+
+            <!-- Work 8 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work8.jpg" alt="Delasol social">
+                </div>
+                <div class="work-info">
+                    <h3>Delasol social</h3>
+                    <p>Social media visual strategy focused on modern lifestyle and architectural beauty.</p>
+                    <span class="work-tag">Social Media Design</span>
+                </div>
+            </div>
+
+            <!-- Work 9 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work9.jpg" alt="Pepsi exhibition">
+                </div>
+                <div class="work-info">
+                    <h3>Pepsi exhibition</h3>
+                    <p>Dynamic spatial and visual design for an immersive brand exhibition.</p>
+                    <span class="work-tag">Exhibition/3D Design</span>
+                </div>
+            </div>
+
+            <!-- Work 10 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work10.jpg" alt="Fanta motion">
+                </div>
+                <div class="work-info">
+                    <h3>Fanta motion</h3>
+                    <p>Vibrant and playful motion graphics to capture the brand's energetic spirit.</p>
+                    <span class="work-tag">Motion Graphics</span>
+                </div>
+            </div>
+
+            <!-- Work 11 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work11.jpg" alt="Photography">
+                </div>
+                <div class="work-info">
+                    <h3>Photography</h3>
+                    <p>Curated collection capturing light, composition, and visual narratives.</p>
+                    <span class="work-tag">Photography</span>
+                </div>
+            </div>
+
+            <!-- Work 12 -->
+            <div class="work-card">
+                <div class="work-img-container">
+                    <img src="images/work12.jpg" alt="Kẹo kết việt game">
+                </div>
+                <div class="work-info">
+                    <h3>Kẹo kết việt game</h3>
+                    <p>Game UI and asset design tailored for an engaging and playful user experience.</p>
+                    <span class="work-tag">Game Design</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -969,6 +895,24 @@
         });
 
         updateSlider();
+
+        /* ========================================= */
+        /* 7. CUSTOM CURSOR CHO FEATURED WORKS       */
+        /* ========================================= */
+        const customCursor = document.getElementById('see-more-cursor');
+        const workCards = document.querySelectorAll('.work-card');
+
+        // Hàm cho con trỏ "see more!" chạy theo chuột
+        document.addEventListener('mousemove', (e) => {
+            customCursor.style.left = e.clientX + 'px';
+            customCursor.style.top = e.clientY + 'px';
+        });
+
+        // Bật/tắt con trỏ custom khi rê vô từng card
+        workCards.forEach(card => {
+            card.addEventListener('mouseenter', () => customCursor.classList.add('active'));
+            card.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
+        });
 
     </script>
 </body>
