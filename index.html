@@ -41,7 +41,7 @@
             mix-blend-mode: multiply; 
         }
 
-        /* HEADER KÍNH MỜ */
+        /* HEADER KÍNH MỜ (FROSTED GLASS) */
         header {
             position: fixed;
             top: 0;
@@ -196,7 +196,6 @@
         .work-card:hover .work-img-container img { filter: brightness(0.6); }
         .work-info h3 { font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; text-transform: capitalize; }
         
-        /* FIX CẢNH BÁO CSS: Đã thêm line-clamp chuẩn quốc tế */
         .work-info p { 
             font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 15px; 
             display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; 
@@ -213,7 +212,9 @@
         }
         #see-more-cursor.active { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 
-        /* SKILLS SECTION */
+        /* ========================================= */
+        /* SKILLS SECTION (ĐÃ PHỤC HỒI NGUYÊN VẸN)    */
+        /* ========================================= */
         .skills-section {
             position: relative;
             padding: 100px 50px 200px 50px;
@@ -298,7 +299,7 @@
             margin: 0;
         }
 
-        /* FIX CSS LỖI: Đã đổi #00005CC thành #00005C (Mã màu HEX chỉ 6 chữ số) */
+        /* SVG ICONS CSS */
         .icon-ps { background: #31A8FF; border-radius: 8px; color: #001E36; font-weight: 700; font-size: 22px; }
         .icon-ai { background: #FF9A00; border-radius: 8px; color: #330000; font-weight: 700; font-size: 22px; }
         .icon-id { background: #FF3366; border-radius: 8px; color: #49021F; font-weight: 700; font-size: 22px; }
@@ -622,7 +623,6 @@
 
         <div class="works-grid">
             
-            <!-- Work 1 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/magazine.jpg" alt="Magazine Celine">
@@ -634,7 +634,6 @@
                 </div>
             </div>
 
-            <!-- Work 2 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/bookcover.jpg" alt="Sự Im Lặng Của Bầy Cừu">
@@ -646,7 +645,6 @@
                 </div>
             </div>
 
-            <!-- Work 3 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/packagehima.jpg" alt="Package Himalaya">
@@ -658,7 +656,6 @@
                 </div>
             </div>
 
-            <!-- Work 4 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/thienmochuong.jpg" alt="UI UX Thiên Mộc Hương">
@@ -670,7 +667,6 @@
                 </div>
             </div>
 
-            <!-- Work 5 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/huda.jpg" alt="Campaign Beer Huda">
@@ -682,7 +678,6 @@
                 </div>
             </div>
 
-            <!-- Work 6 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/tramotion.jpg" alt="Traditional Research motion">
@@ -694,7 +689,6 @@
                 </div>
             </div>
 
-            <!-- Work 7 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/marketing.jpg" alt="Marketing (social post)">
@@ -706,7 +700,6 @@
                 </div>
             </div>
 
-            <!-- Work 8 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/delasol.jpg" alt="Delasol social">
@@ -718,7 +711,6 @@
                 </div>
             </div>
 
-            <!-- Work 9 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/pepsi.jpg" alt="Pepsi exhibition">
@@ -730,7 +722,6 @@
                 </div>
             </div>
 
-            <!-- Work 10 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/fanta.jpg" alt="Fanta motion">
@@ -742,7 +733,6 @@
                 </div>
             </div>
 
-            <!-- Work 11 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/photo.jpg" alt="Photography">
@@ -754,7 +744,6 @@
                 </div>
             </div>
 
-            <!-- Work 12 -->
             <div class="work-card">
                 <div class="work-img-container">
                     <img src="images/game.jpg" alt="Kẹo kết việt game">
@@ -763,6 +752,120 @@
                     <h3>Kẹo kết việt game</h3>
                     <p>Game UI and asset design tailored for an engaging and playful user experience.</p>
                     <span class="work-tag">Game Design</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================= -->
+    <!-- SKILLS SECTION                            -->
+    <!-- ========================================= -->
+    <section class="skills-section" id="skills">
+        <div class="skills-header">
+            <span>TECHNICAL ARSENAL</span>
+            <h2>SKILLS</h2>
+        </div>
+
+        <div class="skills-grid">
+            
+            <div class="skill-card">
+                <div class="skill-icon icon-ps">Ps</div>
+                <div class="skill-info">
+                    <h4>Photoshop</h4>
+                    <p>Design / Imaging</p>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon icon-id">Id</div>
+                <div class="skill-info">
+                    <h4>Indesign</h4>
+                    <p>Editorial Design</p>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon icon-ai">Ai</div>
+                <div class="skill-info">
+                    <h4>Illustrator</h4>
+                    <p>Vector Graphics</p>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon" style="background:#ea7600; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                </div>
+                <div class="skill-info">
+                    <h4>3D Blender</h4>
+                    <p>3D Modeling</p>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon" style="background:#0066b8; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                <div class="skill-info">
+                    <h4>VS Code</h4>
+                    <p>Development</p>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon" style="background:#1a1a1a; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </div>
+                <div class="skill-info">
+                    <h4>GitHub</h4>
+                    <p>Version Control</p>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon" style="background:#f24e1e; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                </div>
+                <div class="skill-info">
+                    <h4>UI/UX Design</h4>
+                    <p>Interface Design</p>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon" style="background:#E2E2E2; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </div>
+                <div class="skill-info">
+                    <h4>Motion</h4>
+                    <p>Animation</p>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon" style="background:#333; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                </div>
+                <div class="skill-info">
+                    <h4>Photography</h4>
+                    <p>Visual Arts</p>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon icon-pr">Pr</div>
+                <div class="skill-info">
+                    <h4>Premiere Pro</h4>
+                    <p>Video Editing</p>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon icon-lr">Lr</div>
+                <div class="skill-info">
+                    <h4>Lightroom</h4>
+                    <p>Photo Editing</p>
                 </div>
             </div>
 
@@ -823,7 +926,6 @@
         /* ========================================= */
         /* 6. HIỆU ỨNG EXPERIENCES (CLICK ĐỂ SLIDE)  */
         /* ========================================= */
-        
         gsap.to("body", {
             backgroundColor: "#1a1a1a",
             color: "#F5F7F3",
@@ -911,6 +1013,24 @@
         workCards.forEach(card => {
             card.addEventListener('mouseenter', () => customCursor.classList.add('active'));
             card.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
+        });
+
+        /* ========================================= */
+        /* 8. HIỆU ỨNG POP-UP CHO SKILLS             */
+        /* ========================================= */
+        gsap.set(".skill-card", { opacity: 0, scale: 0.8, y: 40 });
+
+        gsap.to(".skill-card", {
+            scrollTrigger: {
+                trigger: ".skills-section",
+                start: "top 75%", 
+            },
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.08, 
+            ease: "back.out(1.5)" 
         });
 
     </script>
