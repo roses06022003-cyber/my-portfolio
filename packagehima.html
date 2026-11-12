@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Himalaya | BỐNGFOLIO</title>
+    <!-- Kết hợp Noto Serif (Nhật) và Playfair Display để ra chất Editorial -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Tông màu mổ xẻ chính xác từ video */
+            --bg-olive: #9C9B86; 
+            --bg-dark: #191915; 
+            --text-dark: #22221E; 
+            --text-light: #D4D4C7; 
+            
+            --font-sans: 'Montserrat', sans-serif;
+            --font-serif: 'Playfair Display', 'Noto Serif JP', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* Vô hiệu hóa thanh cuộn ngang mặc định, chỉ để cuộn dọc */
+        body, html {
+            overflow-x: hidden;
+            background-color: var(--bg-olive); /* Nền mặc định */
+            font-family: var(--font-serif);
+            color: var(--text-dark);
+            overscroll-behavior: none;
+        }
+
+        /* NÚT BACK VỀ TRANG CHỦ FIXED GÓC TRÁI */
+        .back-nav {
+            position: fixed; top: 40px; left: 40px; z-index: 9999;
+            font-family: var(--font-sans); font-size: 11px; font-weight: 500;
+            letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+            color: var(--text-dark); mix-blend-mode: difference; color: #fff;
+            transition: opacity 0.3s;
+        }
+        .back-nav:hover { opacity: 0.5; }
+
+        /* ========================================================= */
+        /* CẤU TRÚC CUỘN NGANG (HORIZONTAL SCROLL)                   */
+        /* ========================================================= */
+        .horizontal-scroll-wrapper {
+            width: 500vw; /* 5 mục = 500% chiều rộng màn hình */
+            height: 100vh;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .panel {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            position: relative;
+            padding: 8vh 5vw;
+            display: flex;
+            align-items: center;
+        }
+
+        .bg-olive { background-color: var(--bg-olive); color: var(--text-dark); }
+        .bg-dark { background-color: var(--bg-dark); color: var(--text-light); }
+
+        /* HIỆU ỨNG ẨN TRƯỚC KHI SCROLL (GSAP sẽ kích hoạt) */
+        .reveal-text, .reveal-img {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* ========================================================= */
+        /* PANEL 1: HERO & VIDEO (Màu rêu)                           */
+        /* ========================================================= */
+        .p1-content {
+            width: 100%; height: 100%; position: relative;
+        }
+        .p1-text-top {
+            position: absolute; top: 5%; right: 10%; width: 40%;
+            text-align: right; font-size: 22px; line-height: 1.8; font-weight: 400;
+        }
+        .p1-text-mid {
+            position: absolute; top: 40%; left: 30%; width: 25%;
+            font-size: 14px; line-height: 2.2; font-family: var(--font-sans);
+        }
+        
+        /* Chỗ chèn Video Playholder */
+        .p1-video-wrapper {
+            position: absolute; bottom: 10%; right: 15%;
+            width: 350px; height: 500px; background-color: #7b7a66;
+            overflow: hidden; cursor: pointer;
+        }
+        .p1-video-wrapper video {
+            width: 100%; height: 100%; object-fit: cover; filter: sepia(0.4) brightness(0.9);
+        }
+        .play-btn {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 60px; height: 60px; background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px); border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; pointer-events: none;
+        }
+        .play-btn svg { width: 20px; height: 20px; fill: #fff; margin-left: 4px; }
+
+        .p1-img-small {
+            position: absolute; bottom: 5%; left: 45%;
+            width: 120px; height: 180px; background-color: #8c8c78;
+        }
+
+        .p1-logo {
+            position: absolute; bottom: 5%; left: 0;
+            font-size: 30px; letter-spacing: 5px;
+        }
+        .p1-logo span { display: block; font-size: 9px; font-family: var(--font-sans); letter-spacing: 3px; margin-top: 5px;}
+
+        /* ========================================================= */
+        /* PANEL 2: INDEX (Màu đen)                                  */
+        /* ========================================================= */
+        .p2-container {
+            width: 100%; height: 100%; display: flex; position: relative;
+        }
+        .p2-title {
+            width: 30%; font-size: 50px; font-weight: 400; padding-top: 50px;
+        }
+        .p2-img {
+            width: 25%; height: 60%; background-color: #2a2a24;
+            margin-top: 50px; object-fit: cover;
+        }
+        .p2-list {
+            width: 45%; padding-top: 250px; padding-left: 80px; list-style: none;
+        }
+        .p2-list li {
+            display: flex; justify-content: space-between;
+            border-bottom: 1px solid rgba(212, 212, 199, 0.2);
+            padding: 20px 0; font-size: 15px; font-family: var(--font-sans);
+        }
+        .p2-list li span:first-child { color: #888; font-size: 12px; margin-right: 30px; }
+        .p2-list li a { color: var(--text-light); text-decoration: none; display: flex; width: 100%; justify-content: space-between; }
+
+        /* ========================================================= */
+        /* PANEL 3: ABOUT US (Màu đen nối tiếp)                      */
+        /* ========================================================= */
+        .p3-container {
+            width: 100%; height: 100%; display: flex; justify-content: space-between; position: relative;
+        }
+        .p3-left { width: 45%; height: 100%; position: relative; }
+        .p3-title { font-size: 40px; margin-bottom: 50px; }
+        .p3-main-img { width: 80%; height: 60%; background-color: #2a2a24; object-fit: cover; position: absolute; bottom: 10%; right: 0; }
+        
+        .p3-right { width: 45%; padding-top: 200px; padding-right: 5vw; }
+        .p3-right h2 { font-size: 45px; line-height: 1.2; font-weight: 400; margin-bottom: 40px; }
+        .p3-right p { font-size: 13px; line-height: 2.2; font-family: var(--font-sans); color: #aaa; margin-bottom: 20px; }
+        
+        /* Hình nhỏ lơ lửng góc trên phải */
+        .p3-small-img { position: absolute; top: 5%; right: 5%; width: 150px; height: 150px; background-color: #333; object-fit: cover; }
+
+        /* ========================================================= */
+        /* PANEL 4: PRODUCT LIST (Màu rêu)                           */
+        /* ========================================================= */
+        .p4-container { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+        .p4-title { font-size: 40px; margin-bottom: 100px; }
+        .p4-list { list-style: none; width: 80%; margin: 0 auto; }
+        .p4-list li {
+            display: flex; align-items: center; padding: 30px 0;
+            border-bottom: 1px solid rgba(34, 34, 30, 0.2);
+            font-size: 18px; cursor: pointer; transition: padding-left 0.3s ease;
+        }
+        .p4-list li:hover { padding-left: 20px; }
+        .p4-list li span:first-child { width: 50px; font-family: var(--font-sans); font-size: 13px; }
+        .p4-list li .jp-text { margin-left: auto; font-size: 13px; color: #555; }
+
+        /* ========================================================= */
+        /* PANEL 5: PRODUCT DETAIL (Màu đen)                         */
+        /* ========================================================= */
+        .p5-container { width: 100%; height: 100%; display: flex; }
+        .p5-left { width: 50%; padding: 15% 5vw 0 5vw; }
+        .p5-number { font-size: 60px; margin-bottom: 50px; color: #666; font-family: var(--font-sans); }
+        .p5-name { font-size: 35px; margin-bottom: 10px; }
+        .p5-sub { font-size: 13px; color: #888; font-family: var(--font-sans); margin-bottom: 80px; }
+        .p5-specs { font-size: 12px; line-height: 2.2; font-family: var(--font-sans); color: #aaa; margin-bottom: 80px; }
+        .p5-view-btn { font-size: 14px; font-family: var(--font-sans); color: var(--text-light); text-decoration: none; border-bottom: 1px solid var(--text-light); padding-bottom: 5px; }
+        
+        .p5-right { width: 50%; height: 100%; position: relative; }
+        .p5-img-large { width: 100%; height: 100%; object-fit: cover; background-color: #2a2a24; }
+
+    </style>
+</head>
+<body>
+
+    <div class="noise-overlay"></div>
+    <a href="index.html" class="back-nav">← Back</a>
+
+    <!-- KHUNG CHỨA TOÀN BỘ CÁC TRANG CUỘN NGANG -->
+    <div class="horizontal-scroll-wrapper">
+
+        <!-- ========================================== -->
+        <!-- PANEL 1: HERO THIỀN ĐỊNH (Màu rêu)           -->
+        <!-- ========================================== -->
+        <section class="panel bg-olive">
+            <div class="p1-content">
+                <div class="p1-text-top reveal-text">
+                    Package Himalaya engages in activities that bridges the timeless beauty inherent in objects into the present, restoring a sense of artistry and craftsmanship to our everyday lives.
+                </div>
+                
+                <div class="p1-text-mid reveal-text" data-delay="0.2">
+                    Thiết kế không chỉ là việc tạo ra một hình dáng,<br>
+                    mà là tìm kiếm lý do để hình dáng đó tồn tại.<br>
+                    Từng đường nét, màu sắc đều chứa đựng<br>
+                    một câu chuyện chưa kể.
+                </div>
+
+                <!-- Chỗ chèn Video, xài thẻ video autoplay mute loop cho ngầu -->
+                <div class="p1-video-wrapper reveal-img" data-delay="0.4">
+                    <!-- Sếp thay "images/your-video.mp4" vào đây nha -->
+                    <video src="images/placeholder-vid.mp4" autoplay muted loop playsinline></video>
+                    <div class="play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+
+                <!-- Chỗ chèn Hình nhỏ -->
+                <img src="images/packagehima.jpg" class="p1-img-small reveal-img" data-delay="0.6" alt="Small display">
+
+                <div class="p1-logo reveal-text" data-delay="0.8">
+                    HIMALAYA
+                    <span>Packaging & Concept</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PANEL 2: INDEX (Màu đen)                   -->
+        <!-- ========================================== -->
+        <section class="panel bg-dark">
+            <div class="p2-container">
+                <div class="p2-title reveal-text">Index</div>
+                <img src="images/packagehima.jpg" class="p2-img reveal-img" data-delay="0.2" alt="Index Image">
+                
+                <ul class="p2-list">
+                    <li class="reveal-text" data-delay="0.3">
+                        <a href="#"><span>01</span> About Project <span>プロジェクトについて</span></a>
+                    </li>
+                    <li class="reveal-text" data-delay="0.4">
+                        <a href="#"><span>02</span> Concept <span>コンセプト</span></a>
+                    </li>
+                    <li class="reveal-text" data-delay="0.5">
+                        <a href="#"><span>03</span> Visual Identity <span>ビジュアル</span></a>
+                    </li>
+                    <li class="reveal-text" data-delay="0.6">
+                        <a href="#"><span>04</span> Packaging <span>パッケージ</span></a>
+                    </li>
+                    <li class="reveal-text" data-delay="0.7">
+                        <a href="#"><span>05</span> Gallery <span>ギャラリー</span></a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PANEL 3: ABOUT US (Màu đen)                -->
+        <!-- ========================================== -->
+        <section class="panel bg-dark">
+            <div class="p3-container">
+                <div class="p3-left">
+                    <div class="p3-title reveal-text">About Us<br><span style="font-size:12px; color:#888; font-family:var(--font-sans);">私たちについて</span></div>
+                    <img src="images/packagehima.jpg" class="p3-main-img reveal-img" data-delay="0.2" alt="About Main">
+                </div>
+                
+                <div class="p3-right">
+                    <h2 class="reveal-text" data-delay="0.3">From<br>hand to hand.</h2>
+                    <p class="reveal-text" data-delay="0.4">
+                        We embrace the art of minimal design and a profound appreciation for organic pieces, aiming to revive the timeless beauty these objects have carried through the ages and reintroduce that beauty into our everyday lives.
+                    </p>
+                    <p class="reveal-text" data-delay="0.5">
+                        For this packaging project, we accept organic shapes and also hold the principles to share its techniques and spirit. We primarily focus on sustainable materials, complemented by clean typography pieces for display and sale.
+                    </p>
+                    <p class="reveal-text" data-delay="0.6">
+                        With deep respect for the traditions, craftsmanship, and aesthetic sensibilities cultivated by artisans over many generations, we devote ourselves to cherishing these legacies and passing them on for the future.
+                    </p>
+                </div>
+                
+                <!-- Hình nhỏ lơ lửng -->
+                <img src="images/packagehima.jpg" class="p3-small-img reveal-img" data-delay="0.7" alt="Float">
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PANEL 4: PRODUCT LIST (Màu rêu)            -->
+        <!-- ========================================== -->
+        <section class="panel bg-olive">
+            <div class="p4-container">
+                <div class="p4-title reveal-text">Product<br><span style="font-size:12px; color:#555; font-family:var(--font-sans);">パッケージの品々</span></div>
+                
+                <ul class="p4-list">
+                    <li class="reveal-text" data-delay="0.2">
+                        <span>I</span> Himalaya Original Box <span class="jp-text">ヒマラヤ オリジナル ボックス</span>
+                    </li>
+                    <li class="reveal-text" data-delay="0.3">
+                        <span>II</span> Premium Organic Pouch <span class="jp-text">プレミアム オーガニック ポーチ</span>
+                    </li>
+                    <li class="reveal-text" data-delay="0.4">
+                        <span>III</span> Glass Bottle Edition <span class="jp-text">ガラスボトル エディション</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PANEL 5: PRODUCT DETAIL (Màu đen)          -->
+        <!-- ========================================== -->
+        <section class="panel bg-dark">
+            <div class="p5-container">
+                <div class="p5-left">
+                    <div class="p5-number reveal-text">I</div>
+                    <div class="p5-name reveal-text" data-delay="0.2">Himalaya Original Box</div>
+                    <div class="p5-sub reveal-text" data-delay="0.3">ヒマラヤ オリジナル ボックス (リサイクル素材)</div>
+                    
+                    <div class="p5-specs reveal-text" data-delay="0.4">
+                        Place : Vietnam<br>
+                        Period : 2026<br>
+                        Dimensions : (diameter) 90 mm, (height) 120 mm
+                    </div>
+                    
+                    <div class="reveal-text" data-delay="0.5">
+                        <a href="#" class="p5-view-btn">View Detail &nbsp;&nbsp;&nbsp; 詳しく見る →</a>
+                    </div>
+                </div>
+                
+                <div class="p5-right">
+                    <img src="images/packagehima.jpg" class="p5-img-large reveal-img" data-delay="0.6" alt="Detail">
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Thư viện GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. TẠO HIỆU ỨNG CUỘN NGANG (HORIZONTAL SCROLL)
+        const wrapper = document.querySelector('.horizontal-scroll-wrapper');
+        const panels = gsap.utils.toArray('.panel');
+
+        // Bắt trình duyệt "ghim" (pin) màn hình lại và dịch chuyển wrapper sang trái
+        let scrollTween = gsap.to(panels, {
+            xPercent: -100 * (panels.length - 1),
+            ease: "none", // Trượt đều đặn không giật cục
+            scrollTrigger: {
+                trigger: wrapper,
+                pin: true,
+                scrub: 1, // Làm mượt thao tác lăn chuột (scrub càng lớn càng delay mượt)
+                end: () => "+=" + wrapper.offsetWidth // Cuộn hết chiều rộng thì nhả ghim
+            }
+        });
+
+        // 2. HIỆU ỨNG CHỮ TRỒI LÊN (FADE-UP TEXT) TRONG LÚC CUỘN NGANG
+        // Lưu ý: Phải xài containerAnimation để nó hiểu đang cuộn ngang
+        gsap.utils.toArray('.reveal-text').forEach(text => {
+            let delay = text.getAttribute('data-delay') || 0;
+            gsap.fromTo(text, 
+                { y: 40, opacity: 0, autoAlpha: 0 },
+                { 
+                    y: 0, opacity: 1, autoAlpha: 1, duration: 1, ease: "power3.out", delay: delay,
+                    scrollTrigger: {
+                        trigger: text,
+                        containerAnimation: scrollTween, // Khai báo nó nằm trong cuộn ngang
+                        start: "left 85%", // Kích hoạt khi mép trái của chữ vào tới 85% màn hình
+                    }
+                }
+            );
+        });
+
+        // 3. HIỆU ỨNG HÌNH ẢNH MỞ RA TỪ TỪ (CLIP-PATH WIPE + MỞ RỘNG) Y CHANG VIDEO
+        gsap.utils.toArray('.reveal-img').forEach(img => {
+            let delay = img.getAttribute('data-delay') || 0;
+            gsap.fromTo(img, 
+                { clipPath: "inset(0 100% 0 0)", scale: 1.1, autoAlpha: 0 }, // Giấu hình về bên trái, hơi phóng to
+                { 
+                    clipPath: "inset(0 0% 0 0)", scale: 1, autoAlpha: 1, duration: 1.5, ease: "power4.inOut", delay: delay,
+                    scrollTrigger: {
+                        trigger: img,
+                        containerAnimation: scrollTween,
+                        start: "left 80%" 
+                    }
+                }
+            );
+        });
+
+    </script>
+</body>
+</html>
