@@ -693,16 +693,18 @@
                 </div>
             </div>
 
-            <div class="work-card">
-                <div class="work-img-container">
-                    <img src="images/packagehima.jpg" alt="Package Himalaya">
+            <a href="packagehima.html" style="text-decoration: none; display: block; color: inherit;">
+                <div class="work-card">
+                    <div class="work-img-container">
+                        <img src="images/packagehima.jpg" alt="Package Himalaya">
+                    </div>
+                    <div class="work-info">
+                        <h3>Package Himalaya</h3>
+                        <p>Brand packaging concept utilizing organic forms and natural color palettes.</p>
+                        <span class="work-tag">Packaging Design</span>
+                    </div>
                 </div>
-                <div class="work-info">
-                    <h3>Package Himalaya</h3>
-                    <p>Brand packaging concept utilizing organic forms and natural color palettes.</p>
-                    <span class="work-tag">Packaging Design</span>
-                </div>
-            </div>
+            </a>
 
             <div class="work-card">
                 <div class="work-img-container">
@@ -1115,7 +1117,7 @@
             emailTooltip.style.top = e.clientY + 'px';
         });
 
-        // Bật tooltip khi rê vô
+        // Bật tooltip khi rê vào nút, đồng thời hiển thị chữ "Copy
         emailBtn.addEventListener('mouseenter', () => {
             emailTooltip.style.opacity = '1';
         });
